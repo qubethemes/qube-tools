@@ -51,10 +51,10 @@ if (!class_exists('Qube_Tools')) {
  * @return Qube_Tools
  * @since 1.0.0
  */
-function qube_tools_instance()
+function qube_tools()
 {
     return Qube_Tools::instance();
 }
 
 // Global for backwards compatibility.
-$GLOBALS['qube-tools-instance'] = qube_tools_instance();
+$GLOBALS['qube-tools'] = qube_tools();

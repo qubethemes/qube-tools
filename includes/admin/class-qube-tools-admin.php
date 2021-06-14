@@ -2,38 +2,40 @@
 
 class Qube_Tools_Admin
 {
+    private $config;
+
     public function __construct()
     {
-        add_action('admin_menu', array($this, 'subpage'), 10);
 
+        add_action('admin_menu', array($this, 'menu'), 10);
     }
 
-    // action function for above hook
-
-    /**
-     * Adds a new top-level page to the administration menu.
-     */
-    function subpage()
+    public function menu()
     {
+
+        $this->config = apply_filters(
+            'qube_tools_admin_menu_filter', array(
+                'subpage' => false,
+                'slug' => '',
+                'title' => '',
+                'callback' => ''
+
+            )
+        );
+        if (!$this->config['subpage']) {
+            return;
+        }
         add_menu_page(
-            __('Qube Theme Options', 'textdomain'),
-            __('Qube Theme Options', 'textdomain'),
+            $this->config['title'],
+            $this->config['title'],
             'manage_options',
-            'qube-tools-panel',
-            array($this, 'admin_page'),
+            $this->config['slug'] . '-options',
+            $this->config['callback'],
             '',
             61
         );
     }
 
-    public function admin_page()
-    {
-        $theme = wp_get_theme();
-        if (strtolower($theme->get_template() === 'qube-tools')) {
-            Qube_Themes_About::get_instance(true)->page();
-        }
-
-    }
 }
 
 new Qube_Tools_Admin();
