@@ -1003,7 +1003,7 @@ class WP_Import extends WP_Importer {
 			return new WP_Error( 'upload_dir_error', $upload['error'] );
 
 		// fetch the remote url and write it to the placeholder file
-		$headers = Qube_Tools_Demos_Helpers::wp_get_http( $url, $upload['file'] );
+		$headers = qube_tools_wp_get_http( $url, $upload['file'] );
 
 		// request failed
 		if ( ! $headers ) {

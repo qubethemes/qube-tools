@@ -13,7 +13,7 @@ class Qube_Tools_Settings_Importer {
 	public function process_import_file( $file ) {
 
 		// Get file contents.
-		$data = Qube_Tools_Demos_Helpers::get_remote( $file );
+		$data = qube_tools_get_remote( $file );
 
 		// Return from this function if there was an error.
 		if ( is_wp_error( $data ) ) {

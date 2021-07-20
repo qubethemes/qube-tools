@@ -4,7 +4,7 @@
     "use strict";
 
     $(document).ready(function () {
-        qubeToolsDemoImporter.init();
+        // qubeToolsDemoImporter.init();
     });
 
     var qubeToolsDemoImporter = {
@@ -489,6 +489,8 @@
 
         // Activate required plugins.
         activatePlugins: function (e) {
+            debugger;
+
             e.preventDefault();
 
             // Vars
@@ -571,6 +573,7 @@
         // Plugin installing.
         pluginInstalling: function (e, args) {
             e.preventDefault();
+
 
             var $card = $('.qube-tools-plugin-' + args.slug),
                 $button = $card.find('.button');

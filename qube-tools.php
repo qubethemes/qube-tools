@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 
 // Define QUBE_TOOLS_PLUGIN_FILE.
 if (!defined('QUBE_TOOLS_FILE')) {
-    define('QUBE_TOOLS_FILE', __FILE__);
+    define('QUBE_TOOLS_FILE', dirname(__FILE__));
 }
 
 // Define QUBE_TOOLS_VERSION.
@@ -36,24 +36,12 @@ if (!defined('QUBE_TOOLS_PLUGIN_DIR')) {
     define('QUBE_TOOLS_PLUGIN_DIR', plugin_dir_path(QUBE_TOOLS_FILE));
 }
 
-
-// Include the main Qube_Tools class.
-if (!class_exists('Qube_Tools')) {
-    include_once dirname(__FILE__) . '/includes/class-qube-tools.php';
-}
+require_once wp_normalize_path(QUBE_TOOLS_FILE . '/includes/autoloader.php');
 
 
-/**
- * Main instance of Qube_Tools.
- *
- * Returns the main instance of Qube_Tools to prevent the need to use globals.
- *
- * @return Qube_Tools
- * @since 1.0.0
- */
 function qube_tools()
 {
-    return Qube_Tools::instance();
+    return \Qube_Tools\Includes\Main::instance();
 }
 
 // Global for backwards compatibility.

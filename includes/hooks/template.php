@@ -1,18 +1,9 @@
 <?php
 
-class Qube_Tools_Template_Hooks
+namespace Qube_Tools\Includes\Hooks;
+
+class Template
 {
-    public static $instance = null;
-
-    public static function get_instance()
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-
-    }
-
     public function __construct()
     {
 
@@ -192,5 +183,3 @@ class Qube_Tools_Template_Hooks
     }
 
 }
-
-Qube_Tools_Template_Hooks::get_instance();

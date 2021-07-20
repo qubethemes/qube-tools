@@ -1,6 +1,8 @@
 <?php
 
-class Qube_Tools_Ajax
+namespace Qube_Tools\Includes;
+
+class Ajax
 {
 
     public function __construct()
@@ -10,5 +12,3 @@ class Qube_Tools_Ajax
 
 
 }
-
-new Qube_Tools_Ajax();

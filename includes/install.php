@@ -1,22 +1,17 @@
 <?php
-/**
- * Qube_Tools install setup
- *
- * @package Qube_Tools
- * @since 1.0.0
- */
 
-defined('ABSPATH') || exit;
+
+namespace Qube_Tools\Includes;
 
 /**
  * Main Qube_Tools_Install Class.
  *
  * @class Qube_Tools
  */
-final class Qube_Tools_Install
+class Install
 {
 
-    public static function install()
+    public function install()
     {
         if (!is_blog_installed()) {
             return;
@@ -32,14 +27,15 @@ final class Qube_Tools_Install
 
         // If we made it till here nothing is running yet, lets set the transient now.
         set_transient('qube_tools_installing', 'yes', MINUTE_IN_SECONDS * 10);
-        self::create_files();
+
+        $this->create_files();
 
 
         delete_transient('qube_tools_installing');
 
     }
 
-    public static function create_files()
+    public function create_files()
     {
         // Bypass if filesystem is read-only and/or non-standard upload system is used.
         if (apply_filters('qube_tools_install_skip_create_files', false)) {

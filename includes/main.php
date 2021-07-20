@@ -1,10 +1,19 @@
 <?php
 
-final class Qube_Tools
+namespace Qube_Tools\Includes;
+
+use Qube_Tools\Includes\Modules\Demo\Importer;
+use Qube_Tools\Includes\Admin\Init;
+use Qube_Tools\Includes\Hooks\Template;
+
+final class Main
 {
 
     private static $_instance = null;
 
+    public $theme_config = array();
+
+    private $install = null;
 
     public static function instance()
     {
@@ -16,9 +25,9 @@ final class Qube_Tools
 
     public function __construct()
     {
-
+        $this->install = new Install();
         $this->define_constants();
-        $this->includes();
+        $this->init();
         $this->init_hooks();
 
         do_action('qube_tools_loaded');
@@ -37,7 +46,7 @@ final class Qube_Tools
     {
         $upload_dir = wp_upload_dir(null, false);
 
-        $this->define('QUBE_TOOLS_ABSPATH', dirname(QUBE_TOOLS_FILE) . '/');
+        $this->define('QUBE_TOOLS_ABSPATH', QUBE_TOOLS_FILE . '/');
         $this->define('QUBE_TOOLS_BASENAME', plugin_basename(QUBE_TOOLS_FILE));
         $this->define('QUBE_TOOLS_UPLOAD_DIR', $upload_dir['basedir'] . '/qube-tools-upload/');
         $this->define('QUBE_TOOLS_DYNAMIC_CSS_PATH', QUBE_TOOLS_UPLOAD_DIR . 'qube-tools-dynamic.css');
@@ -47,24 +56,25 @@ final class Qube_Tools
     }
 
 
-    public function includes()
+    public function init()
     {
-        include_once QUBE_TOOLS_ABSPATH . 'includes/class-qube-tools-install.php';
 
         $theme = wp_get_theme();
 
-        if ('qube-tools' == strtolower($theme->template)) {
+        if (strtolower($theme->get('Author')) == 'qubethemes') {
 
-            include_once QUBE_TOOLS_ABSPATH . 'includes/qube-tools-functions.php';
-            include_once QUBE_TOOLS_ABSPATH . 'includes/class-qube-tools-ajax.php';
-            include_once QUBE_TOOLS_ABSPATH . 'includes/qube-tools-demo-data.php';
-            include_once QUBE_TOOLS_ABSPATH . 'includes/hooks/class-qube-tools-template-hooks.php';
-            include_once QUBE_TOOLS_ABSPATH . 'includes/panel/demos.php';
+            include_once QUBE_TOOLS_ABSPATH . 'includes/functions/functions.php';
+            include_once QUBE_TOOLS_ABSPATH . 'includes/functions/importer.php';
+            include_once QUBE_TOOLS_ABSPATH . 'includes/functions/demo-data.php';
+
+            new Ajax();
+            new Template();
+            new Importer();
         }
 
 
         if (is_admin()) {
-            require_once QUBE_TOOLS_ABSPATH . 'includes/admin/class-qube-tools-admin.php';
+            new Init();
         }
 
     }
@@ -72,19 +82,26 @@ final class Qube_Tools
 
     public function init_hooks()
     {
-        register_activation_hook(QUBE_TOOLS_FILE, array('Qube_Tools_Install', 'install'));
+        register_activation_hook(QUBE_TOOLS_FILE, array($this->install, 'install'));
 
         add_action('init', array($this, 'load_plugin_textdomain'));
+        add_action('init', array($this, 'register_configs'));
 
         add_filter('everest_forms_enable_setup_wizard', array($this, 'everest_form_redirect'));
 
     }
 
-    public function everest_form_redirect($status)
+    public function register_configs()
     {
+        $this->theme_config = apply_filters('qube_tools_admin_menu_filter', array(
+            array(
+                'subpage' => false,
+                'slug' => '',
+                'title' => '',
+                'callback' => ''
 
-        delete_transient('_evf_activation_redirect');
-        return false;
+            )
+        ));
     }
 
 
