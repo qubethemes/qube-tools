@@ -63,7 +63,7 @@ class Init
     public function create_admin_page()
     {
 
-        qube_tools_load_admin_template('importer-page');
+        qube_tools_load_module_template('demo', 'importer-page');
 
 
     }
