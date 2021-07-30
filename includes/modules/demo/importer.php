@@ -77,7 +77,7 @@ class Importer
 
         $screen_id = isset($screen->id) ? $screen->id : '';
 
-        if ($screen_id !== "toplevel_page_" . qube_tools()->theme_config['slug'] . "-options") {
+        if ($screen_id !== qube_tools()->theme_config['slug'] . "-options_page_qube-tools-install-demos") {
             return;
         }
 

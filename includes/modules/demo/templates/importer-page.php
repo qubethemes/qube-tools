@@ -1,4 +1,4 @@
-<div class="qube-tools-demo-wrap wrap">
+<div class="card qube-tools-demo-wrap wrap">
 
     <h2><?php //echo esc_attr( $brand );
         ?><?php esc_attr_e('Qube Themes Theme Demos', 'qube-tools-toolkit'); ?></h2>
