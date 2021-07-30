@@ -1,7 +1,8 @@
 <div class="card qube-tools-demo-wrap wrap">
 
-    <h2><?php //echo esc_attr( $brand );
-        ?><?php esc_attr_e('Qube Themes Theme Demos', 'qube-tools-toolkit'); ?></h2>
+    <h2><?php
+
+        echo ucwords(get_stylesheet()) . ' ' . esc_attr('Theme Demos', 'qube-tools'); ?></h2>
 
     <div class="theme-browser rendered">
 
