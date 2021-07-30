@@ -19,7 +19,7 @@ class Importer
         // Start things
         add_action('admin_init', array($this, 'init'));
 
-        add_action('admin_init', array($this, 'qube_tools_plugin_redirect'));
+        //add_action('admin_init', array($this, 'qube_tools_plugin_redirect'));
 
         // Demos scripts
         add_action('admin_enqueue_scripts', array($this, 'scripts'));
@@ -32,14 +32,6 @@ class Importer
 
     }
 
-
-    public static function qube_tools_plugin_redirect()
-    {
-        if (get_option('qube_tools_plugin_do_activation_redirect', false)) {
-            delete_option('qube_tools_plugin_do_activation_redirect');
-            // exit(wp_redirect("themes.php?page=qube-tools"));
-        }
-    }
 
     /**
      * Register the AJAX methods
@@ -78,7 +70,7 @@ class Importer
      *
      * @since 1.0.0
      */
-    public static function scripts()
+    public function scripts()
     {
 
         $screen = get_current_screen();
@@ -125,20 +117,14 @@ class Importer
      *
      * @since 1.0.0
      */
-    public static function get_demos_data()
-    {
 
-        // Return
-        return apply_filters('qube_tools_demos_data', array());
-
-    }
 
     /**
      * Get the category list of all categories used in the predefined demo imports array.
      *
      * @since 1.0.0
      */
-    public static function get_demo_all_categories($demo_imports)
+    public function get_demo_all_categories($demo_imports)
     {
         $categories = array();
 
@@ -163,29 +149,14 @@ class Importer
      *
      * @since 1.0.0
      */
-    public static function get_demo_item_categories($item)
-    {
-        $sanitized_categories = array();
 
-        if (isset($item['categories'])) {
-            foreach ($item['categories'] as $category) {
-                $sanitized_categories[] = sanitize_key($category);
-            }
-        }
-
-        if (!empty($sanitized_categories)) {
-            return implode(',', $sanitized_categories);
-        }
-
-        return false;
-    }
 
     /**
      * Demos popup
      *
      * @since 1.0.0
      */
-    public static function popup()
+    public function popup()
     {
         global $pagenow;
 
@@ -229,7 +200,7 @@ class Importer
         }
 
         // Get all demos
-        $demos = self::get_demos_data();
+        $demos = qube_tools_get_demos_data();
 
         // Get selected demo
         $demo = sanitize_textarea_field($_GET['demo_name']);
@@ -501,7 +472,7 @@ class Importer
         $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
 
         // Get demos data
-        $all_demo = Qube_Tools_Demos::get_demos_data();
+        $all_demo = qube_tools_get_demos_data();
         $demo = isset($all_demo[$demo_type]) ? $all_demo[$demo_type] : array();
 
         // Content file
@@ -547,7 +518,7 @@ class Importer
 
         // Get the selected demo
         $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
-        $all_demo = Qube_Tools_Demos::get_demos_data();
+        $all_demo = qube_tools_get_demos_data();
 
         $demo = isset($all_demo[$demo_type]) ? $all_demo[$demo_type] : array();
 
@@ -584,7 +555,7 @@ class Importer
 
         // Get the selected demo
         $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
-        $all_demo = Qube_Tools_Demos::get_demos_data();
+        $all_demo = qube_tools_get_demos_data();
         $demo = isset($all_demo[$demo_type]) ? $all_demo[$demo_type] : array();
 
 
@@ -623,7 +594,7 @@ class Importer
             $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
 
             // Get demos data
-            $all_demo = Qube_Tools_Demos::get_demos_data();
+            $all_demo = qube_tools_get_demos_data();
             $demo = isset($all_demo[$demo_type]) ? $all_demo[$demo_type] : array();
 
             // Elementor width setting

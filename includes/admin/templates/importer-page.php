@@ -7,7 +7,8 @@
 
         <?php
         // Vars
-        $demos = array();//Qube_Tools_Demos::get_demos_data();
+        $demos = qube_tools_get_demos_data();
+
         $categories = array();//Qube_Tools_Demos::get_demo_all_categories($demos); ?>
 
         <?php if (!empty($categories)) : ?>
@@ -40,7 +41,7 @@
 
 
                 // Vars
-                $item_categories = Qube_Tools_Demos::get_demo_item_categories($key); ?>
+                $item_categories = qube_tools_get_demo_item_categories($key); ?>
 
                 <div class="theme-wrap" data-categories="<?php echo esc_attr($item_categories); ?>"
                      data-name="<?php echo esc_attr(strtolower($demo)); ?>">

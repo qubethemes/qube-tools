@@ -107,3 +107,33 @@ function qube_tools_wp_get_http($url, $file_path = false, $red = 1)
 
 }
 
+
+function qube_tools_plugin_redirect()
+{
+    if (get_option('qube_tools_plugin_do_activation_redirect', false)) {
+        delete_option('qube_tools_plugin_do_activation_redirect');
+        // exit(wp_redirect("themes.php?page=qube-tools"));
+    }
+}
+
+function qube_tools_get_demos_data()
+{
+    return apply_filters('qube_tools_demos_data', array());
+}
+
+function qube_tools_get_demo_item_categories($item)
+{
+    $sanitized_categories = array();
+
+    if (isset($item['categories'])) {
+        foreach ($item['categories'] as $category) {
+            $sanitized_categories[] = sanitize_key($category);
+        }
+    }
+
+    if (!empty($sanitized_categories)) {
+        return implode(',', $sanitized_categories);
+    }
+
+    return false;
+}
