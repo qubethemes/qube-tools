@@ -119,29 +119,7 @@ class Importer
      */
 
 
-    /**
-     * Get the category list of all categories used in the predefined demo imports array.
-     *
-     * @since 1.0.0
-     */
-    public function get_demo_all_categories($demo_imports)
-    {
-        $categories = array();
 
-        foreach ($demo_imports as $item) {
-            if (!empty($item['categories']) && is_array($item['categories'])) {
-                foreach ($item['categories'] as $category) {
-                    $categories[sanitize_key($category)] = $category;
-                }
-            }
-        }
-
-        if (empty($categories)) {
-            return false;
-        }
-
-        return $categories;
-    }
 
     /**
      * Demos popup

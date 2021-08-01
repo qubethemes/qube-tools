@@ -137,3 +137,25 @@ function qube_tools_get_demo_item_categories($item)
 
     return false;
 }
+
+function qube_tools_get_demo_all_categories($demo_imports)
+{
+    $categories = array();
+
+    foreach ($demo_imports as $item) {
+
+        if (!empty($item['categories']) && is_array($item['categories'])) {
+
+            foreach ($item['categories'] as $category) {
+
+                $categories[sanitize_key($category)] = $category;
+            }
+        }
+    }
+
+    if (empty($categories)) {
+        return false;
+    }
+
+    return $categories;
+}

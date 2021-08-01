@@ -10,7 +10,11 @@
         // Vars
         $demos = qube_tools_get_demos_data();
 
-        $categories = array();//Qube_Tools_Demos::get_demo_all_categories($demos); ?>
+        $categories = qube_tools_get_demo_all_categories($demos);
+
+
+
+        ?>
 
         <?php if (!empty($categories)) : ?>
             <div class="qube-tools-header-bar">
