@@ -2,8 +2,9 @@
 
 namespace Qube_Tools\Includes\Modules\Demo;
 
-use Qube_Tools\Includes\Modules\Demo\Hooks;
 use Qube_Tools\Includes\Modules\Demo\Hooks\Template;
+use Qube_Tools\Includes\Modules\Demo\Importers\Widget;
+use Qube_Tools\Includes\Modules\Demo\Importers\WPImporter;
 
 class Importer
 {
@@ -385,7 +386,7 @@ class Importer
         }
 
         // Include settings importer
-        include QUBE_TOOLS_ABSPATH . 'includes/panel/classes/importers/class-settings-importer.php';
+        include QUBE_TOOLS_ABSPATH . 'includes/modules/demo/importers/class-settings-importer.php';
 
         // Get the selected demo
         $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
@@ -421,9 +422,6 @@ class Importer
             die('This action was stopped for security purposes.');
         }
 
-        // Include widget importer
-        include QUBE_TOOLS_ABSPATH . 'includes/panel/classes/importers/class-widget-importer.php';
-
         // Get the selected demo
         $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
         $all_demo = qube_tools_get_demos_data();
@@ -434,7 +432,7 @@ class Importer
         $widgets_file = isset($demo['widgets_file']) ? $demo['widgets_file'] : '';
 
         // Import settings.
-        $widgets_importer = new Qube_Tools_Widget_Importer();
+        $widgets_importer = new Widget();
         $result = $widgets_importer->process_import_file($widgets_file);
 
         if (is_wp_error($result)) {
@@ -554,11 +552,11 @@ class Importer
 
         // No sample data found
         if ($response === false) {
-            return new WP_Error('xml_import_error', __('Can not retrieve sample data xml file. The server may be down at the moment please try again later. If you still have issues contact the theme developer for assistance.', 'qube-tools-toolkit'));
+            return new \WP_Error('xml_import_error', __('Can not retrieve sample data xml file. The server may be down at the moment please try again later. If you still have issues contact the theme developer for assistance.', 'qube-tools-toolkit'));
         }
 
         // Write sample data content to temp xml file
-        $temp_xml = QUBE_TOOLS_ABSPATH . 'includes/panel/classes/importers/temp.xml';
+        $temp_xml = QUBE_TOOLS_ABSPATH . 'includes/modules/demo/importers/temp.xml';
         file_put_contents($temp_xml, $response);
 
         // Set temp xml to attachment url for use
@@ -569,7 +567,7 @@ class Importer
             $this->import_xml($attachment_url);
         } else {
             // Import file can't be imported - we should die here since this is core for most people.
-            return new WP_Error('xml_import_error', __('The xml import file could not be accessed. Please try again or contact the theme developer.', 'qube-tools-toolkit'));
+            return new \WP_Error('xml_import_error', __('The xml import file could not be accessed. Please try again or contact the theme developer.', 'qube-tools-toolkit'));
         }
 
     }
@@ -611,32 +609,23 @@ class Importer
             }
         }
 
-        if (!class_exists('WP_Import')) {
-            $class_wp_import = QUBE_TOOLS_ABSPATH . 'includes/panel/classes/importers/class-wordpress-importer.php';
-
-            if (file_exists($class_wp_import)) {
-                require_once $class_wp_import;
-            } else {
-                $importer_error = __('Can not retrieve wordpress-importer.php', 'qube-tools-toolkit');
-            }
-        }
 
         // Display error
         if ($importer_error) {
-            return new WP_Error('xml_import_error', $importer_error);
+            return new \WP_Error('xml_import_error', $importer_error);
         } else {
 
             // No error, lets import things...
             if (!is_file($file)) {
                 $importer_error = __('Sample data file appears corrupt or can not be accessed.', 'qube-tools-toolkit');
-                return new WP_Error('xml_import_error', $importer_error);
+                return new \WP_Error('xml_import_error', $importer_error);
             } else {
-                $importer = new WP_Import();
+                $importer = new WPImporter();
                 $importer->fetch_attachments = true;
                 $importer->import($file);
 
                 // Clear sample data content from temp xml file
-                $temp_xml = QUBE_TOOLS_ABSPATH . 'includes/panel/classes/importers/temp.xml';
+                $temp_xml = QUBE_TOOLS_ABSPATH . 'includes/modules/demo/importers/temp.xml';
                 file_put_contents($temp_xml, '');
             }
         }
