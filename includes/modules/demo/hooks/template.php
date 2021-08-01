@@ -1,6 +1,6 @@
 <?php
 
-namespace Qube_Tools\Includes\Hooks;
+namespace Qube_Tools\Includes\Modules\Demo\Hooks;
 
 class Template
 {
@@ -35,7 +35,7 @@ class Template
 
         );
 
-        qube_tools_load_admin_template('feedback-form', $form_data);
+        qube_tools_load_module_template('demo', 'feedback-form', $form_data);
     }
 
     public function failed_feedback_form($demo)
@@ -52,7 +52,7 @@ class Template
 
         );
 
-        qube_tools_load_admin_template('feedback-form-failed', $form_data);
+        qube_tools_load_module_template('demo', 'feedback-form-failed', $form_data);
 
     }
 

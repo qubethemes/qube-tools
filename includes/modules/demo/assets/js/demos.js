@@ -4,7 +4,8 @@
     "use strict";
 
     $(document).ready(function () {
-        // qubeToolsDemoImporter.init();
+
+        qubeToolsDemoImporter.init();
     });
 
     var qubeToolsDemoImporter = {

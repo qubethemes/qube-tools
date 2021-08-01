@@ -4,7 +4,6 @@ namespace Qube_Tools\Includes;
 
 use Qube_Tools\Includes\Modules\Demo\Importer;
 use Qube_Tools\Includes\Admin\Init;
-use Qube_Tools\Includes\Hooks\Template;
 
 final class Main
 {
@@ -68,7 +67,6 @@ final class Main
             include_once QUBE_TOOLS_ABSPATH . 'includes/functions/demo-data.php';
 
             new Ajax();
-            new Template();
             new Importer();
         }
 

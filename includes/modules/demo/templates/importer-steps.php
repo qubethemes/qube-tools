@@ -1,4 +1,3 @@
-
 <div id="qube-tools-demo-plugins">
 
     <h2 class="title"><?php echo sprintf(esc_html__('Import the %1$s %2$s %3$s demo', 'qube-tools-toolkit'), '<strong style="color:#4285f4;font-weight:bold;">', esc_attr($demo), '</strong>'); ?></h2>
@@ -17,8 +16,8 @@
             <p><?php esc_html_e('For your site to look exactly like this demo, the plugins below need to be activated.', 'qube-tools-toolkit'); ?></p>
             <div class="qube-tools-required-plugins qube-tools-plugin-installer">
                 <?php
-                self::required_plugins($free, 'free');
-                self::required_plugins($premium, 'premium'); ?>
+                Qube_Tools\Includes\Modules\Demo\Importer::required_plugins($free, 'free');
+                Qube_Tools\Includes\Modules\Demo\Importer::required_plugins($premium, 'premium'); ?>
             </div>
         </div>
 

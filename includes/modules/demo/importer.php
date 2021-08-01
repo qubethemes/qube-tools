@@ -2,6 +2,9 @@
 
 namespace Qube_Tools\Includes\Modules\Demo;
 
+use Qube_Tools\Includes\Modules\Demo\Hooks;
+use Qube_Tools\Includes\Modules\Demo\Hooks\Template;
+
 class Importer
 {
 
@@ -15,6 +18,8 @@ class Importer
         if (!is_admin() || is_customize_preview()) {
             return;
         }
+
+        new Template();
 
         // Start things
         add_action('admin_init', array($this, 'init'));
@@ -119,8 +124,6 @@ class Importer
      */
 
 
-
-
     /**
      * Demos popup
      *
@@ -187,7 +190,7 @@ class Importer
      *
      * @since 1.0.0
      */
-    public function required_plugins($plugins, $return)
+    public static function required_plugins($plugins, $return)
     {
 
         foreach ($plugins as $key => $plugin) {
