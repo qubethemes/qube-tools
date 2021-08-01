@@ -3,6 +3,7 @@
 namespace Qube_Tools\Includes\Modules\Demo;
 
 use Qube_Tools\Includes\Modules\Demo\Hooks\Template;
+use Qube_Tools\Includes\Modules\Demo\Importers\Customizer;
 use Qube_Tools\Includes\Modules\Demo\Importers\Widget;
 use Qube_Tools\Includes\Modules\Demo\Importers\WPImporter;
 
@@ -385,9 +386,6 @@ class Importer
             die('This action was stopped for security purposes.');
         }
 
-        // Include settings importer
-        include QUBE_TOOLS_ABSPATH . 'includes/modules/demo/importers/class-settings-importer.php';
-
         // Get the selected demo
         $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
         $all_demo = qube_tools_get_demos_data();
@@ -399,8 +397,8 @@ class Importer
         $theme_settings = isset($demo['theme_settings']) ? $demo['theme_settings'] : '';
 
         // Import settings.
-        $settings_importer = new Qube_Tools_Settings_Importer();
-        $result = $settings_importer->process_import_file($theme_settings);
+        $customizer_importer = new Customizer();
+        $result = $customizer_importer->process_import_file($theme_settings);
 
         if (is_wp_error($result)) {
             echo json_encode($result->errors);

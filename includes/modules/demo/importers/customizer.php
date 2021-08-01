@@ -1,5 +1,5 @@
 <?php
-
+namespace Qube_Tools\Includes\Modules\Demo\Importers;
 
 class Customizer
 {
