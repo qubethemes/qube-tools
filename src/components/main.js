@@ -1,4 +1,4 @@
-import {Demo_Item} from "./demo-item";
+import {Tab_Content} from "./tab-content";
 
 const {
     TabPanel,
@@ -13,8 +13,7 @@ export const GetTab = () => {
 
     let all_tabs = qubeToolsImporterObj.demo_categories;
     let updated_all_tabs = [];
-    console.log(all_tabs);
-    for (const [key, title] of Object.entries(all_tabs)) {
+     for (const [key, title] of Object.entries(all_tabs)) {
         updated_all_tabs.push({
             name: key,
             title: title,
@@ -26,7 +25,7 @@ export const GetTab = () => {
 
 export const RenderTab = (props) => {
 
-    return (<Demo_Item tab={props.tab}/>)
+    return (<Tab_Content tab={props.tab}/>)
 }
 
 export const Main = (props) => {
