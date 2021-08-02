@@ -2,6 +2,7 @@
 
 namespace Qube_Tools\Includes\Admin;
 
+
 class Init
 {
     private $config;
@@ -63,8 +64,11 @@ class Init
     public function create_admin_page()
     {
 
-        qube_tools_load_module_template('demo', 'importer-page');
+
+        echo '<div id="qube-tools-importer-page">Importer Page</div>';
+        //qube_tools_load_module_template('demo', 'importer-page');
 
 
     }
+
 }

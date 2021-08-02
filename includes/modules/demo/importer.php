@@ -2,6 +2,7 @@
 
 namespace Qube_Tools\Includes\Modules\Demo;
 
+use Qube_Tools\Includes\Modules\Demo\API\Importer_API;
 use Qube_Tools\Includes\Modules\Demo\Hooks\Template;
 use Qube_Tools\Includes\Modules\Demo\Importers\Customizer;
 use Qube_Tools\Includes\Modules\Demo\Importers\Widget;
@@ -15,13 +16,17 @@ class Importer
      */
     public function __construct()
     {
+        new Importer_API();
+
 
         // Return if not in admin
         if (!is_admin() || is_customize_preview()) {
             return;
         }
 
+
         new Template();
+
 
         // Start things
         add_action('admin_init', array($this, 'init'));

@@ -1,0 +1,91 @@
+/**
+ * Replace them with your own styles or remove the file completely.
+ */
+#wp-react-plugin-boilerplate .components-tab-panel__tabs {
+  margin-bottom: -1px;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tabs .components-button {
+  border-width: 1px;
+  border-color: #ddd;
+  border-style: solid;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tabs .components-button:focus {
+  box-shadow: none;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tabs .components-button:not(:last-of-type) {
+  margin-right: 10px;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tabs .components-button:not(.wp-react-plugin-boilerplate-tab-active) {
+  background: #f5f5f5;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tabs .components-button.wp-react-plugin-boilerplate-tab-active {
+  background: #fff;
+  border-color: #007cba #ddd #fff #ddd;
+  border-width: 2px 1px 2px 1px;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tabs-item {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  cursor: pointer;
+  height: 48px;
+  padding: 3px 16px;
+  margin-left: 0;
+  font-weight: 500;
+  transition: box-shadow 0.1s linear;
+  box-sizing: border-box;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tab-content {
+  border: 1px solid #ddd;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tab-content .components-base-control__label {
+  margin-bottom: 20px;
+  margin-top: 8px;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tab-content .components-card__body .components-panel__body-title .components-button {
+  font-weight: 600;
+  font-size: 14px;
+}
+#wp-react-plugin-boilerplate .components-tab-panel__tab-content .components-card__body .components-base-control__label {
+  font-size: 13px;
+}
+#wp-react-plugin-boilerplate .components-button {
+  margin-bottom: 0;
+}
+#wp-react-plugin-boilerplate .components-toggle-control__label {
+  font-weight: 600;
+  font-size: 14px;
+}
+#wp-react-plugin-boilerplate .components-input-control__container, #wp-react-plugin-boilerplate .components-text-control__input {
+  width: 50%;
+}
+#wp-react-plugin-boilerplate .components-select-control__input, #wp-react-plugin-boilerplate .components-text-control__input {
+  height: 45px !important;
+}
+#wp-react-plugin-boilerplate .components-toggle-control {
+  margin-bottom: 20px;
+}
+#wp-react-plugin-boilerplate .components-toggle-control .components-base-control__help {
+  padding-left: 47px;
+}
+#wp-react-plugin-boilerplate .components-panel__body.is-opened {
+  background: #fff;
+  border: 1px solid #ddd;
+}
+#wp-react-plugin-boilerplate .components-panel__body.is-opened .components-panel__body-title {
+  border-bottom: 1px solid #ddd;
+  background: #f3f4f5;
+  margin: -16px -16px 15px -16px;
+}
+#wp-react-plugin-boilerplate .components-panel__body.is-opened .components-base-control {
+  margin-bottom: 20px;
+}
+
+/*# sourceMappingURL=style-index.css.map*/
