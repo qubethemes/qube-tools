@@ -361,153 +361,110 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
 
-/***/ "./src/components/render-tabs/advanced.js":
-/*!************************************************!*\
-  !*** ./src/components/render-tabs/advanced.js ***!
-  \************************************************/
-/*! exports provided: RenderAdvanced */
+/***/ "./src/components/demo-item.js":
+/*!*************************************!*\
+  !*** ./src/components/demo-item.js ***!
+  \*************************************/
+/*! exports provided: Demo_Item */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderAdvanced", function() { return RenderAdvanced; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Demo_Item", function() { return Demo_Item; });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 
 var __ = wp.i18n.__;
-var Fragment = wp.element.Fragment;
-var _wp$components = wp.components,
-    CardBody = _wp$components.CardBody,
-    CardDivider = _wp$components.CardDivider,
-    BaseControl = _wp$components.BaseControl,
-    ToggleControl = _wp$components.ToggleControl,
-    SelectControl = _wp$components.SelectControl;
-var RenderAdvanced = function RenderAdvanced(props) {
-  var _props$props = props.props,
-      settings = _props$props.settings,
-      setSetting = _props$props.setSetting;
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Fragment, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BaseControl, {
-    label: __('Setting 3 Toggle', 'wp-react-plugin-boilerplate')
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ToggleControl, {
-    label: __('Check to enable', 'wp-react-plugin-boilerplate'),
-    checked: settings && settings['setting_3'],
-    onChange: function onChange() {
-      setSetting('setting_3', !(settings && settings['setting_3']));
-    }
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardBody, {
-    isShady: true
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BaseControl, {
-    label: __('Setting 4 Toggle', 'wp-react-plugin-boilerplate')
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ToggleControl, {
-    label: __('Check to enable', 'wp-react-plugin-boilerplate'),
-    checked: settings && settings['setting_4'],
-    onChange: function onChange() {
-      setSetting('setting_4', !(settings && settings['setting_4']));
-    }
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(SelectControl, {
-    label: __('Setting 5 Select', 'wp-react-plugin-boilerplate'),
-    value: settings && settings['setting_5'],
-    options: [{
-      label: __('Option 1', 'wp-react-plugin-boilerplate'),
-      value: 'option-1'
-    }, {
-      label: __('Option 2', 'wp-react-plugin-boilerplate'),
-      value: 'option-2'
-    }],
-    onChange: function onChange(newVal) {
-      return setSetting('setting_5', newVal);
-    }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardDivider, null));
+var Demo_Item = function Demo_Item(props) {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "theme-wrap"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "theme yatri-tools-open-popup",
+    "data-demo-id": "main"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "theme-screenshot"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+    src: "https://raw.githubusercontent.com/mantrabrain/yatri-demo-data/master/main/screenshot.png"
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "select-theme"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "Select Demo")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "demo-import-loader preview-all preview-all-main"
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "demo-import-loader preview-icon preview-main"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("i", {
+    className: "custom-loader"
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "theme-id-container"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
+    className: "theme-name",
+    id: "main"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "Main")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "theme-actions"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+    className: "button button-primary",
+    href: "http://demo.wpyatri.com/main",
+    target: "_blank"
+  }, "Live Preview")))));
 };
 
 /***/ }),
 
-/***/ "./src/components/render-tabs/general.js":
-/*!***********************************************!*\
-  !*** ./src/components/render-tabs/general.js ***!
-  \***********************************************/
-/*! exports provided: RenderGeneral */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderGeneral", function() { return RenderGeneral; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-
-var __ = wp.i18n.__;
-var Fragment = wp.element.Fragment;
-var _wp$components = wp.components,
-    CardBody = _wp$components.CardBody,
-    CardDivider = _wp$components.CardDivider,
-    TextControl = _wp$components.TextControl;
-var RenderGeneral = function RenderGeneral(props) {
-  var _props$props = props.props,
-      settings = _props$props.settings,
-      setSetting = _props$props.setSetting;
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Fragment, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(TextControl, {
-    label: __('Setting 1', 'wp-react-plugin-boilerplate'),
-    placeholder: __('Enter Text', 'wp-react-plugin-boilerplate'),
-    value: settings && settings['setting_1'],
-    onChange: function onChange(newVal) {
-      return setSetting('setting_1', newVal);
-    }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardBody, {
-    isShady: true
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(TextControl, {
-    label: __('Setting 2', 'wp-react-plugin-boilerplate'),
-    placeholder: __('Enter Another Text', 'wp-react-plugin-boilerplate'),
-    value: settings && settings['setting_2'],
-    onChange: function onChange(newVal) {
-      return setSetting('setting_2', newVal);
-    }
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(CardDivider, null));
-};
-
-/***/ }),
-
-/***/ "./src/components/tabs.js":
+/***/ "./src/components/main.js":
 /*!********************************!*\
-  !*** ./src/components/tabs.js ***!
+  !*** ./src/components/main.js ***!
   \********************************/
-/*! exports provided: GetTab, RenderTab */
+/*! exports provided: GetTab, RenderTab, Main */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetTab", function() { return GetTab; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderTab", function() { return RenderTab; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _render_tabs_general__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./render-tabs/general */ "./src/components/render-tabs/general.js");
-/* harmony import */ var _render_tabs_advanced__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./render-tabs/advanced */ "./src/components/render-tabs/advanced.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Main", function() { return Main; });
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _demo_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./demo-item */ "./src/components/demo-item.js");
 
+
+
+var TabPanel = wp.components.TabPanel;
 var __ = wp.i18n.__;
-
-
 var GetTab = function GetTab() {
-  return [{
-    name: 'general',
-    title: __('General', 'wp-react-plugin-boilerplate'),
-    className: 'general'
-  }, {
-    name: 'advanced',
-    title: __('Advanced', 'wp-react-plugin-boilerplate'),
-    className: 'advanced'
-  }];
-};
-var RenderTab = function RenderTab(props) {
-  if ('general' === props.tab.name) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_render_tabs_general__WEBPACK_IMPORTED_MODULE_1__["RenderGeneral"], {
-      props: props
-    });
-  } else if ('advanced' === props.tab.name) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_render_tabs_advanced__WEBPACK_IMPORTED_MODULE_2__["RenderAdvanced"], {
-      props: props
+  var all_tabs = qubeToolsImporterObj.demo_categories;
+  var updated_all_tabs = [];
+  console.log(all_tabs);
+
+  for (var _i = 0, _Object$entries = Object.entries(all_tabs); _i < _Object$entries.length; _i++) {
+    var _Object$entries$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        title = _Object$entries$_i[1];
+
+    updated_all_tabs.push({
+      name: key,
+      title: title,
+      className: key
     });
   }
 
-  return '';
+  return updated_all_tabs;
+};
+var RenderTab = function RenderTab(props) {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_demo_item__WEBPACK_IMPORTED_MODULE_2__["Demo_Item"], {
+    tab: props.tab
+  });
+};
+var Main = function Main(props) {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(TabPanel, {
+    className: "qube-tools-header-bar",
+    activeClass: "wp-react-plugin-boilerplate-tab-active",
+    tabs: GetTab()
+  }, function (tab) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(RenderTab, {
+      tab: tab
+    });
+  });
 };
 
 /***/ }),
@@ -531,7 +488,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/tabs */ "./src/components/tabs.js");
+/* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/main */ "./src/components/main.js");
 /* harmony import */ var _utils_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/components */ "./src/utils/components.js");
 
 
@@ -546,9 +503,6 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 
-/*Code goes here
-* Output : build/index.js
-* */
 
 var __ = wp.i18n.__;
 var _wp$element = wp.element,
@@ -568,7 +522,6 @@ var _wp$components = wp.components,
     CardDivider = _wp$components.CardDivider,
     CardFooter = _wp$components.CardFooter,
     Spinner = _wp$components.Spinner;
-
 
 
 var AddSettings = function AddSettings() {
@@ -710,17 +663,9 @@ var AddSettings = function AddSettings() {
       overflow: 'hidden',
       height: '70px'
     }
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h1", null, __('Settings', 'wp-react-plugin-boilerplate')), hasNotice && !isSaving && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(SettingNotice, null)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(TabPanel, {
-    className: "wp-react-plugin-boilerplate",
-    activeClass: "wp-react-plugin-boilerplate-tab-active",
-    tabs: Object(_components_tabs__WEBPACK_IMPORTED_MODULE_5__["GetTab"])()
-  }, function (tab) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_tabs__WEBPACK_IMPORTED_MODULE_5__["RenderTab"], {
-      tab: tab,
-      settings: allSetting,
-      setSetting: setStateSettings
-    });
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardFooter, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Button, {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h1", null, __('Theme Demo Import', 'qube-tools')), hasNotice && !isSaving && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(SettingNotice, null)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
+    className: "theme-browser rendered"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_main__WEBPACK_IMPORTED_MODULE_5__["Main"], null))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardFooter, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Button, {
     className: "button",
     onClick: function onClick() {
       return setSettings();

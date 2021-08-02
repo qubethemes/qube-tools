@@ -65,7 +65,8 @@ class Init
     {
 
 
-        echo '<div id="qube-tools-importer-page">Importer Page</div>';
+
+        echo '<div class="qube-tools-demo-wrap wrap" id="qube-tools-importer-page">Wrapper Page</div>';
         //qube_tools_load_module_template('demo', 'importer-page');
 
 
