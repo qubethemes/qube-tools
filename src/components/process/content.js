@@ -1,8 +1,14 @@
+import {Required_Plugin_Items} from "./required-plugin-items";
+
 const {
     __
 } = wp.i18n;
 
 export const Content = (props) => {
+    const selectedDemoConfig = typeof props.selectedDemoConfig !== "undefined" ? props.selectedDemoConfig() : {};
+    const requiredPlugins = typeof selectedDemoConfig.required_plugins !== "undefined" ? selectedDemoConfig.required_plugins : {};
+    const freeRequiredPlugins = typeof requiredPlugins.free !== "undefined" ? requiredPlugins.free : [];
+    const proRequiredPlugins = typeof requiredPlugins.pro !== "undefined" ? requiredPlugins.pro : [];
 
     return (<div className="qube-tools-popup-text">
 
@@ -19,28 +25,13 @@ export const Content = (props) => {
                 activated.</p>
             <div className="qube-tools-required-plugins qube-tools-plugin-installer">
 
-                <div
-                    className="qube-tools-plugin qube-tools-clr qube-tools-plugin-elementor"
-                    data-slug="elementor" data-init="elementor/elementor.php">
-                    <h2>Elementor</h2>
+                {proRequiredPlugins.map((pro) => {
+                    return <Required_Plugin_Items plugin={pro} isFree={false}/>
+                })};
 
-                    <button className="button install-now"
-                            data-init="elementor/elementor.php" data-slug="elementor"
-                            data-name="Elementor">Install Now
-                    </button>
-                </div>
-
-
-                <div
-                    className="qube-tools-plugin qube-tools-clr qube-tools-plugin-everest-forms"
-                    data-slug="everest-forms" data-init="everest-forms/everest-forms.php">
-                    <h2>Everest Forms</h2>
-
-                    <button className="button install-now"
-                            data-init="everest-forms/everest-forms.php"
-                            data-slug="everest-forms" data-name="Everest Forms">Install Now
-                    </button>
-                </div>
+                {freeRequiredPlugins.map((free) => {
+                    return <Required_Plugin_Items plugin={free} isFree={true}/>
+                })};
 
             </div>
         </div>

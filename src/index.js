@@ -43,117 +43,12 @@ import {
     useComponentWillUnmount
 } from "./utils/components";
 
-const AddSettings = () => {
-    const [allSetting, setInitialSetting] = useState({}),
-        [isSaving, setIsSaving] = useState(false),
-        [hasNotice, setNotice] = useState(false),
-        [hasError, setError] = useState(false),
-        [needSave, setNeedSave] = useState(false);
-
-    const SettingNotice = () => (
-        <Notice
-            onRemove={() =>
-                setNotice(false)
-            }
-            status={hasError ? 'error' : 'success'}
-        >
-            <p>
-                {hasError && __('An error occurred.', 'qube-tools')}
-                {!hasError && __('Saved Successfully.', 'qube-tools')}
-            </p>
-        </Notice>
-    );
-
-    async function getSettings() {
-        let data = await apiFetch({
-            path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/get_settings'
-        });
-        if (data) {
-            setInitialSetting(data);
-        } else {
-            setInitialSetting({});
-        }
-    }
-
-    async function setSettings() {
-        setIsSaving(true)
-        let data = await apiFetch({
-            path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/set_settings',
-            method: 'POST',
-            data: {
-                settings: allSetting,
-            }
-        });
-        if (isEqual(allSetting, data)) {
-            setError(false);
-            setIsSaving(false);
-            setNeedSave(false);
-            setInitialSetting(data);
-        } else {
-            setIsSaving(false);
-            setError(true);
-            setNeedSave(true);
-        }
-        setNotice(true)
-    }
-
-    const setStateSettings = (key, val) => {
-        let newSetting = Object.assign({}, allSetting);
-        newSetting[key] = val;
-        setInitialSetting(newSetting);
-        setNeedSave(true);
-    }
-
-    useComponentDidMount(() => {
-        getSettings()
-    });
-
-    useComponentDidUpdate(() => {
-        /*Nothing for now*/
-    });
-
-    useComponentWillUnmount(() => {
-        /*Nothing for now*/
-    });
-
-    if (!Object.keys(allSetting).length) {
-        return (
-            <Spinner/>
-        )
-    }
-    return (
-        <Card>
-            <CardHeader style={{overflow: 'hidden', height: '70px'}}>
-                <h1>{__('Theme Demo Import', 'qube-tools')}</h1>
-                {hasNotice && !isSaving && <SettingNotice/>}
-            </CardHeader>
-            <CardBody>
-                <div className="theme-browser rendered">
-                    <Main/>
-                </div>
-            </CardBody>
-            <CardDivider/>
-            <CardFooter>
-                <Button
-                    className="button"
-                    onClick={() =>
-                        setSettings()
-                    }
-                    isPrimary
-                    disabled={isSaving || !needSave}
-                >
-                    {needSave ? __('Save Settings', 'qube-tools') : __('Saved', 'qube-tools')}
-                    {isSaving ? <Spinner/> : ''}
-                </Button>
-            </CardFooter>
-        </Card>
-    )
-}
-
+import {Popup} from "./components/process/popup";
 
 const DemoImporterPage = () => {
     const [demoList, setDemoList] = useState({});
     const [activeTab, setActiveTab] = useState('');
+    const [selectedDemo, setSelectedDemo] = useState('');
 
     const tabSelect = (currentTab) => {
 
@@ -213,6 +108,13 @@ const DemoImporterPage = () => {
 
     }
 
+    const getSelectedDemoConfig = () => {
+
+        var all_demos = qubeToolsImporterObj.all_demos;
+
+        return typeof all_demos[selectedDemo] != "undefined" ? all_demos[selectedDemo] : {};
+    }
+
 
     useEffect(() => {
         var active_tab = activeTab === '' ? 'elementor' : activeTab;
@@ -226,12 +128,16 @@ const DemoImporterPage = () => {
             </CardHeader>
             <CardBody>
                 <div className="theme-browser rendered">
-                    <Main demos={demoList} tabSelect={tabSelect}/>
+                    <Main demos={demoList} tabSelect={tabSelect} setSelectedDemo={setSelectedDemo}/>
                 </div>
             </CardBody>
             <CardDivider/>
             <CardFooter>
 
+                <Popup selectedDemo={selectedDemo} setSelectedDemo={setSelectedDemo} selectedDemoConfig={() => {
+                    return getSelectedDemoConfig()
+                }}
+                />
             </CardFooter>
         </Card>
     )

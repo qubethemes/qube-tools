@@ -70,7 +70,7 @@ function qube_tools_demo_data_config()
                     ),
 
                 ),
-                'premium' => array(
+                'pro' => array(
                     array(
                         'slug' => 'qube-tools-typography-addon',
                         'init' => 'qube-tools-typography-addon/qube-tools-typography-addon.php',

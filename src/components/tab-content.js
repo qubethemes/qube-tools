@@ -16,7 +16,7 @@ export const Tab_Content = (props) => {
         <div className="themes wp-clearfix">
             {demosKeys.map(function (keyName, keyIndex) {
                 return (
-                    <Demo_Item slug={keyName} args={props.demos[keyName]}/>
+                    <Demo_Item slug={keyName} args={props.demos[keyName]} setSelectedDemo={props.setSelectedDemo}/>
                 )
             })}
         </div>

@@ -302,7 +302,8 @@
   height: 40px;
   line-height: 30px;
   text-align: center;
-  z-index: 1001
+  z-index: 1001;
+  cursor: pointer;
 }
 
 .qube-tools-demo-popup-content-inner .qube-tools-demo-popup-close:hover {

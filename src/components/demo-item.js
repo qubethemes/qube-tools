@@ -16,7 +16,7 @@ export const Demo_Item = (props) => {
                     <img
                         src={props.args.screenshot}/>
 
-                    <div className="select-theme" onClick={()=>{alert(props.slug)}}>
+                    <div className="select-theme" onClick={()=>{props.setSelectedDemo(props.slug)}}>
                         <span>Select {props.args.title} demo</span>
                     </div>
 

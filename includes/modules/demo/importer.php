@@ -143,7 +143,7 @@ class Importer
         $page = isset($_GET['page']) ? $_GET['page'] : '';
         // Display on the demos pages
         if (('admin.php' == $pagenow && 'qube-tools-install-demos' == $page)) {
-            qube_tools_load_module_template('demo', 'popup');
+          //  qube_tools_load_module_template('demo', 'popup');
         }
     }
 
