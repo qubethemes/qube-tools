@@ -228,8 +228,8 @@ class Importer
 
                 <div class="qube-tools-plugin qube-tools-clr qube-tools-plugin-<?php echo $api['slug']; ?>"
                      data-slug="<?php echo $api['slug']; ?>" data-init="<?php echo $api['init']; ?>">
-                    <h2><?php echo $activated_icon;
-                        echo $api['name']; ?></h2>
+                    <h2><?php echo esc_html($activated_icon);
+                        echo esc_html($api['name']); ?></h2>
 
                     <?php
                     // If premium plugins and not installed
@@ -239,9 +239,9 @@ class Importer
                            target="_blank"><?php esc_html_e('Get This Addon', 'qube-tools-toolkit'); ?></a>
                         <?php
                     } else { ?>
-                        <button class="<?php echo $button_classes; ?>" data-init="<?php echo $api['init']; ?>"
-                                data-slug="<?php echo $api['slug']; ?>"
-                                data-name="<?php echo $api['name']; ?>"><?php echo $button_text; ?></button>
+                        <button class="<?php echo esc_attr($button_classes); ?>" data-init="<?php echo esc_attr($api['init']); ?>"
+                                data-slug="<?php echo esc_attr($api['slug']); ?>"
+                                data-name="<?php echo esc_attr($api['name']); ?>"><?php echo esc_html($button_text); ?></button>
                         <?php
                     } ?>
                 </div>

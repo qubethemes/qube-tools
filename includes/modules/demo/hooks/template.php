@@ -66,7 +66,7 @@ class Template
 
             if ($is_verify) {
 
-                $is_ajax = isset($_POST['is_ajax']) ? $_POST['is_ajax'] : '';
+                $is_ajax = isset($_POST['is_ajax']) ? sanitize_text_field($_POST['is_ajax']) : '';
 
                 $admin_email = isset($_POST['admin_email']) ? sanitize_text_field($_POST['admin_email']) : '';
 
@@ -120,7 +120,7 @@ class Template
 
             if ($is_verify) {
 
-                $is_ajax = isset($_POST['is_ajax']) ? $_POST['is_ajax'] : '';
+                $is_ajax = isset($_POST['is_ajax']) ? sanitize_text_field($_POST['is_ajax']) : '';
 
                 $admin_email = isset($_POST['admin_email']) ? sanitize_text_field($_POST['admin_email']) : '';
 

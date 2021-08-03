@@ -6,7 +6,7 @@ function qube_tools_demo_data_config()
 {
     $theme_slug = qube_tools()->theme_config['slug'];
 
-    $demo_data_root_path = 'https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/' . $theme_slug . '/';
+    $demo_data_root_path = apply_filters('qube_tools_demo_data_path','',$theme_slug);
     
     return array(
         'agency' => array(
