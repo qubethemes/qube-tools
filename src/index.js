@@ -9,7 +9,6 @@ import './style.scss';
 import {Main} from "./components/main"
 
 
-
 const {
     __
 } = wp.i18n;
@@ -130,7 +129,7 @@ const AddSettings = () => {
             <CardBody>
                 <div className="theme-browser rendered">
                     <Main/>
-                 </div>
+                </div>
             </CardBody>
             <CardDivider/>
             <CardFooter>
@@ -149,8 +148,29 @@ const AddSettings = () => {
         </Card>
     )
 }
+
+
+const DemoImporterPage = () => {
+    return (
+        <Card>
+            <CardHeader style={{overflow: 'hidden', height: '70px'}}>
+                <h1>{__('Theme Demo Import', 'qube-tools')}</h1>
+            </CardHeader>
+            <CardBody>
+                <div className="theme-browser rendered">
+                    <Main/>
+                </div>
+            </CardBody>
+            <CardDivider/>
+            <CardFooter>
+
+            </CardFooter>
+        </Card>
+    )
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     if ('undefined' !== typeof document.getElementById(qubeToolsImporterObj.root_id) && null !== document.getElementById(qubeToolsImporterObj.root_id)) {
-        render(<AddSettings/>, document.getElementById(qubeToolsImporterObj.root_id));
+        render(<DemoImporterPage/>, document.getElementById(qubeToolsImporterObj.root_id));
     }
 });

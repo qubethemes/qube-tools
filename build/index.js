@@ -798,9 +798,20 @@ var AddSettings = function AddSettings() {
   }, needSave ? __('Save Settings', 'qube-tools') : __('Saved', 'qube-tools'), isSaving ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Spinner, null) : '')));
 };
 
+var DemoImporterPage = function DemoImporterPage() {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Card, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardHeader, {
+    style: {
+      overflow: 'hidden',
+      height: '70px'
+    }
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h1", null, __('Theme Demo Import', 'qube-tools'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
+    className: "theme-browser rendered"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_main__WEBPACK_IMPORTED_MODULE_5__["Main"], null))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardFooter, null));
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   if ('undefined' !== typeof document.getElementById(qubeToolsImporterObj.root_id) && null !== document.getElementById(qubeToolsImporterObj.root_id)) {
-    render(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(AddSettings, null), document.getElementById(qubeToolsImporterObj.root_id));
+    render(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(DemoImporterPage, null), document.getElementById(qubeToolsImporterObj.root_id));
   }
 });
 
