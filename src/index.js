@@ -49,6 +49,7 @@ const DemoImporterPage = () => {
     const [demoList, setDemoList] = useState({});
     const [activeTab, setActiveTab] = useState('');
     const [selectedDemo, setSelectedDemo] = useState('');
+    const [selectedDemoPluginDetails, setSelectedDemoPluginDetails] = useState({});
 
     const tabSelect = (currentTab) => {
 

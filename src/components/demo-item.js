@@ -1,10 +1,18 @@
 const {
     __
 } = wp.i18n;
+const {
+    useState,
+} = wp.element;
 
 export const Demo_Item = (props) => {
 
-    console.log(props);
+    const [importerLoader, setImporterLoader] = useState(1);
+
+    const getSelectedDemoPluginDetails = (demo) => {
+        
+        console.log(demo);
+    }
 
     return (
 
@@ -16,9 +24,12 @@ export const Demo_Item = (props) => {
                     <img
                         src={props.args.screenshot}/>
 
-                    <div className="select-theme" onClick={()=>{props.setSelectedDemo(props.slug)}}>
+                    <div className="select-theme" onClick={() => {
+                        props.setSelectedDemo(props.slug)
+                    }}>
                         <span>Select {props.args.title} demo</span>
                     </div>
+
 
                     <div className="demo-import-loader preview-all preview-all-main"></div>
 
