@@ -13,7 +13,7 @@ export const GetTab = () => {
 
     let all_tabs = qubeToolsImporterObj.demo_categories;
     let updated_all_tabs = [];
-     for (const [key, title] of Object.entries(all_tabs)) {
+    for (const [key, title] of Object.entries(all_tabs)) {
         updated_all_tabs.push({
             name: key,
             title: title,
@@ -25,7 +25,7 @@ export const GetTab = () => {
 
 export const RenderTab = (props) => {
 
-    return (<Tab_Content tab={props.tab}/>)
+    return (<Tab_Content tab={props.tab} demos={props.demos}/>)
 }
 
 export const Main = (props) => {
@@ -36,7 +36,7 @@ export const Main = (props) => {
             activeClass="qube-tools-tab-active"
             tabs={GetTab()}
         >
-            {(tab) => <RenderTab tab={tab}/>}
+            {(tab) => <RenderTab tab={tab} demos={props.demos}/>}
         </TabPanel>
 
     )

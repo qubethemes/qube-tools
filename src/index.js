@@ -151,6 +151,46 @@ const AddSettings = () => {
 
 
 const DemoImporterPage = () => {
+    const [demoList, setDemoList] = useState({
+        'agency': {
+            'blog_title': "Blog",
+            'categories': ['Elementor', 'Corporate & Business', 'WooCommerce'],
+            'elementor_width': 1140,
+            "screenshot": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/screenshot.png",
+            "preview_url": "https://demo.qubethemes.com/themes/agency",
+            "theme_settings": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/customizer.dat",
+            "widgets_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/widgets.wie",
+            "xml_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/content.xml",
+            'required_plugins': {
+                'free': [{
+                    'init': 'elementor/elementor.php',
+                    'name': 'Elementor',
+                    'slug': 'elementor'
+                }]
+            }
+
+
+        },
+        'woocommerce': {
+            'blog_title': "WooCommerce",
+            'categories': ['Elementor', 'Corporate & Business', 'WooCommerce'],
+            'elementor_width': 1140,
+            "screenshot": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/screenshot.png",
+            "preview_url": "https://demo.qubethemes.com/themes/woocommerce",
+            "theme_settings": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/customizer.dat",
+            "widgets_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/widgets.wie",
+            "xml_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/content.xml",
+            'required_plugins': {
+                'free': [{
+                    'init': 'elementor/elementor.php',
+                    'name': 'Elementor',
+                    'slug': 'elementor'
+                }]
+            }
+
+
+        }
+    });
     return (
         <Card>
             <CardHeader style={{overflow: 'hidden', height: '70px'}}>
@@ -158,7 +198,7 @@ const DemoImporterPage = () => {
             </CardHeader>
             <CardBody>
                 <div className="theme-browser rendered">
-                    <Main/>
+                    <Main demos={demoList}/>
                 </div>
             </CardBody>
             <CardDivider/>

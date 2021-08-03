@@ -208,24 +208,6 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
-
-module.exports = _arrayWithoutHoles;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
@@ -270,22 +252,6 @@ function _asyncToGenerator(fn) {
 }
 
 module.exports = _asyncToGenerator;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-}
-
-module.exports = _iterableToArray;
 module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
@@ -348,22 +314,6 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableSpread;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/slicedToArray.js":
 /*!**************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
@@ -384,30 +334,6 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
-
-var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
-
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
-
-var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
 module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
@@ -453,15 +379,15 @@ var Demo_Item = function Demo_Item(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "theme-wrap"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "theme yatri-tools-open-popup",
+    className: "theme qube-tools-open-popup",
     "data-demo-id": "main"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "theme-screenshot"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
-    src: "https://raw.githubusercontent.com/mantrabrain/yatri-demo-data/master/main/screenshot.png"
+    src: props.args.screenshot
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "select-theme"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "Select Demo")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.args.blog_title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "demo-import-loader preview-all preview-all-main"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "demo-import-loader preview-icon preview-main"
@@ -472,11 +398,11 @@ var Demo_Item = function Demo_Item(props) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
     className: "theme-name",
     id: "main"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "Main")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.args.blog_title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "theme-actions"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
     className: "button button-primary",
-    href: "http://demo.wpyatri.com/main",
+    href: props.args.preview_url,
     target: "_blank"
   }, "Live Preview")))));
 };
@@ -525,7 +451,8 @@ var GetTab = function GetTab() {
 };
 var RenderTab = function RenderTab(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_tab_content__WEBPACK_IMPORTED_MODULE_2__["Tab_Content"], {
-    tab: props.tab
+    tab: props.tab,
+    demos: props.demos
   });
 };
 var Main = function Main(props) {
@@ -535,7 +462,8 @@ var Main = function Main(props) {
     tabs: GetTab()
   }, function (tab) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(RenderTab, {
-      tab: tab
+      tab: tab,
+      demos: props.demos
     });
   });
 };
@@ -552,41 +480,20 @@ var Main = function Main(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tab_Content", function() { return Tab_Content; });
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _demo_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./demo-item */ "./src/components/demo-item.js");
-
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _demo_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./demo-item */ "./src/components/demo-item.js");
 
 
 var __ = wp.i18n.__;
 var Tab_Content = function Tab_Content(props) {
-  var users = [{
-    name: "😃 William",
-    location: "🏘️ Lagos",
-    car: "🚘 Honda"
-  }, {
-    name: "😃 Chris",
-    location: "🏘️ Moon",
-    car: "🚘 Tesla"
-  }, {
-    name: " 😃 Rose",
-    location: "🏘️ Venice",
-    car: "🚘 Pagani"
-  }, {
-    name: "😃 Mike",
-    location: "🏘️ Milan",
-    car: "🚘 Rolls Royce"
-  }, {
-    name: "😃 Liz",
-    location: "🏘️ Beirut",
-    car: "🚘 Mercedes"
-  }];
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "themes wp-clearfix"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h1", null, props.tab.name, " Page"), _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(Array(Object.keys(qubeToolsImporterObj.demo_categories).length)).map(function (x, i) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_demo_item__WEBPACK_IMPORTED_MODULE_2__["Demo_Item"], null);
+  }, Object.keys(props.demos).map(function (keyName, keyIndex) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_demo_item__WEBPACK_IMPORTED_MODULE_1__["Demo_Item"], {
+      slug: keyName,
+      args: props.demos[keyName]
+    });
   }));
 };
 
@@ -799,6 +706,46 @@ var AddSettings = function AddSettings() {
 };
 
 var DemoImporterPage = function DemoImporterPage() {
+  var _useState11 = useState({
+    'agency': {
+      'blog_title': "Blog",
+      'categories': ['Elementor', 'Corporate & Business', 'WooCommerce'],
+      'elementor_width': 1140,
+      "screenshot": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/screenshot.png",
+      "preview_url": "https://demo.qubethemes.com/themes/agency",
+      "theme_settings": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/customizer.dat",
+      "widgets_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/widgets.wie",
+      "xml_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/content.xml",
+      'required_plugins': {
+        'free': [{
+          'init': 'elementor/elementor.php',
+          'name': 'Elementor',
+          'slug': 'elementor'
+        }]
+      }
+    },
+    'woocommerce': {
+      'blog_title': "WooCommerce",
+      'categories': ['Elementor', 'Corporate & Business', 'WooCommerce'],
+      'elementor_width': 1140,
+      "screenshot": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/screenshot.png",
+      "preview_url": "https://demo.qubethemes.com/themes/woocommerce",
+      "theme_settings": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/customizer.dat",
+      "widgets_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/widgets.wie",
+      "xml_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/content.xml",
+      'required_plugins': {
+        'free': [{
+          'init': 'elementor/elementor.php',
+          'name': 'Elementor',
+          'slug': 'elementor'
+        }]
+      }
+    }
+  }),
+      _useState12 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState11, 2),
+      demoList = _useState12[0],
+      setDemoList = _useState12[1];
+
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Card, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardHeader, {
     style: {
       overflow: 'hidden',
@@ -806,7 +753,9 @@ var DemoImporterPage = function DemoImporterPage() {
     }
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h1", null, __('Theme Demo Import', 'qube-tools'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: "theme-browser rendered"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_main__WEBPACK_IMPORTED_MODULE_5__["Main"], null))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardFooter, null));
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_main__WEBPACK_IMPORTED_MODULE_5__["Main"], {
+    demos: demoList
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardFooter, null));
 };
 
 document.addEventListener('DOMContentLoaded', function () {

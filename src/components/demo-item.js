@@ -1,4 +1,3 @@
-
 const {
     __
 } = wp.i18n;
@@ -10,14 +9,14 @@ export const Demo_Item = (props) => {
 
         <div className="theme-wrap">
 
-            <div className="theme yatri-tools-open-popup" data-demo-id="main">
+            <div className="theme qube-tools-open-popup" data-demo-id="main">
 
                 <div className="theme-screenshot">
                     <img
-                        src="https://raw.githubusercontent.com/mantrabrain/yatri-demo-data/master/main/screenshot.png"/>
+                        src={props.args.screenshot}/>
 
                     <div className="select-theme">
-                        <span>Select Demo</span>
+                        <span>{props.args.blog_title}</span>
                     </div>
 
                     <div className="demo-import-loader preview-all preview-all-main"></div>
@@ -29,10 +28,11 @@ export const Demo_Item = (props) => {
                 <div className="theme-id-container">
 
                     <h2 className="theme-name" id="main">
-                        <span>Main</span></h2>
+                        <span>{props.args.blog_title}</span>
+                    </h2>
 
                     <div className="theme-actions">
-                        <a className="button button-primary" href="http://demo.wpyatri.com/main" target="_blank">Live
+                        <a className="button button-primary" href={props.args.preview_url} target="_blank">Live
                             Preview</a>
                     </div>
 
