@@ -35,6 +35,9 @@ export const Main = (props) => {
             className="qube-tools-header-bar"
             activeClass="qube-tools-tab-active"
             tabs={GetTab()}
+            onSelect={(selectedTab) => {
+                props.tabSelect(selectedTab)
+            }}
         >
             {(tab) => <RenderTab tab={tab} demos={props.demos}/>}
         </TabPanel>

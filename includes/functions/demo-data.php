@@ -6,18 +6,24 @@ function qube_tools_demo_data_config()
 {
     $theme_slug = qube_tools()->theme_config['slug'];
 
-    $demo_data_root_path = 'https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/' . $theme_slug . '/';
-    
+    $demo_data_root_path = 'https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/';
+
     return array(
         'agency' => array(
-            'categories' => array('Elementor', 'Corporate & Business', 'WooCommerce'),
+            'title' => 'Agency',
+            'categories' => array(
+                'all' => 'All',
+                'elementor' => 'Elementor',
+                'corporate' => 'Corporate & Business',
+                'woocommerce' => 'WooCommerce'
+            ),
             'xml_file' => $demo_data_root_path . 'agency/content.xml',
             'theme_settings' => $demo_data_root_path . 'agency/customizer.dat',
             'widgets_file' => $demo_data_root_path . 'agency/widgets.wie',
             'screenshot' => $demo_data_root_path . 'agency/screenshot.png',
             'preview_url' => 'https://demo.qubethemes.com/themes/agency',
             'home_title' => 'Home',
-            'blog_title' => 'Blog',
+            'blog_title' => 'Agency',
             'posts_to_show' => '5',
             'elementor_width' => '1140',
             'required_plugins' => array(
@@ -37,7 +43,14 @@ function qube_tools_demo_data_config()
             ),
         ),
         'charity' => array(
-            'categories' => array('Elementor', 'Charity', 'Blog'),
+            'title' => 'Charity',
+            'categories' => array(
+                'all' => 'All',
+                'elementor' => 'Elementor',
+                'charity' => 'Charity',
+                'blog' => 'Blog',
+                'etc' => 'ETC'
+            ),
             'xml_file' => $demo_data_root_path . 'charity/content.xml',
             'theme_settings' => $demo_data_root_path . 'charity/customizer.dat',
             'widgets_file' => $demo_data_root_path . 'charity/widgets.wie',

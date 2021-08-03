@@ -86,11 +86,11 @@ class Importer_API
         );
         register_rest_route(
             $namespace,
-            '/get_settings',
+            '/get_demos',
             array(
                 array(
-                    'methods' => \WP_REST_Server::READABLE,
-                    'callback' => array($this, 'get_settings'),
+                    'methods' => \WP_REST_Server::EDITABLE,
+                    'callback' => array($this, 'get_demos'),
                     'permission_callback' => function () {
                         return current_user_can('manage_options');
                     },
@@ -126,15 +126,10 @@ class Importer_API
      * @since 1.0.0
      *
      */
-    public function get_settings(\WP_REST_Request $request)
+    public function get_demos(\WP_REST_Request $request)
     {
-        $default_theme_options = array(
-            'setting_1' => esc_html__('Default Setting 1', 'qube-tools'),
-            'setting_2' => esc_html__('Default Setting 2', 'qube-tools'),
-            'setting_3' => false,
-            'setting_4' => true,
-            'setting_5' => 'option-1',
-        );
+        $default_theme_options = qube_tools_get_demos_data();
+
         return rest_ensure_response($default_theme_options);
     }
 

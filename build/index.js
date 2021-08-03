@@ -387,7 +387,7 @@ var Demo_Item = function Demo_Item(props) {
     src: props.args.screenshot
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "select-theme"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.args.blog_title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.args.title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "demo-import-loader preview-all preview-all-main"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "demo-import-loader preview-icon preview-main"
@@ -398,7 +398,7 @@ var Demo_Item = function Demo_Item(props) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
     className: "theme-name",
     id: "main"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.args.blog_title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.args.title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "theme-actions"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
     className: "button button-primary",
@@ -459,7 +459,10 @@ var Main = function Main(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(TabPanel, {
     className: "qube-tools-header-bar",
     activeClass: "qube-tools-tab-active",
-    tabs: GetTab()
+    tabs: GetTab(),
+    onSelect: function onSelect(selectedTab) {
+      props.tabSelect(selectedTab);
+    }
   }, function (tab) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(RenderTab, {
       tab: tab,
@@ -487,9 +490,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var __ = wp.i18n.__;
 var Tab_Content = function Tab_Content(props) {
+  var demosKeys = Object.keys(props.demos);
+
+  if (demosKeys.length < 1) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Demo not found....");
+  }
+
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "themes wp-clearfix"
-  }, Object.keys(props.demos).map(function (keyName, keyIndex) {
+  }, demosKeys.map(function (keyName, keyIndex) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_demo_item__WEBPACK_IMPORTED_MODULE_1__["Demo_Item"], {
       slug: keyName,
       args: props.demos[keyName]
@@ -537,7 +546,8 @@ __webpack_require__.r(__webpack_exports__);
 var __ = wp.i18n.__;
 var _wp$element = wp.element,
     render = _wp$element.render,
-    useState = _wp$element.useState;
+    useState = _wp$element.useState,
+    useEffect = _wp$element.useEffect;
 var _lodash = lodash,
     isEqual = _lodash.isEqual;
 var _wp = wp,
@@ -706,46 +716,68 @@ var AddSettings = function AddSettings() {
 };
 
 var DemoImporterPage = function DemoImporterPage() {
-  var _useState11 = useState({
-    'agency': {
-      'blog_title': "Blog",
-      'categories': ['Elementor', 'Corporate & Business', 'WooCommerce'],
-      'elementor_width': 1140,
-      "screenshot": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/screenshot.png",
-      "preview_url": "https://demo.qubethemes.com/themes/agency",
-      "theme_settings": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/customizer.dat",
-      "widgets_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/widgets.wie",
-      "xml_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/content.xml",
-      'required_plugins': {
-        'free': [{
-          'init': 'elementor/elementor.php',
-          'name': 'Elementor',
-          'slug': 'elementor'
-        }]
-      }
-    },
-    'woocommerce': {
-      'blog_title': "WooCommerce",
-      'categories': ['Elementor', 'Corporate & Business', 'WooCommerce'],
-      'elementor_width': 1140,
-      "screenshot": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/screenshot.png",
-      "preview_url": "https://demo.qubethemes.com/themes/woocommerce",
-      "theme_settings": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/customizer.dat",
-      "widgets_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/widgets.wie",
-      "xml_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/content.xml",
-      'required_plugins': {
-        'free': [{
-          'init': 'elementor/elementor.php',
-          'name': 'Elementor',
-          'slug': 'elementor'
-        }]
-      }
-    }
-  }),
+  var _useState11 = useState({}),
       _useState12 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState11, 2),
       demoList = _useState12[0],
       setDemoList = _useState12[1];
 
+  var _useState13 = useState(''),
+      _useState14 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState13, 2),
+      activeTab = _useState14[0],
+      setActiveTab = _useState14[1];
+
+  var tabSelect = function tabSelect(currentTab) {
+    setActiveTab(currentTab);
+  };
+
+  var getCategoryWiseDemoList = function getCategoryWiseDemoList() {
+    var categoryWiseDemoList = {};
+    var all_demos = qubeToolsImporterObj.all_demos;
+
+    for (var _i = 0, _Object$entries = Object.entries(all_demos); _i < _Object$entries.length; _i++) {
+      var _Object$entries$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_Object$entries[_i], 2),
+          demo_item_key = _Object$entries$_i[0],
+          demo_configs = _Object$entries$_i[1];
+
+      var categories = typeof demo_configs.categories !== "undefined" ? demo_configs.categories : {};
+
+      for (var _i2 = 0, _Object$entries2 = Object.entries(categories); _i2 < _Object$entries2.length; _i2++) {
+        var _Object$entries2$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_Object$entries2[_i2], 2),
+            cat_key = _Object$entries2$_i[0],
+            category = _Object$entries2$_i[1];
+
+        if (typeof categoryWiseDemoList[cat_key] == "undefined") {
+          categoryWiseDemoList[cat_key] = [];
+        }
+
+        categoryWiseDemoList[cat_key].push(demo_item_key);
+      }
+    }
+
+    return categoryWiseDemoList;
+  };
+
+  var initAllDemoLists = function initAllDemoLists(category) {
+    var categoryWiseDemoIndexList = getCategoryWiseDemoList();
+    var all_demos = qubeToolsImporterObj.all_demos;
+    var categoryWiseFullDemoDataLists = {};
+
+    if (categoryWiseDemoIndexList === '') {
+      setDemoList({});
+      return;
+    }
+
+    categoryWiseDemoIndexList[category].map(function (demo_item_key) {
+      return categoryWiseFullDemoDataLists[demo_item_key] = all_demos[demo_item_key];
+    });
+    setDemoList(categoryWiseFullDemoDataLists);
+  };
+
+  useEffect(function () {
+    var active_tab = activeTab === '' ? 'elementor' : activeTab;
+    initAllDemoLists(active_tab);
+    console.log(activeTab);
+  }, [activeTab]);
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Card, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardHeader, {
     style: {
       overflow: 'hidden',
@@ -754,7 +786,8 @@ var DemoImporterPage = function DemoImporterPage() {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h1", null, __('Theme Demo Import', 'qube-tools'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: "theme-browser rendered"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_main__WEBPACK_IMPORTED_MODULE_5__["Main"], {
-    demos: demoList
+    demos: demoList,
+    tabSelect: tabSelect
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardFooter, null));
 };
 

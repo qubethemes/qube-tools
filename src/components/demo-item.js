@@ -16,7 +16,7 @@ export const Demo_Item = (props) => {
                         src={props.args.screenshot}/>
 
                     <div className="select-theme">
-                        <span>{props.args.blog_title}</span>
+                        <span>{props.args.title}</span>
                     </div>
 
                     <div className="demo-import-loader preview-all preview-all-main"></div>
@@ -28,7 +28,7 @@ export const Demo_Item = (props) => {
                 <div className="theme-id-container">
 
                     <h2 className="theme-name" id="main">
-                        <span>{props.args.blog_title}</span>
+                        <span>{props.args.title}</span>
                     </h2>
 
                     <div className="theme-actions">

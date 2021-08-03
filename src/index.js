@@ -15,7 +15,8 @@ const {
 
 const {
     render,
-    useState
+    useState,
+    useEffect
 } = wp.element;
 
 const {isEqual} = lodash;
@@ -151,46 +152,73 @@ const AddSettings = () => {
 
 
 const DemoImporterPage = () => {
-    const [demoList, setDemoList] = useState({
-        'agency': {
-            'blog_title': "Blog",
-            'categories': ['Elementor', 'Corporate & Business', 'WooCommerce'],
-            'elementor_width': 1140,
-            "screenshot": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/screenshot.png",
-            "preview_url": "https://demo.qubethemes.com/themes/agency",
-            "theme_settings": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/customizer.dat",
-            "widgets_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/widgets.wie",
-            "xml_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/content.xml",
-            'required_plugins': {
-                'free': [{
-                    'init': 'elementor/elementor.php',
-                    'name': 'Elementor',
-                    'slug': 'elementor'
-                }]
+    const [demoList, setDemoList] = useState({});
+    const [activeTab, setActiveTab] = useState('');
+
+    const tabSelect = (currentTab) => {
+
+        setActiveTab(currentTab);
+
+    }
+
+    const getCategoryWiseDemoList = () => {
+
+        var categoryWiseDemoList = {};
+
+        var all_demos = qubeToolsImporterObj.all_demos;
+
+        for (const [demo_item_key, demo_configs] of Object.entries(all_demos)) {
+
+            var categories = typeof demo_configs.categories !== "undefined" ? demo_configs.categories : {};
+
+            for (const [cat_key, category] of Object.entries(categories)) {
+
+                if (typeof categoryWiseDemoList[cat_key] == "undefined") {
+
+                    categoryWiseDemoList[cat_key] = [];
+                }
+
+
+                categoryWiseDemoList[cat_key].push(demo_item_key);
             }
-
-
-        },
-        'woocommerce': {
-            'blog_title': "WooCommerce",
-            'categories': ['Elementor', 'Corporate & Business', 'WooCommerce'],
-            'elementor_width': 1140,
-            "screenshot": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/screenshot.png",
-            "preview_url": "https://demo.qubethemes.com/themes/woocommerce",
-            "theme_settings": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/customizer.dat",
-            "widgets_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/widgets.wie",
-            "xml_file": "https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/agency/content.xml",
-            'required_plugins': {
-                'free': [{
-                    'init': 'elementor/elementor.php',
-                    'name': 'Elementor',
-                    'slug': 'elementor'
-                }]
-            }
-
-
         }
-    });
+
+        return categoryWiseDemoList;
+    }
+
+    const initAllDemoLists = (category) => {
+
+
+        var categoryWiseDemoIndexList = getCategoryWiseDemoList();
+
+        var all_demos = qubeToolsImporterObj.all_demos;
+
+        var categoryWiseFullDemoDataLists = {};
+
+        if (categoryWiseDemoIndexList === '') {
+
+            setDemoList({});
+
+            return;
+        }
+
+
+        categoryWiseDemoIndexList[category].map((demo_item_key) =>
+            categoryWiseFullDemoDataLists[demo_item_key] = all_demos[demo_item_key]
+        );
+
+
+        setDemoList(categoryWiseFullDemoDataLists);
+
+
+    }
+
+
+    useEffect(() => {
+        var active_tab = activeTab === '' ? 'elementor' : activeTab;
+        initAllDemoLists(active_tab);
+        console.log(activeTab);
+    }, [activeTab]);
     return (
         <Card>
             <CardHeader style={{overflow: 'hidden', height: '70px'}}>
@@ -198,7 +226,7 @@ const DemoImporterPage = () => {
             </CardHeader>
             <CardBody>
                 <div className="theme-browser rendered">
-                    <Main demos={demoList}/>
+                    <Main demos={demoList} tabSelect={tabSelect}/>
                 </div>
             </CardBody>
             <CardDivider/>
