@@ -376,6 +376,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var __ = wp.i18n.__;
 var Demo_Item = function Demo_Item(props) {
+  console.log(props);
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "theme-wrap"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
@@ -386,8 +387,11 @@ var Demo_Item = function Demo_Item(props) {
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     src: props.args.screenshot
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
-    className: "select-theme"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, props.args.title)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "select-theme",
+    onClick: function onClick() {
+      alert(props.slug);
+    }
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, "Select ", props.args.title, " demo")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "demo-import-loader preview-all preview-all-main"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: "demo-import-loader preview-icon preview-main"
@@ -462,7 +466,8 @@ var Main = function Main(props) {
     tabs: GetTab(),
     onSelect: function onSelect(selectedTab) {
       props.tabSelect(selectedTab);
-    }
+    },
+    initialTabName: "elementor"
   }, function (tab) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(RenderTab, {
       tab: tab,

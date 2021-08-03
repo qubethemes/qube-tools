@@ -11,6 +11,22 @@
 .qube-tools-demo-wrap {
   display: block;
 }
+.qube-tools-demo-wrap .qube-tools-tab-active {
+  box-shadow: inset 0 var(--wp-admin-border-width-focus) var(--wp-admin-theme-color);
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-bottom: 0;
+  border-top: 0;
+}
+.qube-tools-demo-wrap .qube-tools-header-bar {
+  margin: 0;
+  padding: 0;
+}
+.qube-tools-demo-wrap .qube-tools-header-bar .components-tab-panel__tabs {
+  padding: 0;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
 
 .qube-tools-demo-wrap .qube-tools-about-description {
   margin-top: 30px;

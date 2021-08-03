@@ -38,6 +38,7 @@ export const Main = (props) => {
             onSelect={(selectedTab) => {
                 props.tabSelect(selectedTab)
             }}
+            initialTabName="elementor"
         >
             {(tab) => <RenderTab tab={tab} demos={props.demos}/>}
         </TabPanel>

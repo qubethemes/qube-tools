@@ -12,10 +12,10 @@ function qube_tools_demo_data_config()
         'agency' => array(
             'title' => 'Agency',
             'categories' => array(
-                'all' => 'All',
                 'elementor' => 'Elementor',
                 'corporate' => 'Corporate & Business',
-                'woocommerce' => 'WooCommerce'
+                'woocommerce' => 'WooCommerce',
+                'all' => 'All'
             ),
             'xml_file' => $demo_data_root_path . 'agency/content.xml',
             'theme_settings' => $demo_data_root_path . 'agency/customizer.dat',
@@ -45,11 +45,12 @@ function qube_tools_demo_data_config()
         'charity' => array(
             'title' => 'Charity',
             'categories' => array(
-                'all' => 'All',
                 'elementor' => 'Elementor',
                 'charity' => 'Charity',
                 'blog' => 'Blog',
-                'etc' => 'ETC'
+                'etc' => 'ETC',
+                'all' => 'All',
+
             ),
             'xml_file' => $demo_data_root_path . 'charity/content.xml',
             'theme_settings' => $demo_data_root_path . 'charity/customizer.dat',

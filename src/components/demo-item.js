@@ -4,6 +4,7 @@ const {
 
 export const Demo_Item = (props) => {
 
+    console.log(props);
 
     return (
 
@@ -15,8 +16,8 @@ export const Demo_Item = (props) => {
                     <img
                         src={props.args.screenshot}/>
 
-                    <div className="select-theme">
-                        <span>{props.args.title}</span>
+                    <div className="select-theme" onClick={()=>{alert(props.slug)}}>
+                        <span>Select {props.args.title} demo</span>
                     </div>
 
                     <div className="demo-import-loader preview-all preview-all-main"></div>
