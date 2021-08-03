@@ -22,8 +22,8 @@ export const RenderGeneral = (props) => {
 		<Fragment>
 			<CardBody>
 				<TextControl
-					label={__('Setting 1','wp-react-plugin-boilerplate')}
-					placeholder={__('Enter Text','wp-react-plugin-boilerplate')}
+					label={__('Setting 1','qube-tools')}
+					placeholder={__('Enter Text','qube-tools')}
 					value={settings && settings['setting_1']}
 					onChange={newVal =>
 						setSetting('setting_1',newVal)
@@ -35,8 +35,8 @@ export const RenderGeneral = (props) => {
 				isShady
 			>
 				<TextControl
-					label={__('Setting 2','wp-react-plugin-boilerplate')}
-					placeholder={__('Enter Another Text','wp-react-plugin-boilerplate')}
+					label={__('Setting 2','qube-tools')}
+					placeholder={__('Enter Another Text','qube-tools')}
 					value={settings && settings['setting_2']}
 					onChange={newVal =>
 						setSetting('setting_2',newVal)

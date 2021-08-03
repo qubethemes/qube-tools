@@ -129,8 +129,8 @@ class Importer_API
     public function get_settings(\WP_REST_Request $request)
     {
         $default_theme_options = array(
-            'setting_1' => esc_html__('Default Setting 1', 'wp-react-plugin-boilerplate'),
-            'setting_2' => esc_html__('Default Setting 2', 'wp-react-plugin-boilerplate'),
+            'setting_1' => esc_html__('Default Setting 1', 'qube-tools'),
+            'setting_2' => esc_html__('Default Setting 2', 'qube-tools'),
             'setting_3' => false,
             'setting_4' => true,
             'setting_5' => 'option-1',

@@ -23,10 +23,10 @@ export const RenderAdvanced = (props) => {
 		<Fragment>
 			<CardBody>
 				<BaseControl
-					label={__('Setting 3 Toggle','wp-react-plugin-boilerplate') }
+					label={__('Setting 3 Toggle','qube-tools') }
 				>
 					<ToggleControl
-						label={ __('Check to enable','wp-react-plugin-boilerplate')  }
+						label={ __('Check to enable','qube-tools')  }
 						checked={ (settings && settings['setting_3'])}
 						onChange={ () => {
 							setSetting('setting_3', !(settings && settings['setting_3']))
@@ -39,10 +39,10 @@ export const RenderAdvanced = (props) => {
 				isShady
 			>
 				<BaseControl
-					label={__('Setting 4 Toggle','wp-react-plugin-boilerplate') }
+					label={__('Setting 4 Toggle','qube-tools') }
 				>
 					<ToggleControl
-						label={ __('Check to enable','wp-react-plugin-boilerplate')  }
+						label={ __('Check to enable','qube-tools')  }
 						checked={ (settings && settings['setting_4'])}
 						onChange={ () => {
 							setSetting('setting_4', !(settings && settings['setting_4']))
@@ -54,15 +54,15 @@ export const RenderAdvanced = (props) => {
 
 			<CardBody>
 				<SelectControl
-					label={ __('Setting 5 Select','wp-react-plugin-boilerplate')  }
+					label={ __('Setting 5 Select','qube-tools')  }
 					value={settings && settings['setting_5']}
 					options={[
 						{
-							label: __('Option 1','wp-react-plugin-boilerplate'),
+							label: __('Option 1','qube-tools'),
 							value: 'option-1'
 						},
 						{
-							label: __('Option 2','wp-react-plugin-boilerplate'),
+							label: __('Option 2','qube-tools'),
 							value: 'option-2'
 						},
 					]}

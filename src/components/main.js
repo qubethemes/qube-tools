@@ -33,7 +33,7 @@ export const Main = (props) => {
     return (
         <TabPanel
             className="qube-tools-header-bar"
-            activeClass="wp-react-plugin-boilerplate-tab-active"
+            activeClass="qube-tools-tab-active"
             tabs={GetTab()}
         >
             {(tab) => <RenderTab tab={tab}/>}

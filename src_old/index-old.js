@@ -64,8 +64,8 @@ const AddSettings = () => {
 			status={hasError?'error':'success'}
 		>
 			<p>
-				{hasError && __( 'An error occurred.','wp-react-plugin-boilerplate' ) }
-				{!hasError && __( 'Saved Successfully.','wp-react-plugin-boilerplate' ) }
+				{hasError && __( 'An error occurred.','qube-tools' ) }
+				{!hasError && __( 'Saved Successfully.','qube-tools' ) }
 			</p>
 		</Notice>
 	);
@@ -132,13 +132,13 @@ const AddSettings = () => {
 	return (
 		<Card>
 			<CardHeader style={{overflow: 'hidden',height: '70px'}}>
-				<h1>{__( 'Settings','wp-react-plugin-boilerplate' )}</h1>
+				<h1>{__( 'Settings','qube-tools' )}</h1>
 				{hasNotice && !isSaving && <SettingNotice />}
 			</CardHeader>
 			<CardBody >
 				<TabPanel
-					className="wp-react-plugin-boilerplate"
-					activeClass="wp-react-plugin-boilerplate-tab-active"
+					className="qube-tools"
+					activeClass="qube-tools-tab-active"
 					tabs={ GetTab()}
 				>
 					{ ( tab ) => <RenderTab tab={tab} settings={allSetting} setSetting ={setStateSettings} /> }
@@ -154,7 +154,7 @@ const AddSettings = () => {
 					isPrimary
 					disabled={isSaving || !needSave}
 				>
-					{needSave?__( 'Save Settings','wp-react-plugin-boilerplate' ):__( 'Saved','wp-react-plugin-boilerplate' )}
+					{needSave?__( 'Save Settings','qube-tools' ):__( 'Saved','qube-tools' )}
 					{isSaving?<Spinner />:''}
 				</Button>
 			</CardFooter>

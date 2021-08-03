@@ -58,8 +58,8 @@ const AddSettings = () => {
             status={hasError ? 'error' : 'success'}
         >
             <p>
-                {hasError && __('An error occurred.', 'wp-react-plugin-boilerplate')}
-                {!hasError && __('Saved Successfully.', 'wp-react-plugin-boilerplate')}
+                {hasError && __('An error occurred.', 'qube-tools')}
+                {!hasError && __('Saved Successfully.', 'qube-tools')}
             </p>
         </Notice>
     );
@@ -142,7 +142,7 @@ const AddSettings = () => {
                     isPrimary
                     disabled={isSaving || !needSave}
                 >
-                    {needSave ? __('Save Settings', 'wp-react-plugin-boilerplate') : __('Saved', 'wp-react-plugin-boilerplate')}
+                    {needSave ? __('Save Settings', 'qube-tools') : __('Saved', 'qube-tools')}
                     {isSaving ? <Spinner/> : ''}
                 </Button>
             </CardFooter>

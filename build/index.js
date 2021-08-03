@@ -531,7 +531,7 @@ var RenderTab = function RenderTab(props) {
 var Main = function Main(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(TabPanel, {
     className: "qube-tools-header-bar",
-    activeClass: "wp-react-plugin-boilerplate-tab-active",
+    activeClass: "qube-tools-tab-active",
     tabs: GetTab()
   }, function (tab) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(RenderTab, {
@@ -675,7 +675,7 @@ var AddSettings = function AddSettings() {
         return setNotice(false);
       },
       status: hasError ? 'error' : 'success'
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("p", null, hasError && __('An error occurred.', 'wp-react-plugin-boilerplate'), !hasError && __('Saved Successfully.', 'wp-react-plugin-boilerplate')));
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("p", null, hasError && __('An error occurred.', 'qube-tools'), !hasError && __('Saved Successfully.', 'qube-tools')));
   };
 
   function getSettings() {
@@ -795,7 +795,7 @@ var AddSettings = function AddSettings() {
     },
     isPrimary: true,
     disabled: isSaving || !needSave
-  }, needSave ? __('Save Settings', 'wp-react-plugin-boilerplate') : __('Saved', 'wp-react-plugin-boilerplate'), isSaving ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Spinner, null) : '')));
+  }, needSave ? __('Save Settings', 'qube-tools') : __('Saved', 'qube-tools'), isSaving ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Spinner, null) : '')));
 };
 
 document.addEventListener('DOMContentLoaded', function () {

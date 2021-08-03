@@ -20,12 +20,12 @@ export const GetTab = () => {
      return [
         {
             name: 'general',
-            title: __('General', 'wp-react-plugin-boilerplate'),
+            title: __('General', 'qube-tools'),
             className: 'general',
         },
         {
             name: 'advanced',
-            title: __('Advanced', 'wp-react-plugin-boilerplate'),
+            title: __('Advanced', 'qube-tools'),
             className: 'advanced',
         },
     ]
