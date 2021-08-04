@@ -23,11 +23,6 @@ export const GetTab = () => {
     return updated_all_tabs;
 }
 
-export const RenderTab = (props) => {
-
-    return (<Tab_Content tab={props.tab} demos={props.demos} setSelectedDemo={props.setSelectedDemo}/>)
-}
-
 export const Main = (props) => {
 
     return (
@@ -40,7 +35,7 @@ export const Main = (props) => {
             }}
             initialTabName="elementor"
         >
-            {(tab) => <RenderTab tab={tab} demos={props.demos} setSelectedDemo={props.setSelectedDemo}/>}
+            {(tab) => <Tab_Content tab={tab} demos={props.demos} setSelectedDemo={props.setSelectedDemo}/>}
         </TabPanel>
 
     )

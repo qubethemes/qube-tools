@@ -208,6 +208,54 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+module.exports = _asyncToGenerator;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
@@ -381,13 +429,12 @@ var Demo_Item = function Demo_Item(props) {
 /*!********************************!*\
   !*** ./src/components/main.js ***!
   \********************************/
-/*! exports provided: GetTab, RenderTab, Main */
+/*! exports provided: GetTab, Main */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetTab", function() { return GetTab; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderTab", function() { return RenderTab; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Main", function() { return Main; });
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
@@ -417,13 +464,6 @@ var GetTab = function GetTab() {
 
   return updated_all_tabs;
 };
-var RenderTab = function RenderTab(props) {
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_tab_content__WEBPACK_IMPORTED_MODULE_2__["Tab_Content"], {
-    tab: props.tab,
-    demos: props.demos,
-    setSelectedDemo: props.setSelectedDemo
-  });
-};
 var Main = function Main(props) {
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(TabPanel, {
     className: "qube-tools-header-bar",
@@ -434,7 +474,7 @@ var Main = function Main(props) {
     },
     initialTabName: "elementor"
   }, function (tab) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(RenderTab, {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_tab_content__WEBPACK_IMPORTED_MODULE_2__["Tab_Content"], {
       tab: tab,
       demos: props.demos,
       setSelectedDemo: props.setSelectedDemo
@@ -598,7 +638,6 @@ var Popup = function Popup(_ref) {
       contentStep = _useState2[0],
       setContentStep = _useState2[1];
 
-  alert(selectedDemo);
   var wrap_style = {};
 
   if (selectedDemo && selectedDemo !== '') {
@@ -729,25 +768,22 @@ var Tab_Content = function Tab_Content(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/main */ "./src/components/main.js");
-/* harmony import */ var _utils_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/components */ "./src/utils/components.js");
-/* harmony import */ var _components_process_popup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/process/popup */ "./src/components/process/popup.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_main__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/main */ "./src/components/main.js");
+/* harmony import */ var _components_process_popup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/process/popup */ "./src/components/process/popup.js");
 
 
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+
 
 
 var __ = wp.i18n.__;
@@ -755,43 +791,74 @@ var _wp$element = wp.element,
     render = _wp$element.render,
     useState = _wp$element.useState,
     useEffect = _wp$element.useEffect;
-var _lodash = lodash,
-    isEqual = _lodash.isEqual;
 var _wp = wp,
     apiFetch = _wp.apiFetch;
 var _wp$components = wp.components,
-    TabPanel = _wp$components.TabPanel,
-    Notice = _wp$components.Notice,
-    Button = _wp$components.Button,
     Card = _wp$components.Card,
     CardHeader = _wp$components.CardHeader,
     CardBody = _wp$components.CardBody,
     CardDivider = _wp$components.CardDivider,
-    CardFooter = _wp$components.CardFooter,
-    Spinner = _wp$components.Spinner;
-
+    CardFooter = _wp$components.CardFooter;
 
 
 var DemoImporterPage = function DemoImporterPage() {
   var _useState = useState({}),
-      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
       demoList = _useState2[0],
       setDemoList = _useState2[1];
 
   var _useState3 = useState(''),
-      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState3, 2),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState3, 2),
       activeTab = _useState4[0],
       setActiveTab = _useState4[1];
 
   var _useState5 = useState(''),
-      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState5, 2),
+      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState5, 2),
       selectedDemo = _useState6[0],
       setSelectedDemo = _useState6[1];
 
   var _useState7 = useState({}),
-      _useState8 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState7, 2),
+      _useState8 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState7, 2),
       selectedDemoPluginDetails = _useState8[0],
       setSelectedDemoPluginDetails = _useState8[1];
+
+  function getSelectedDemoPluginConfigs() {
+    return _getSelectedDemoPluginConfigs.apply(this, arguments);
+  }
+
+  function _getSelectedDemoPluginConfigs() {
+    _getSelectedDemoPluginConfigs = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee() {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return apiFetch({
+                path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/get_selected_demo_plugin_config',
+                data: {
+                  selected_demo: selectedDemo
+                }
+              });
+
+            case 2:
+              data = _context.sent;
+
+              if (data) {
+                setSelectedDemoPluginDetails(data);
+              } else {
+                setSelectedDemoPluginDetails({});
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _getSelectedDemoPluginConfigs.apply(this, arguments);
+  }
 
   var tabSelect = function tabSelect(currentTab) {
     setActiveTab(currentTab);
@@ -802,14 +869,14 @@ var DemoImporterPage = function DemoImporterPage() {
     var all_demos = qubeToolsImporterObj.all_demos;
 
     for (var _i = 0, _Object$entries = Object.entries(all_demos); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_Object$entries[_i], 2),
+      var _Object$entries$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_Object$entries[_i], 2),
           demo_item_key = _Object$entries$_i[0],
           demo_configs = _Object$entries$_i[1];
 
       var categories = typeof demo_configs.categories !== "undefined" ? demo_configs.categories : {};
 
       for (var _i2 = 0, _Object$entries2 = Object.entries(categories); _i2 < _Object$entries2.length; _i2++) {
-        var _Object$entries2$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_Object$entries2[_i2], 2),
+        var _Object$entries2$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_Object$entries2[_i2], 2),
             cat_key = _Object$entries2$_i[0],
             category = _Object$entries2$_i[1];
 
@@ -850,18 +917,18 @@ var DemoImporterPage = function DemoImporterPage() {
     initAllDemoLists(active_tab);
     console.log(activeTab);
   }, [activeTab]);
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(Card, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(CardHeader, {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(Card, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardHeader, {
     style: {
       overflow: 'hidden',
       height: '70px'
     }
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h1", null, __('Theme Demo Import', 'qube-tools'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h1", null, __('Theme Demo Import', 'qube-tools'))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardBody, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: "theme-browser rendered"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_main__WEBPACK_IMPORTED_MODULE_3__["Main"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_main__WEBPACK_IMPORTED_MODULE_5__["Main"], {
     demos: demoList,
     tabSelect: tabSelect,
     setSelectedDemo: setSelectedDemo
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(CardFooter, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_components_process_popup__WEBPACK_IMPORTED_MODULE_5__["Popup"], {
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardDivider, null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(CardFooter, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_components_process_popup__WEBPACK_IMPORTED_MODULE_6__["Popup"], {
     selectedDemo: selectedDemo,
     setSelectedDemo: setSelectedDemo,
     selectedDemoConfig: function selectedDemoConfig() {
@@ -872,48 +939,20 @@ var DemoImporterPage = function DemoImporterPage() {
 
 document.addEventListener('DOMContentLoaded', function () {
   if ('undefined' !== typeof document.getElementById(qubeToolsImporterObj.root_id) && null !== document.getElementById(qubeToolsImporterObj.root_id)) {
-    render(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(DemoImporterPage, null), document.getElementById(qubeToolsImporterObj.root_id));
+    render(Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(DemoImporterPage, null), document.getElementById(qubeToolsImporterObj.root_id));
   }
 });
 
 /***/ }),
 
-/***/ "./src/utils/components.js":
-/*!*********************************!*\
-  !*** ./src/utils/components.js ***!
-  \*********************************/
-/*! exports provided: useComponentDidMount, useComponentDidUpdate, useComponentWillUnmount */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "@babel/runtime/regenerator":
+/*!*************************************!*\
+  !*** external "regeneratorRuntime" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useComponentDidMount", function() { return useComponentDidMount; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useComponentDidUpdate", function() { return useComponentDidUpdate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useComponentWillUnmount", function() { return useComponentWillUnmount; });
-var _wp$element = wp.element,
-    useEffect = _wp$element.useEffect,
-    useRef = _wp$element.useRef;
-var useComponentDidMount = function useComponentDidMount(handler) {
-  return useEffect(function () {
-    return handler();
-  }, []);
-};
-var useComponentDidUpdate = function useComponentDidUpdate(handler, deps) {
-  var isInitialMount = useRef(true);
-  useEffect(function () {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
-    }
-
-    return handler();
-  }, deps);
-};
-var useComponentWillUnmount = function useComponentWillUnmount(handler) {
-  return useEffect(function () {
-    return handler;
-  }, []);
-};
+(function() { module.exports = window["regeneratorRuntime"]; }());
 
 /***/ }),
 

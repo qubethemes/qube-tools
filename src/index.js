@@ -1,13 +1,5 @@
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 import './style.scss';
 import {Main} from "./components/main"
-
 
 const {
     __
@@ -18,30 +10,19 @@ const {
     useState,
     useEffect
 } = wp.element;
-
-const {isEqual} = lodash;
-
 const {
     apiFetch
 } = wp;
 
 const {
-    TabPanel,
-    Notice,
-    Button,
+
     Card,
     CardHeader,
     CardBody,
     CardDivider,
     CardFooter,
-    Spinner
-} = wp.components;
 
-import {
-    useComponentDidMount,
-    useComponentDidUpdate,
-    useComponentWillUnmount
-} from "./utils/components";
+} = wp.components;
 
 import {Popup} from "./components/process/popup";
 
@@ -50,6 +31,20 @@ const DemoImporterPage = () => {
     const [activeTab, setActiveTab] = useState('');
     const [selectedDemo, setSelectedDemo] = useState('');
     const [selectedDemoPluginDetails, setSelectedDemoPluginDetails] = useState({});
+
+    async function getSelectedDemoPluginConfigs() {
+        let data = await apiFetch({
+            path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/get_selected_demo_plugin_config',
+            data: {
+                selected_demo: selectedDemo
+            }
+        });
+        if (data) {
+            setSelectedDemoPluginDetails(data);
+        } else {
+            setSelectedDemoPluginDetails({});
+        }
+    }
 
     const tabSelect = (currentTab) => {
 
@@ -115,7 +110,6 @@ const DemoImporterPage = () => {
 
         return typeof all_demos[selectedDemo] != "undefined" ? all_demos[selectedDemo] : {};
     }
-
 
     useEffect(() => {
         var active_tab = activeTab === '' ? 'elementor' : activeTab;

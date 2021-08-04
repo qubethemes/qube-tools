@@ -14,9 +14,6 @@ const {
 export const Popup = ({selectedDemo, setSelectedDemo, selectedDemoConfig}) => {
 
     const [contentStep, setContentStep] = useState(1);
-
-    alert(selectedDemo);
-
     let wrap_style = {};
     if (selectedDemo && selectedDemo !== '') {
         wrap_style = {
