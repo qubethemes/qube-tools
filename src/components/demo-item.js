@@ -10,8 +10,15 @@ export const Demo_Item = (props) => {
     const [importerLoader, setImporterLoader] = useState(1);
 
     const getSelectedDemoPluginDetails = (demo) => {
-        
+
         console.log(demo);
+    }
+    let loaderCss = {};
+
+    if (props.selectedDemo !== '' && props.slug === props.selectedDemo && props.isAjaxLoading) {
+        loaderCss = {
+            display: 'block'
+        }
     }
 
     return (
@@ -31,9 +38,9 @@ export const Demo_Item = (props) => {
                     </div>
 
 
-                    <div className="demo-import-loader preview-all preview-all-main"></div>
+                    <div className="demo-import-loader preview-all preview-all-main" style={loaderCss}></div>
 
-                    <div className="demo-import-loader preview-icon preview-main">
+                    <div className="demo-import-loader preview-icon preview-main" style={loaderCss}>
                         <i className="custom-loader"></i></div>
                 </div>
 

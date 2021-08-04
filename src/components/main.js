@@ -35,7 +35,8 @@ export const Main = (props) => {
             }}
             initialTabName="elementor"
         >
-            {(tab) => <Tab_Content tab={tab} demos={props.demos} setSelectedDemo={props.setSelectedDemo}/>}
+            {(tab) => <Tab_Content tab={tab} demos={props.demos} setSelectedDemo={props.setSelectedDemo}
+                                   selectedDemo={props.selectedDemo} isAjaxLoading={props.isAjaxLoading}/>}
         </TabPanel>
 
     )

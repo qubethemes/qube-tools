@@ -5,7 +5,7 @@ const {
 } = wp.i18n;
 
 export const Content = (props) => {
-    const selectedDemoConfig = typeof props.selectedDemoConfig !== "undefined" ? props.selectedDemoConfig() : {};
+    const selectedDemoConfig = typeof props.selectedDemoConfig !== "undefined" ? props.selectedDemoConfig : {};
     const requiredPlugins = typeof selectedDemoConfig.required_plugins !== "undefined" ? selectedDemoConfig.required_plugins : {};
     const freeRequiredPlugins = typeof requiredPlugins.free !== "undefined" ? requiredPlugins.free : [];
     const proRequiredPlugins = typeof requiredPlugins.pro !== "undefined" ? requiredPlugins.pro : [];

@@ -97,6 +97,20 @@ class Importer_API
                 ),
             )
         );
+
+        register_rest_route(
+            $namespace,
+            '/get_selected_demo_plugin_config',
+            array(
+                array(
+                    'methods' => \WP_REST_Server::EDITABLE,
+                    'callback' => array($this, 'get_selected_demo_plugin_config'),
+                    'permission_callback' => function () {
+                        return current_user_can('manage_options');
+                    },
+                ),
+            )
+        );
     }
 
 
@@ -133,6 +147,70 @@ class Importer_API
         return rest_ensure_response($default_theme_options);
     }
 
+
+    public function get_selected_demo_plugin_config(\WP_REST_Request $request)
+    {
+ 
+        $selected_demo = sanitize_text_field($request->get_param('selected_demo'));
+
+        $all_demo_datas = qube_tools_get_demos_data();
+
+        $response = false;
+
+        if ($all_demo_datas[$selected_demo]) {
+
+            include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+
+            $response = $all_demo_datas[$selected_demo];
+
+            $required_plugins = isset($response['required_plugins']) ? $response['required_plugins'] : array();
+
+            $free_plugins = isset($required_plugins['free']) ? $required_plugins['free'] : array();
+
+            $pro_plugins = isset($required_pluginsp['pro']) ? $required_pluginsp['pro'] : array();
+
+            $filtered_pro_plugins = $this->filtered_plugins($pro_plugins);
+
+            $filtered_free_plugins = $this->filtered_plugins($free_plugins);
+
+            $response['required_plugins']['free'] = $filtered_free_plugins;
+
+            $response['required_plugins']['pro'] = $filtered_pro_plugins;
+        }
+
+
+        return rest_ensure_response($response);
+    }
+
+
+    private function filtered_plugins($plugins)
+    {
+        // Plugin Status: 0 - Not Installed , 1 Installed Only 2: Installed & Activated
+        foreach ($plugins as $plugin_index => $plugin_item) {
+
+            $plugin_path_url = WP_PLUGIN_DIR . '/' . $plugin_item['init'];
+
+            $installed = file_exists($plugin_path_url);
+
+            if (is_plugin_active($plugin_item['init'])) {
+
+                $plugin_status = "ACTIVATED";
+
+            } else if ($installed) {
+
+                $plugin_status = 'INSTALLED';
+
+            } else {
+
+                $plugin_status = 'NONE';
+            }
+
+            $plugins[$plugin_index]['status'] = $plugin_status;
+        }
+
+
+        return $plugins;
+    }
 
     /**
      * Get settings

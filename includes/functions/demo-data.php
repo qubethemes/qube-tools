@@ -4,7 +4,7 @@ add_filter('qube_tools_demos_data', 'qube_tools_demo_data_config');
 
 function qube_tools_demo_data_config()
 {
-    $theme_slug = qube_tools()->theme_config['slug'];
+    $theme_slug = isset(qube_tools()->theme_config['slug']) ? qube_tools()->theme_config['slug'] : '';
 
     $demo_data_root_path = 'https://raw.githubusercontent.com/qubethemes/qube-tools-demo-data/master/vyom/';
 
@@ -32,6 +32,11 @@ function qube_tools_demo_data_config()
                         'slug' => 'elementor',
                         'init' => 'elementor/elementor.php',
                         'name' => 'Elementor',
+                    ),
+                    array(
+                        'slug' => 'akismet',
+                        'init' => 'akismet/akismet.php',
+                        'name' => 'Akismet',
                     ),
                     array(
                         'slug' => 'everest-forms',

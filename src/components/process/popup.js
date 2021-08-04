@@ -11,11 +11,11 @@ const {
     __
 } = wp.i18n;
 
-export const Popup = ({selectedDemo, setSelectedDemo, selectedDemoConfig}) => {
+export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
 
     const [contentStep, setContentStep] = useState(1);
     let wrap_style = {};
-    if (selectedDemo && selectedDemo !== '') {
+    if (selectedDemo && selectedDemo !== '' && typeof selectedDemoConfig === "object") {
         wrap_style = {
             display: 'block'
         }
@@ -31,7 +31,7 @@ export const Popup = ({selectedDemo, setSelectedDemo, selectedDemoConfig}) => {
                 <div className="qube-tools-demo-popup-content-wrap">
                     <div className="qube-tools-demo-popup-content-inner">
                         <a className="qube-tools-demo-popup-close" onClick={() => {
-                            setSelectedDemo('')
+                            closePopup()
                         }}>×</a>
                         <div id="qube-tools-demo-popup-content">
                             <Header selectedDemo={selectedDemo}/>

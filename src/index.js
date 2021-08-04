@@ -28,22 +28,37 @@ import {Popup} from "./components/process/popup";
 
 const DemoImporterPage = () => {
     const [demoList, setDemoList] = useState({});
-    const [activeTab, setActiveTab] = useState('');
-    const [selectedDemo, setSelectedDemo] = useState('');
-    const [selectedDemoPluginDetails, setSelectedDemoPluginDetails] = useState({});
 
-    async function getSelectedDemoPluginConfigs() {
+    const [activeTab, setActiveTab] = useState('');
+
+    const [selectedDemo, setSelectedDemo] = useState('');
+
+    const [ajaxLoading, setAjaxLoading] = useState(false);
+
+    const [selectedDemoPluginDetails, setSelectedDemoPluginDetails] = useState(false);
+
+    async function getSelectedDemoPluginConfigs(selected) {
+
+        setSelectedDemo(selected);
+
+        setAjaxLoading(true);
+
         let data = await apiFetch({
             path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/get_selected_demo_plugin_config',
+            method: 'POST',
             data: {
                 selected_demo: selectedDemo
             }
         });
         if (data) {
+
             setSelectedDemoPluginDetails(data);
         } else {
-            setSelectedDemoPluginDetails({});
+            setSelectedDemoPluginDetails(false);
         }
+
+        setAjaxLoading(false);
+
     }
 
     const tabSelect = (currentTab) => {
@@ -104,11 +119,9 @@ const DemoImporterPage = () => {
 
     }
 
-    const getSelectedDemoConfig = () => {
-
-        var all_demos = qubeToolsImporterObj.all_demos;
-
-        return typeof all_demos[selectedDemo] != "undefined" ? all_demos[selectedDemo] : {};
+    const closePopup = () => {
+        setSelectedDemo('');
+        setSelectedDemoPluginDetails(false);
     }
 
     useEffect(() => {
@@ -123,16 +136,20 @@ const DemoImporterPage = () => {
             </CardHeader>
             <CardBody>
                 <div className="theme-browser rendered">
-                    <Main demos={demoList} tabSelect={tabSelect} setSelectedDemo={setSelectedDemo}/>
+                    <Main demos={demoList} tabSelect={tabSelect} selectedDemo={selectedDemo}
+                          setSelectedDemo={(selected) => {
+                              return getSelectedDemoPluginConfigs(selected)
+                          }} isAjaxLoading={ajaxLoading}/>
                 </div>
             </CardBody>
             <CardDivider/>
             <CardFooter>
+                {console.log(typeof selectedDemoPluginDetails)}
+                {typeof selectedDemoPluginDetails === "object" ?
+                    <Popup selectedDemo={selectedDemo} closePopup={closePopup}
+                           selectedDemoConfig={selectedDemoPluginDetails}
+                    /> : ''}
 
-                <Popup selectedDemo={selectedDemo} setSelectedDemo={setSelectedDemo} selectedDemoConfig={() => {
-                    return getSelectedDemoConfig()
-                }}
-                />
             </CardFooter>
         </Card>
     )
