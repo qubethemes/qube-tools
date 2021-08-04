@@ -2,10 +2,10 @@ const {
     __
 } = wp.i18n;
 
-export const Content_Step_2 = (props) => {
+export const Content_Import_Success = (props) => {
 
-    return (<div className="qube-tools-last">
-            <h2 style="font-size:45px;">
+    return (<div className="qube-tools-import-success">
+            <h2 style={{fontSize: '45px'}}>
                 <img draggable="false" role="img" className="emoji" alt="🎉"
                      src="https://s.w.org/images/core/emoji/13.1.0/svg/1f389.svg"/>
                 <img draggable="false" role="img" className="emoji" alt="🎉"
@@ -18,7 +18,7 @@ export const Content_Step_2 = (props) => {
 
             <h3>Successfully Demo Imported!</h3>
 
-            <form className="qube-tools-demo-success-feedback" method="post" style="display:none;">
+            <form className="qube-tools-demo-success-feedback" method="post">
                 <input type="hidden" id="_wpnonce" name="_wpnonce" value="e61f151d10"/>
 
                 <input
@@ -48,9 +48,22 @@ export const Content_Step_2 = (props) => {
                     Send
                 </button>
             </form>
-            <p style="font-weight:bold;font-size:16px;">If you have some spare time, can you please
+            <p style={{
+                fontWeight: "bold",
+                fontSize: "16px"
+            }}>If you have some spare time, can you please
                 write review from here?</p>
-            <a style="text-decoration: none;border: none;display: block;padding: 15px;background: #007cba;color: #fff;font-size: 20px;margin: 20px 0;border-radius: 50px;"
+            <a style={{
+                textDecoration: 'none',
+                border: 'none',
+                display: 'block',
+                padding: '15px',
+                background: "#007cba",
+                color: '#fff',
+                fontSize: "20px",
+                margin: "20px 0",
+                borderRadius: "50px"
+            }}
                href="https://wordpress.org/support/theme/qube/reviews/?filter=5" target="_blank">Yes
                 I Would Like to Write Review</a> <a href="https://staging.mantrabrain.com"
                                                     target="_blank">View Your Site</a>

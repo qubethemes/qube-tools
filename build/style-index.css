@@ -380,7 +380,6 @@
   background-color: #0b51c5;
 }
 
-#qube-tools-demo-import-form,
 .qube-tools-last,
 .qube-tools-loader {
   display: none;
@@ -393,23 +392,23 @@
   margin: 30px auto 10px;
 }
 
-.qube-tools-loader .qube-tools-import-status p {
+.qube-tools-importing-notice .qube-tools-import-status p {
   text-align: center;
 }
 
-.qube-tools-loader .qube-tools-import-status p:before {
+.qube-tools-importing-notice .qube-tools-import-status p:before {
   display: inline-block;
   font: 400 18px/1 dashicons;
   vertical-align: bottom;
   margin-right: 5px;
 }
 
-.qube-tools-loader .qube-tools-import-status .qube-tools-imported:before {
+.qube-tools-importing-notice .qube-tools-import-status .qube-tools-imported:before {
   content: "";
   color: #79ba49;
 }
 
-.qube-tools-loader .qube-tools-import-status .qube-tools-importing:before {
+.qube-tools-importing-notice .qube-tools-import-status .qube-tools-importing:before {
   content: "";
   color: #f56e28;
   -webkit-font-smoothing: antialiased;
@@ -417,11 +416,11 @@
   animation: spinner 2s infinite linear;
 }
 
-.qube-tools-loader .qube-tools-import-status .qube-tools-importing-failed {
+.qube-tools-importing-notice .qube-tools-import-status .qube-tools-importing-failed {
   color: red;
 }
 
-.qube-tools-loader .qube-tools-import-status .qube-tools-importing-failed:before {
+.qube-tools-importing-notice .qube-tools-import-status .qube-tools-importing-failed:before {
   content: "";
   color: red;
 }
@@ -662,7 +661,6 @@
 .qube-tools-demo-failed-feedback-form {
   text-align: center;
   padding: 0 15px;
-  display: none;
 }
 
 .qube-tools-demo-failed-feedback-form textarea {

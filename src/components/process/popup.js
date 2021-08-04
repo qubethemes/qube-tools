@@ -1,11 +1,16 @@
+import {Overlay} from "./overlay";
+import {Header} from "./header";
+
+import {Footer} from "./footer";
+import {Content_Plugin_Install} from "./content-plugin-install";
+import {Content_Select_Files} from "./content-select-files";
+import {Content_Importing} from "./content-importing";
+import {Content_Import_Success} from "./content-import-success";
+import {Content_Import_Failed} from "./content-import-failed";
+
 const {
     useState,
 } = wp.element;
-
-import {Overlay} from "./overlay";
-import {Header} from "./header";
-import {Content} from "./content";
-import {Footer} from "./footer";
 
 const {
     __
@@ -13,7 +18,15 @@ const {
 
 export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
 
-    const [contentStep, setContentStep] = useState(1);
+    const [currentContentStep, setCurrentContentStep] = useState(1);
+    const [importStatus, setImportStatus] = useState(false);
+    const nextStep = () => {
+        let currentStep = currentContentStep;
+        currentStep++;
+
+        setCurrentContentStep(currentStep);
+
+    }
     let wrap_style = {};
     if (selectedDemo && selectedDemo !== '' && typeof selectedDemoConfig === "object") {
         wrap_style = {
@@ -34,20 +47,26 @@ export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
                             closePopup()
                         }}>×</a>
                         <div id="qube-tools-demo-popup-content">
-                            <Header selectedDemo={selectedDemo}/>
+                            <Header selectedDemo={selectedDemo} currentStep={currentContentStep}
+                                    importStatus={importStatus}/>
                             {(() => {
-                                switch (contentStep) {
+                                switch (currentContentStep) {
                                     case 1:
-                                        return (<Content selectedDemoConfig={selectedDemoConfig}/>)
+                                        return (<Content_Plugin_Install selectedDemoConfig={selectedDemoConfig}/>)
                                     case 2:
-                                        return (<Content selectedDemoConfig={selectedDemoConfig}/>)
+                                        return (<Content_Select_Files selectedDemoConfig={selectedDemoConfig}/>)
                                     case 3:
-                                        return (<Content selectedDemoConfig={selectedDemoConfig}/>)
+                                        return (<Content_Importing selectedDemoConfig={selectedDemoConfig}/>)
+                                    case 4:
+                                        if (importStatus) {
+                                            return (<Content_Import_Success selectedDemoConfig={selectedDemoConfig}/>)
+                                        }
+                                        return (<Content_Import_Failed selectedDemoConfig={selectedDemoConfig}/>)
                                     default:
-                                        return (<Content selectedDemoConfig={selectedDemoConfig}/>)
+                                        return (<Content_Plugin_Install selectedDemoConfig={selectedDemoConfig}/>)
                                 }
                             })()}
-                            <Footer/>
+                            <Footer nextStep={nextStep} currentStep={currentContentStep}/>
                         </div>
                     </div>
                 </div>

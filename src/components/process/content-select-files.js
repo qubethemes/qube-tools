@@ -2,7 +2,7 @@ const {
     __
 } = wp.i18n;
 
-export const Content_Step_1 = (props) => {
+export const Content_Select_Files = (props) => {
 
     return (<form method="post" id="qube-tools-demo-import-form">
 
@@ -11,7 +11,6 @@ export const Content_Step_1 = (props) => {
 
             <div className="qube-tools-demo-import-form-types">
 
-                <h2 className="title">Select what you want to import:</h2>
 
                 <ul className="qube-tools-popup-text">
                     <li>
@@ -48,8 +47,6 @@ export const Content_Step_1 = (props) => {
             <input
                 type="hidden" name="_wp_http_referer"
                 value=" "/>
-            <input type="submit" name="submit"
-                   className="qube-tools-button qube-tools-import" value="Install"/>
 
         </form>
     )

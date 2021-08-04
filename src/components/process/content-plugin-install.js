@@ -4,7 +4,7 @@ const {
     __
 } = wp.i18n;
 
-export const Content = (props) => {
+export const Content_Plugin_Install = (props) => {
     const selectedDemoConfig = typeof props.selectedDemoConfig !== "undefined" ? props.selectedDemoConfig : {};
     const requiredPlugins = typeof selectedDemoConfig.required_plugins !== "undefined" ? selectedDemoConfig.required_plugins : {};
     const freeRequiredPlugins = typeof requiredPlugins.free !== "undefined" ? requiredPlugins.free : [];

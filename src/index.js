@@ -39,7 +39,7 @@ const DemoImporterPage = () => {
 
     async function getSelectedDemoPluginConfigs(selected) {
 
-        setSelectedDemo(selected);
+         setSelectedDemo(selected);
 
         setAjaxLoading(true);
 
@@ -47,7 +47,7 @@ const DemoImporterPage = () => {
             path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/get_selected_demo_plugin_config',
             method: 'POST',
             data: {
-                selected_demo: selectedDemo
+                selected_demo: selected
             }
         });
         if (data) {

@@ -4,5 +4,17 @@ const {
 
 export const Footer = (props) => {
 
-    return (<a className="qube-tools-button qube-tools-plugins-next" href="#">Next</a>)
+    let footer_text = 'Next';
+    if (props.currentStep === 2) {
+        footer_text = 'Import Selected Demos'
+    }
+    if (props.currentStep === 3) {
+      // /  return (<></>);
+    }
+
+    return (<a className="qube-tools-button qube-tools-plugins-next" onClick={() => {
+        props.nextStep(props.currentContentStep)
+    }}>{footer_text}</a>)
+
+
 }

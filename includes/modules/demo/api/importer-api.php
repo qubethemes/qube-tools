@@ -150,12 +150,14 @@ class Importer_API
 
     public function get_selected_demo_plugin_config(\WP_REST_Request $request)
     {
- 
+
+
         $selected_demo = sanitize_text_field($request->get_param('selected_demo'));
 
         $all_demo_datas = qube_tools_get_demos_data();
 
-        $response = false;
+
+        $response = 'Hello WOrld';
 
         if ($all_demo_datas[$selected_demo]) {
 
