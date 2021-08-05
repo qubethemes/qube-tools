@@ -26,26 +26,26 @@ function qube_tools_demo_data_config()
             'blog_title' => 'Agency',
             'posts_to_show' => '5',
             'elementor_width' => '1140',
-            'required_plugins' => array(
-                'free' => array(
-                    array(
-                        'slug' => 'elementor',
-                        'init' => 'elementor/elementor.php',
-                        'name' => 'Elementor',
-                    ),
-                    array(
-                        'slug' => 'akismet',
-                        'init' => 'akismet/akismet.php',
-                        'name' => 'Akismet',
-                    ),
-                    array(
-                        'slug' => 'everest-forms',
-                        'init' => 'everest-forms/everest-forms.php',
-                        'name' => 'Everest Forms',
-                    )
+            'required_plugins' => [
+                array(
+                    'slug' => 'elementor',
+                    'init' => 'elementor/elementor.php',
+                    'name' => 'Elementor',
+                ),
+                array(
+                    'slug' => 'akismet',
+                    'init' => 'akismet/akismet.php',
+                    'name' => 'Akismet',
+
+                ),
+                array(
+                    'slug' => 'everest-forms',
+                    'init' => 'everest-forms/everest-forms.php',
+                    'name' => 'Everest Forms',
 
                 )
-            ),
+
+            ],
         ),
         'charity' => array(
             'title' => 'Charity',
@@ -67,20 +67,17 @@ function qube_tools_demo_data_config()
             'posts_to_show' => '5',
             'elementor_width' => '1140',
             'required_plugins' => array(
-                'free' => array(
-                    array(
-                        'slug' => 'elementor',
-                        'init' => 'elementor/elementor.php',
-                        'name' => 'Elementor',
-                    ),
+                array(
+                    'slug' => 'elementor',
+                    'init' => 'elementor/elementor.php',
+                    'name' => 'Elementor',
 
                 ),
-                'pro' => array(
-                    array(
-                        'slug' => 'qube-tools-typography-addon',
-                        'init' => 'qube-tools-typography-addon/qube-tools-typography-addon.php',
-                        'name' => ' Typography Addon',
-                    ),
+                array(
+                    'slug' => 'qube-tools-typography-addon',
+                    'init' => 'qube-tools-typography-addon/qube-tools-typography-addon.php',
+                    'name' => ' Typography Addon',
+                    'is_pro' => true,
 
                 )
             ),

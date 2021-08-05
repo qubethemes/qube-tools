@@ -4,11 +4,84 @@ const {
     __
 } = wp.i18n;
 
+const {
+    useState,
+} = wp.element;
+const {
+    apiFetch
+} = wp;
 export const Content_Plugin_Install = (props) => {
     const selectedDemoConfig = typeof props.selectedDemoConfig !== "undefined" ? props.selectedDemoConfig : {};
     const requiredPlugins = typeof selectedDemoConfig.required_plugins !== "undefined" ? selectedDemoConfig.required_plugins : {};
-    const freeRequiredPlugins = typeof requiredPlugins.free !== "undefined" ? requiredPlugins.free : [];
-    const proRequiredPlugins = typeof requiredPlugins.pro !== "undefined" ? requiredPlugins.pro : [];
+
+    const [pluginInstallationDetails, setPluginInstallationDetails] = useState(requiredPlugins);
+
+    const getPluginInstallationDetails = (plugin) => {
+
+        var pluginDetails = {};
+
+        pluginInstallationDetails.map((plugin_item) => {
+
+            if (plugin.slug === plugin_item.slug) {
+
+                pluginDetails = plugin_item;
+            }
+        });
+
+        return pluginDetails;
+    }
+
+    const updateSinglePluginData = (plugin) => {
+
+
+        var plugin_details = pluginInstallationDetails.map((plugin_item) => {
+
+            if (plugin.slug === plugin_item.slug) {
+
+                if (plugin.status === 'NONE') {
+
+                    plugin_item.ajax_status = 'INSTALLING';
+
+                } else if (plugin.status === 'INSTALLED') {
+
+                    plugin_item.ajax_status = 'INSTALLED';
+
+                } else {
+
+                    plugin_item.ajax_status = 'ACTIVATED';
+
+                }
+
+            }
+
+            return plugin_item;
+        });
+
+        setPluginInstallationDetails(plugin_details);
+
+    }
+
+
+    async function installWordPressPlugin(plugin) {
+
+
+        updateSinglePluginData(plugin);
+
+        let data = await apiFetch({
+            path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/action_for_plugin',
+            method: 'POST',
+            data: {
+                plugin: plugin
+            }
+        });
+        if (data) {
+            updateSinglePluginData(data);
+
+        }
+
+        //setAjaxLoading(false);
+
+    }
 
     return (<div className="qube-tools-popup-text">
 
@@ -25,12 +98,16 @@ export const Content_Plugin_Install = (props) => {
                 activated.</p>
             <div className="qube-tools-required-plugins qube-tools-plugin-installer">
 
-                {proRequiredPlugins.map((pro) => {
-                    return <Required_Plugin_Items plugin={pro} isFree={false}/>
-                })};
-
-                {freeRequiredPlugins.map((free) => {
-                    return <Required_Plugin_Items plugin={free} isFree={true}/>
+                {pluginInstallationDetails.map((plugin) => {
+                    return <Required_Plugin_Items
+                        plugin={plugin}
+                        singlePluginInstallationDetails={() => {
+                            return getPluginInstallationDetails(plugin)
+                        }}
+                        installWordPressPlugin={(plugin) => {
+                            installWordPressPlugin(plugin)
+                        }}
+                    />
                 })};
 
             </div>

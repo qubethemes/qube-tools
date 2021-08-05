@@ -111,6 +111,20 @@ class Importer_API
                 ),
             )
         );
+
+        register_rest_route(
+            $namespace,
+            '/action_for_plugin',
+            array(
+                array(
+                    'methods' => \WP_REST_Server::EDITABLE,
+                    'callback' => array($this, 'action_for_plugin'),
+                    'permission_callback' => function () {
+                        return current_user_can('manage_options');
+                    },
+                ),
+            )
+        );
     }
 
 
@@ -157,7 +171,7 @@ class Importer_API
         $all_demo_datas = qube_tools_get_demos_data();
 
 
-        $response = 'Hello WOrld';
+        $response = false;
 
         if ($all_demo_datas[$selected_demo]) {
 
@@ -167,21 +181,91 @@ class Importer_API
 
             $required_plugins = isset($response['required_plugins']) ? $response['required_plugins'] : array();
 
-            $free_plugins = isset($required_plugins['free']) ? $required_plugins['free'] : array();
+            $filtered_required_pluginss = $this->filtered_plugins($required_plugins);
 
-            $pro_plugins = isset($required_pluginsp['pro']) ? $required_pluginsp['pro'] : array();
+            $response['required_plugins'] = $filtered_required_pluginss;
 
-            $filtered_pro_plugins = $this->filtered_plugins($pro_plugins);
-
-            $filtered_free_plugins = $this->filtered_plugins($free_plugins);
-
-            $response['required_plugins']['free'] = $filtered_free_plugins;
-
-            $response['required_plugins']['pro'] = $filtered_pro_plugins;
         }
 
 
         return rest_ensure_response($response);
+    }
+
+
+    public function action_for_plugin(\WP_REST_Request $request)
+    {
+
+        $sample = array(
+            'slug' => 'everest-forms',
+            'init' => 'everest-forms/everest-forms.php',
+            'name' => 'Everest Forms',
+            'status' => 'INSTALLED',
+            'ajax_status' => 'INSTALLED'
+
+        );
+        return rest_ensure_response($sample);
+
+        $plugin = $request->get_param('plugin');
+
+        $plugin_status = isset($plugin['status']) ? $plugin['status'] : '';
+        $slug = isset($plugin['slug']) ? $plugin['slug'] : '';
+        $init = isset($plugin['init']) ? $plugin['init'] : '';
+
+        switch ($plugin_status) {
+            case "NONE":
+                // Include required libs for installation
+                require_once(ABSPATH . 'wp-admin/includes/plugin-install.php');
+                require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+                require_once(ABSPATH . 'wp-admin/includes/file.php');
+                require_once(ABSPATH . 'wp-admin/includes/class-wp-upgrader.php');
+                require_once(ABSPATH . 'wp-admin/includes/class-wp-ajax-upgrader-skin.php');
+                require_once(ABSPATH . 'wp-admin/includes/class-plugin-upgrader.php');
+
+// Get Plugin Info
+                $api = plugins_api('plugin_information',
+                    array(
+                        'slug' => $slug,
+                        'fields' => array(
+                            'short_description' => false,
+                            'sections' => false,
+                            'requires' => false,
+                            'rating' => false,
+                            'ratings' => false,
+                            'downloaded' => false,
+                            'last_updated' => false,
+                            'added' => false,
+                            'tags' => false,
+                            'compatibility' => false,
+                            'homepage' => false,
+                            'donate_link' => false,
+                        ),
+                    )
+                );
+                $skin = new \WP_Ajax_Upgrader_Skin();
+                $upgrader = new \Plugin_Upgrader($skin);
+                $upgrader->install($api->download_link);
+
+                if (!is_wp_error($api)) {
+                    $plugin['status'] = 'INSTALLED';
+                    $plugin['ajax_status'] = 'INSTALLED';
+                }
+                break;
+            case "INSTALLED":
+
+                require_once(ABSPATH . 'wp-load.php');
+                require_once(ABSPATH . 'wp-admin/includes/admin.php');
+                require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+                $status = activate_plugin($init);
+                if (!is_wp_error($status)) {
+                    $plugin['status'] = 'ACTIVATED';
+                }
+                unset($plugin['ajax_status']);
+
+                break;
+        }
+
+
+        return rest_ensure_response($plugin);
     }
 
 

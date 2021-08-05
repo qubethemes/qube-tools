@@ -751,35 +751,117 @@ var Content_Importing = function Content_Importing(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Content_Plugin_Install", function() { return Content_Plugin_Install; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _required_plugin_items__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./required-plugin-items */ "./src/components/process/required-plugin-items.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _required_plugin_items__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./required-plugin-items */ "./src/components/process/required-plugin-items.js");
+
+
+
 
 
 var __ = wp.i18n.__;
+var useState = wp.element.useState;
+var _wp = wp,
+    apiFetch = _wp.apiFetch;
 var Content_Plugin_Install = function Content_Plugin_Install(props) {
   var selectedDemoConfig = typeof props.selectedDemoConfig !== "undefined" ? props.selectedDemoConfig : {};
   var requiredPlugins = typeof selectedDemoConfig.required_plugins !== "undefined" ? selectedDemoConfig.required_plugins : {};
-  var freeRequiredPlugins = typeof requiredPlugins.free !== "undefined" ? requiredPlugins.free : [];
-  var proRequiredPlugins = typeof requiredPlugins.pro !== "undefined" ? requiredPlugins.pro : [];
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+
+  var _useState = useState(requiredPlugins),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
+      pluginInstallationDetails = _useState2[0],
+      setPluginInstallationDetails = _useState2[1];
+
+  var getPluginInstallationDetails = function getPluginInstallationDetails(plugin) {
+    var pluginDetails = {};
+    pluginInstallationDetails.map(function (plugin_item) {
+      if (plugin.slug === plugin_item.slug) {
+        pluginDetails = plugin_item;
+      }
+    });
+    return pluginDetails;
+  };
+
+  var updateSinglePluginData = function updateSinglePluginData(plugin) {
+    var plugin_details = pluginInstallationDetails.map(function (plugin_item) {
+      if (plugin.slug === plugin_item.slug) {
+        if (plugin.status === 'NONE') {
+          plugin_item.ajax_status = 'INSTALLING';
+        } else if (plugin.status === 'INSTALLED') {
+          plugin_item.ajax_status = 'INSTALLED';
+        } else {
+          plugin_item.ajax_status = 'ACTIVATED';
+        }
+      }
+
+      return plugin_item;
+    });
+    setPluginInstallationDetails(plugin_details);
+  };
+
+  function _installWordPressPlugin2(_x) {
+    return _installWordPressPlugin.apply(this, arguments);
+  }
+
+  function _installWordPressPlugin() {
+    _installWordPressPlugin = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee(plugin) {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              updateSinglePluginData(plugin);
+              _context.next = 3;
+              return apiFetch({
+                path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/action_for_plugin',
+                method: 'POST',
+                data: {
+                  plugin: plugin
+                }
+              });
+
+            case 3:
+              data = _context.sent;
+
+              if (data) {
+                updateSinglePluginData(data);
+              } //setAjaxLoading(false);
+
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _installWordPressPlugin.apply(this, arguments);
+  }
+
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: "qube-tools-popup-text"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Qube tools help you browse and import ready made websites with few clicks. We recommend you to upload sample data on a fresh WordPress install to prevent conflicts with your current content. You can use this plugin to reset your site if needed: ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("p", null, "Qube tools help you browse and import ready made websites with few clicks. We recommend you to upload sample data on a fresh WordPress install to prevent conflicts with your current content. You can use this plugin to reset your site if needed: ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("a", {
     href: "https://staging.mantrabrain.com/wp-admin/plugin-install.php?s=Wordpress+Database+Reset&tab=search",
     target: "_blank"
-  }, "Wordpress Database Reset"), "."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, "Wordpress Database Reset"), "."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: "qube-tools-required-plugins-wrap"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, "Recommended Plugins"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "For your site to look exactly like this demo, the plugins below need to be activated."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h3", null, "Recommended Plugins"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("p", null, "For your site to look exactly like this demo, the plugins below need to be activated."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: "qube-tools-required-plugins qube-tools-plugin-installer"
-  }, proRequiredPlugins.map(function (pro) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_required_plugin_items__WEBPACK_IMPORTED_MODULE_1__["Required_Plugin_Items"], {
-      plugin: pro,
-      isFree: false
-    });
-  }), ";", freeRequiredPlugins.map(function (free) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_required_plugin_items__WEBPACK_IMPORTED_MODULE_1__["Required_Plugin_Items"], {
-      plugin: free,
-      isFree: true
+  }, pluginInstallationDetails.map(function (plugin) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_required_plugin_items__WEBPACK_IMPORTED_MODULE_4__["Required_Plugin_Items"], {
+      plugin: plugin,
+      singlePluginInstallationDetails: function singlePluginInstallationDetails() {
+        return getPluginInstallationDetails(plugin);
+      },
+      installWordPressPlugin: function installWordPressPlugin(plugin) {
+        _installWordPressPlugin2(plugin);
+      }
     });
   }), ";")));
 };
@@ -1093,10 +1175,16 @@ __webpack_require__.r(__webpack_exports__);
 var __ = wp.i18n.__;
 var Required_Plugin_Items = function Required_Plugin_Items(_ref) {
   var plugin = _ref.plugin,
-      isFree = _ref.isFree;
+      singlePluginInstallationDetails = _ref.singlePluginInstallationDetails,
+      installWordPressPlugin = _ref.installWordPressPlugin;
+
+  /*console.log('Plugin Console');
+  console.log(plugin);
+  console.log("end");*/
   var button_label = 'Install Now';
   var disabled = false;
   var tick_icon = '';
+  var is_pro = typeof plugin.is_pro !== 'undefined' && plugin.is_pro;
 
   if (plugin.status === 'INSTALLED') {
     button_label = 'Activate Now';
@@ -1108,15 +1196,46 @@ var Required_Plugin_Items = function Required_Plugin_Items(_ref) {
     });
   }
 
-  if (!isFree && plugin.status === 'NONE') {
+  if (is_pro && plugin.status === 'NONE') {
     button_label = 'Get This Addon';
+  }
+
+  var single_plugin_installation_detail = singlePluginInstallationDetails();
+  var ajax_status = typeof single_plugin_installation_detail.ajax_status !== 'undefined' ? single_plugin_installation_detail.ajax_status : '';
+  var className = 'button ';
+
+  if (ajax_status === 'INSTALLING') {
+    className += 'installing';
+    disabled = "disabled";
+    button_label = 'Installing....';
+  } else if (ajax_status === 'INSTALLED') {
+    className += 'installed';
+    disabled = "";
+    button_label = 'Activate Now';
+  } else if (ajax_status === 'ACTIVATING') {
+    className += 'installing';
+    disabled = "disabled";
+    button_label = 'Activating....';
+  } else if (ajax_status === 'ACTIVATED') {
+    disabled = "disabled";
+    className += 'install-now';
+    button_label = 'Activated';
+    tick_icon = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
+      className: "plugin-activated-icon dashicons dashicons-yes-alt"
+    });
+  } else {
+    className += 'install-now';
+    button_label = button_label;
   }
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     className: 'qube-tools-plugin qube-tools-clr qube-tools-plugin-' + plugin.slug
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, tick_icon, plugin.name), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
-    className: "button install-now",
-    disabled: disabled
+    className: className,
+    disabled: disabled,
+    onClick: function onClick() {
+      installWordPressPlugin(plugin);
+    }
   }, button_label));
 };
 
