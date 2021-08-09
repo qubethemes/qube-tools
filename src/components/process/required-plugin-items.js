@@ -3,9 +3,7 @@ const {
 } = wp.i18n;
 export const Required_Plugin_Items = ({plugin, singlePluginInstallationDetails, installWordPressPlugin}) => {
 
-    /*console.log('Plugin Console');
-    console.log(plugin);
-    console.log("end");*/
+
     let button_label = 'Install Now';
 
     let disabled = false;

@@ -31,12 +31,11 @@ export const Content_Plugin_Install = (props) => {
         return pluginDetails;
     }
 
-    const updateSinglePluginData = (plugin) => {
-
+    const updateSinglePluginData = (plugin, ajax_response = false) => {
 
         var plugin_details = pluginInstallationDetails.map((plugin_item) => {
 
-            if (plugin.slug === plugin_item.slug) {
+            if (plugin.slug === plugin_item.slug && !ajax_response) {
 
                 if (plugin.status === 'NONE') {
 
@@ -44,7 +43,7 @@ export const Content_Plugin_Install = (props) => {
 
                 } else if (plugin.status === 'INSTALLED') {
 
-                    plugin_item.ajax_status = 'INSTALLED';
+                    plugin_item.ajax_status = 'ACTIVATING';
 
                 } else {
 
@@ -52,15 +51,23 @@ export const Content_Plugin_Install = (props) => {
 
                 }
 
+            } else if (plugin.slug === plugin_item.slug && ajax_response) {
+
+                plugin_item.status = plugin.status;
+                plugin_item.ajax_status = plugin.ajax_status;
             }
 
             return plugin_item;
         });
-
+ 
         setPluginInstallationDetails(plugin_details);
+
 
     }
 
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     async function installWordPressPlugin(plugin) {
 
@@ -75,7 +82,7 @@ export const Content_Plugin_Install = (props) => {
             }
         });
         if (data) {
-            updateSinglePluginData(data);
+            updateSinglePluginData(data, true);
 
         }
 

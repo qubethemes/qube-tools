@@ -195,21 +195,36 @@ class Importer_API
     public function action_for_plugin(\WP_REST_Request $request)
     {
 
-        $sample = array(
-            'slug' => 'everest-forms',
-            'init' => 'everest-forms/everest-forms.php',
-            'name' => 'Everest Forms',
-            'status' => 'INSTALLED',
-            'ajax_status' => 'INSTALLED'
-
-        );
-        return rest_ensure_response($sample);
 
         $plugin = $request->get_param('plugin');
 
         $plugin_status = isset($plugin['status']) ? $plugin['status'] : '';
         $slug = isset($plugin['slug']) ? $plugin['slug'] : '';
         $init = isset($plugin['init']) ? $plugin['init'] : '';
+
+
+        //$plugin_status = $plugin_status === 'NONE' ? 'INSTALLED' : 'ACTIVATED';
+
+        /*if ($slug == 'elementor') {
+            $sample = array(
+                'slug' => 'elementor',
+                'init' => 'elementor/elementor.php',
+                'name' => 'Elementor',
+                'status' => $plugin_status,
+                'ajax_status' => $plugin_status
+
+            );
+        } else {
+            $sample = array(
+                'slug' => 'everest-forms',
+                'init' => 'everest-forms/everest-forms.php',
+                'name' => 'Everest Forms',
+                'status' => $plugin_status,
+                'ajax_status' => $plugin_status
+
+            );
+        }
+        return rest_ensure_response($sample);*/
 
         switch ($plugin_status) {
             case "NONE":
@@ -258,8 +273,8 @@ class Importer_API
                 $status = activate_plugin($init);
                 if (!is_wp_error($status)) {
                     $plugin['status'] = 'ACTIVATED';
+                    $plugin['ajax_status'] = 'ACTIVATED';
                 }
-                unset($plugin['ajax_status']);
 
                 break;
         }
@@ -278,7 +293,7 @@ class Importer_API
 
             $installed = file_exists($plugin_path_url);
 
-            if (is_plugin_active($plugin_item['init'])) {
+            if (is_plugin_active($plugin_item['init']) && $installed) {
 
                 $plugin_status = "ACTIVATED";
 

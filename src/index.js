@@ -39,7 +39,7 @@ const DemoImporterPage = () => {
 
     async function getSelectedDemoPluginConfigs(selected) {
 
-         setSelectedDemo(selected);
+        setSelectedDemo(selected);
 
         setAjaxLoading(true);
 
@@ -130,28 +130,30 @@ const DemoImporterPage = () => {
         console.log(activeTab);
     }, [activeTab]);
     return (
-        <Card>
-            <CardHeader style={{overflow: 'hidden', height: '70px'}}>
-                <h1>{__('Theme Demo Import', 'qube-tools')}</h1>
-            </CardHeader>
-            <CardBody>
-                <div className="theme-browser rendered">
-                    <Main demos={demoList} tabSelect={tabSelect} selectedDemo={selectedDemo}
-                          setSelectedDemo={(selected) => {
-                              return getSelectedDemoPluginConfigs(selected)
-                          }} isAjaxLoading={ajaxLoading}/>
-                </div>
-            </CardBody>
-            <CardDivider/>
-            <CardFooter>
-                {console.log(typeof selectedDemoPluginDetails)}
-                {typeof selectedDemoPluginDetails === "object" ?
-                    <Popup selectedDemo={selectedDemo} closePopup={closePopup}
-                           selectedDemoConfig={selectedDemoPluginDetails}
-                    /> : ''}
+        <> <h1 className="screen-reader-text">{__('Theme Demo Import', 'qube-tools')}</h1>
+            <Card>
+                <CardHeader style={{overflow: 'hidden', height: '70px'}}>
+                    <h2>{__('Theme Demo Import', 'qube-tools')}</h2>
+                </CardHeader>
+                <CardBody>
+                    <div className="theme-browser rendered">
+                        <Main demos={demoList} tabSelect={tabSelect} selectedDemo={selectedDemo}
+                              setSelectedDemo={(selected) => {
+                                  return getSelectedDemoPluginConfigs(selected)
+                              }} isAjaxLoading={ajaxLoading}/>
+                    </div>
+                </CardBody>
+                <CardDivider/>
+                <CardFooter>
+                    {console.log(typeof selectedDemoPluginDetails)}
+                    {typeof selectedDemoPluginDetails === "object" ?
+                        <Popup selectedDemo={selectedDemo} closePopup={closePopup}
+                               selectedDemoConfig={selectedDemoPluginDetails}
+                        /> : ''}
 
-            </CardFooter>
-        </Card>
+                </CardFooter>
+            </Card>
+        </>
     )
 }
 
