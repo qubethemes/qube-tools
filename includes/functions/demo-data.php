@@ -78,6 +78,7 @@ function qube_tools_demo_data_config()
                     'init' => 'qube-tools-typography-addon/qube-tools-typography-addon.php',
                     'name' => ' Typography Addon',
                     'is_pro' => true,
+                    'url' => 'https://qubethemes.com/plugins/typography-addon'
 
                 )
             ),

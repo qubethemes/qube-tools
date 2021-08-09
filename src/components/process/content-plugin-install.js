@@ -59,7 +59,7 @@ export const Content_Plugin_Install = (props) => {
 
             return plugin_item;
         });
- 
+
         setPluginInstallationDetails(plugin_details);
 
 
@@ -71,6 +71,19 @@ export const Content_Plugin_Install = (props) => {
 
     async function installWordPressPlugin(plugin) {
 
+        let is_pro = typeof plugin.is_pro === "undefined" ? false : true;
+
+        if (is_pro) {
+            let url = typeof plugin.url === "undefined" ? '' : plugin.url;
+
+            if (url === '') {
+                return;
+            }
+            var win = window.open(url, '_blank');
+            win.focus();
+            return;
+
+        }
 
         updateSinglePluginData(plugin);
 

@@ -821,13 +821,35 @@ var Content_Plugin_Install = function Content_Plugin_Install(props) {
 
   function _installWordPressPlugin() {
     _installWordPressPlugin = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee(plugin) {
-      var data;
+      var is_pro, url, win, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              is_pro = typeof plugin.is_pro === "undefined" ? false : true;
+
+              if (!is_pro) {
+                _context.next = 8;
+                break;
+              }
+
+              url = typeof plugin.url === "undefined" ? '' : plugin.url;
+
+              if (!(url === '')) {
+                _context.next = 5;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 5:
+              win = window.open(url, '_blank');
+              win.focus();
+              return _context.abrupt("return");
+
+            case 8:
               updateSinglePluginData(plugin);
-              _context.next = 3;
+              _context.next = 11;
               return apiFetch({
                 path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/action_for_plugin',
                 method: 'POST',
@@ -836,7 +858,7 @@ var Content_Plugin_Install = function Content_Plugin_Install(props) {
                 }
               });
 
-            case 3:
+            case 11:
               data = _context.sent;
 
               if (data) {
@@ -844,7 +866,7 @@ var Content_Plugin_Install = function Content_Plugin_Install(props) {
               } //setAjaxLoading(false);
 
 
-            case 5:
+            case 13:
             case "end":
               return _context.stop();
           }
