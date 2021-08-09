@@ -1,8 +1,19 @@
 const {
     __
 } = wp.i18n;
+const {
+
+    CheckboxControl
+
+} = wp.components;
+const {
+    useState,
+} = wp.element;
 
 export const Content_Select_Files = (props) => {
+    const [isXMLDataChecked, setXMLDataChecked] = useState(true);
+    const [isCustomizerDataChecked, setCustomizerDataChecked] = useState(true);
+    const [isWidgetDataChecked, setWidgetDataChecked] = useState(true);
 
     return (<form method="post" id="qube-tools-demo-import-form">
 
@@ -12,31 +23,29 @@ export const Content_Select_Files = (props) => {
             <div className="qube-tools-demo-import-form-types">
 
 
-                <ul className="qube-tools-popup-text">
+                <ul className="qube-tools-popup-text qube-tools-import-file-list">
                     <li>
-                        <label htmlFor="qube_tools_import_xml">
-                            <input id="qube_tools_import_xml" type="checkbox"
-                                   name="qube_tools_import_xml" checked="checked"/>
-                            <strong>Import XML Data</strong>
-                            (pages, posts, images, menus, etc...)
-                        </label>
+                        <CheckboxControl
+                            label="Import XML Data(pages, posts, images, menus, etc...)"
+                            checked={isXMLDataChecked}
+                            onChange={setXMLDataChecked}
+                        />
+                    </li>
+                    <li>
+                        <CheckboxControl
+                            label="Import Customizer Settings"
+                            checked={isCustomizerDataChecked}
+                            onChange={setCustomizerDataChecked}
+                        />
+                    </li>
+                    <li>
+                        <CheckboxControl
+                            label="Import Widgets"
+                            checked={isWidgetDataChecked}
+                            onChange={setWidgetDataChecked}
+                        />
                     </li>
 
-                    <li>
-                        <label htmlFor="qube_tools_theme_settings">
-                            <input id="qube_tools_theme_settings" type="checkbox"
-                                   name="qube_tools_theme_settings" checked="checked"/>
-                            <strong>Import Customizer Settings</strong>
-                        </label>
-                    </li>
-
-                    <li>
-                        <label htmlFor="qube_tools_import_widgets">
-                            <input id="qube_tools_import_widgets" type="checkbox"
-                                   name="qube_tools_import_widgets" checked="checked"/>
-                            <strong>Import Widgets</strong>
-                        </label>
-                    </li>
 
                 </ul>
 

@@ -888,50 +888,61 @@ var Content_Plugin_Install = function Content_Plugin_Install(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Content_Select_Files", function() { return Content_Select_Files; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+
 
 var __ = wp.i18n.__;
+var CheckboxControl = wp.components.CheckboxControl;
+var useState = wp.element.useState;
 var Content_Select_Files = function Content_Select_Files(props) {
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("form", {
+  var _useState = useState(true),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+      isXMLDataChecked = _useState2[0],
+      setXMLDataChecked = _useState2[1];
+
+  var _useState3 = useState(true),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState3, 2),
+      isCustomizerDataChecked = _useState4[0],
+      setCustomizerDataChecked = _useState4[1];
+
+  var _useState5 = useState(true),
+      _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState5, 2),
+      isWidgetDataChecked = _useState6[0],
+      setWidgetDataChecked = _useState6[1];
+
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("form", {
     method: "post",
     id: "qube-tools-demo-import-form"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("input", {
     id: "qube_tools_import_demo",
     type: "hidden",
     name: "qube_tools_import_demo",
     value: "main"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     className: "qube-tools-demo-import-form-types"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("ul", {
-    className: "qube-tools-popup-text"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
-    htmlFor: "qube_tools_import_xml"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    id: "qube_tools_import_xml",
-    type: "checkbox",
-    name: "qube_tools_import_xml",
-    checked: "checked"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, "Import XML Data"), "(pages, posts, images, menus, etc...)")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
-    htmlFor: "qube_tools_theme_settings"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    id: "qube_tools_theme_settings",
-    type: "checkbox",
-    name: "qube_tools_theme_settings",
-    checked: "checked"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, "Import Customizer Settings"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
-    htmlFor: "qube_tools_import_widgets"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    id: "qube_tools_import_widgets",
-    type: "checkbox",
-    name: "qube_tools_import_widgets",
-    checked: "checked"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("strong", null, "Import Widgets"))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("ul", {
+    className: "qube-tools-popup-text qube-tools-import-file-list"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(CheckboxControl, {
+    label: "Import XML Data(pages, posts, images, menus, etc...)",
+    checked: isXMLDataChecked,
+    onChange: setXMLDataChecked
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(CheckboxControl, {
+    label: "Import Customizer Settings",
+    checked: isCustomizerDataChecked,
+    onChange: setCustomizerDataChecked
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(CheckboxControl, {
+    label: "Import Widgets",
+    checked: isWidgetDataChecked,
+    onChange: setWidgetDataChecked
+  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("input", {
     type: "hidden",
     id: "qube_tools_import_demo_data_nonce",
     name: "qube_tools_import_demo_data_nonce",
     value: "ab01363357"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("input", {
     type: "hidden",
     name: "_wp_http_referer",
     value: " "

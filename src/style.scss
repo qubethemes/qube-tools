@@ -326,6 +326,10 @@
   padding: 0 30px 20px
 }
 
+.qube-tools-import-file-list li label {
+  font-weight: 500;
+}
+
 .qube-tools-popup-text p {
   font-size: 14px;
   margin: 0 0 15px
@@ -712,7 +716,7 @@
 .qube-tools-demo-failed-feedback-form {
   text-align: center;
   padding: 0 15px;
- }
+}
 
 .qube-tools-demo-failed-feedback-form textarea {
   width: 100%;
