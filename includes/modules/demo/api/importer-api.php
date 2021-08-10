@@ -141,10 +141,25 @@ class Importer_API
     {
         $selected_demo = sanitize_text_field($request->get_param('selected_demo'));
         $import_file = sanitize_text_field($request->get_param('import_file'));
+
+        $status = false;
+
+        switch ($import_file) {
+            case "xml":
+                $status = qube_tools()->importer->import_xml_file($selected_demo);
+                break;
+            case "widget":
+                break;
+            case "customizer":
+                break;
+        }
+
+
         sleep(1);
         return rest_ensure_response(array(
                 'import_file' => $import_file,
-                'selected_demo' => $selected_demo
+                'selected_demo' => $selected_demo,
+                'status' => $status
             )
         );
 

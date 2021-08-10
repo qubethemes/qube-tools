@@ -14,6 +14,13 @@ final class Main
 
     private $install = null;
 
+    /**
+     * Importer Instance.
+     *
+     * @var Importer
+     */
+    public $importer = null;
+
     public static function instance()
     {
         if (is_null(self::$_instance))
@@ -67,7 +74,8 @@ final class Main
             include_once QUBE_TOOLS_ABSPATH . 'includes/functions/demo-data.php';
 
             new Ajax();
-            new Importer();
+
+            $this->importer = new Importer();
         }
 
 

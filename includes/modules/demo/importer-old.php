@@ -28,11 +28,88 @@ class Importer
         new Template();
 
 
+        // Start things
+        add_action('admin_init', array($this, 'init'));
+
+        //add_action('admin_init', array($this, 'qube_tools_plugin_redirect'));
+
+        // Demos scripts
+        add_action('admin_enqueue_scripts', array($this, 'scripts'));
+
         // Allows xml uploads
         add_filter('upload_mimes', array($this, 'allow_xml_uploads'));
 
+        // Demos popup
+        add_action('admin_footer', array($this, 'popup'));
+
     }
 
+
+    /**
+     * Register the AJAX methods
+     *
+     * @since 1.0.0
+     */
+    public function init()
+    {
+
+        // Demos popup ajax
+        add_action('wp_ajax_qube_tools_ajax_get_demo_data', array($this, 'ajax_demo_data'));
+        add_action('wp_ajax_qube_tools_ajax_required_plugins_activate', array($this, 'ajax_required_plugins_activate'));
+
+        // Get data to import
+        add_action('wp_ajax_qube_tools_ajax_get_import_data', array($this, 'ajax_get_import_data'));
+
+        // Import XML file
+        add_action('wp_ajax_qube_tools_ajax_import_xml', array($this, 'ajax_import_xml'));
+
+        // Import customizer settings
+        add_action('wp_ajax_qube_tools_ajax_import_theme_settings', array($this, 'ajax_import_theme_settings'));
+
+        // Import widgets
+        add_action('wp_ajax_qube_tools_ajax_import_widgets', array($this, 'ajax_import_widgets'));
+
+        // Import forms
+        add_action('wp_ajax_qube_tools_ajax_import_forms', array($this, 'ajax_import_forms'));
+
+        // After import
+        add_action('wp_ajax_qube_tools_after_import', array($this, 'ajax_after_import'));
+
+    }
+
+    /**
+     * Load scripts
+     *
+     * @since 1.0.0
+     */
+    public function scripts()
+    {
+
+        $screen = get_current_screen();
+
+        $screen_id = isset($screen->id) ? $screen->id : '';
+
+        if ($screen_id !== qube_tools()->theme_config['slug'] . "-options_page_qube-tools-install-demos") {
+            return;
+        }
+
+        // CSS
+        wp_enqueue_style('qube-tools-demos-style', plugins_url('/assets/css/demos.css', __FILE__));
+
+        // JS
+        wp_enqueue_script('qube-tools-demos-js', plugins_url('/assets/js/demos.js', __FILE__), array('jquery', 'wp-util', 'updates'), '1.0', true);
+
+        wp_localize_script('qube-tools-demos-js', 'qubeToolsDemos', array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'demo_data_nonce' => wp_create_nonce('get-demo-data'),
+            'qube_tools_import_data_nonce' => wp_create_nonce('qube_tools_import_data_nonce'),
+            'content_importing_error' => esc_html__('There was a problem during the importing process resulting in the following error from your server:', 'qube-tools-toolkit'),
+            'button_activating' => esc_html__('Activating', 'qube-tools-toolkit') . '&hellip;',
+            'button_active' => esc_html__('Active', 'qube-tools-toolkit'),
+            'button_activated' => esc_html__('Activated', 'qube-tools-toolkit'),
+        ));
+
+    }
 
     /**
      * Allows xml uploads so we can import from server
@@ -55,18 +132,222 @@ class Importer
 
 
     /**
-     * Import XML file
+     * Demos popup
      *
      * @since 1.0.0
      */
-    public function import_xml_file($demo_type)
+    public function popup()
+    {
+        global $pagenow;
+
+        $page = isset($_GET['page']) ? $_GET['page'] : '';
+        // Display on the demos pages
+        if (('admin.php' == $pagenow && 'qube-tools-install-demos' == $page)) {
+          //  qube_tools_load_module_template('demo', 'popup');
+        }
+    }
+
+    /**
+     * Demos popup ajax.
+     *
+     * @since 1.0.0
+     */
+    public function ajax_demo_data()
+    {
+
+        if (!current_user_can('manage_options') || !wp_verify_nonce($_GET['demo_data_nonce'], 'get-demo-data')) {
+            die('This action was stopped for security purposes.');
+        }
+
+        // Database reset url
+        if (is_plugin_active('wordpress-database-reset/wp-reset.php')) {
+            $plugin_link = admin_url('tools.php?page=database-reset');
+        } else {
+            $plugin_link = admin_url('plugin-install.php?s=Wordpress+Database+Reset&tab=search');
+        }
+
+        // Get all demos
+        $demos = qube_tools_get_demos_data();
+
+        // Get selected demo
+        $demo = sanitize_textarea_field($_GET['demo_name']);
+
+        // Get required plugins
+        $plugins = $demos[$demo]['required_plugins'];
+
+        // Get free plugins
+        $free = isset($plugins['free']) ? $plugins['free'] : array();
+
+        // Get premium plugins
+        $premium = isset($plugins['premium']) ? $plugins['premium'] : array();
+
+        qube_tools_load_module_template('demo', 'importer-steps', array(
+            'demos' => $demos,
+            'demo' => $demo,
+            'plugins' => $plugins,
+            'plugin_link' => $plugin_link,
+            'free' => $free,
+            'premium' => $premium
+        ));
+        die();
+    }
+
+    /**
+     * Required plugins.
+     *
+     * @since 1.0.0
+     */
+    public static function required_plugins($plugins, $return)
+    {
+
+        foreach ($plugins as $key => $plugin) {
+
+            $api = array(
+                'slug' => isset($plugin['slug']) ? $plugin['slug'] : '',
+                'init' => isset($plugin['init']) ? $plugin['init'] : '',
+                'name' => isset($plugin['name']) ? $plugin['name'] : '',
+            );
+
+            if (!is_wp_error($api)) { // confirm error free
+
+                $activated_icon = '';
+
+                // Installed but Inactive.
+                if (file_exists(WP_PLUGIN_DIR . '/' . $plugin['init']) && is_plugin_inactive($plugin['init'])) {
+
+                    $button_classes = 'button activate-now button-primary';
+                    $button_text = esc_html__('Activate', 'qube-tools-toolkit');
+
+                    // Not Installed.
+                } elseif (!file_exists(WP_PLUGIN_DIR . '/' . $plugin['init'])) {
+
+                    $button_classes = 'button install-now';
+                    $button_text = esc_html__('Install Now', 'qube-tools-toolkit');
+
+                    // Active.
+                } else {
+                    $button_classes = 'button disabled';
+                    $button_text = esc_html__('Activated', 'qube-tools-toolkit');
+                    $activated_icon = '<span class="plugin-activated-icon dashicons dashicons-yes-alt"></span>';
+                } ?>
+
+                <div class="qube-tools-plugin qube-tools-clr qube-tools-plugin-<?php echo $api['slug']; ?>"
+                     data-slug="<?php echo $api['slug']; ?>" data-init="<?php echo $api['init']; ?>">
+                    <h2><?php echo $activated_icon;
+                        echo $api['name']; ?></h2>
+
+                    <?php
+                    // If premium plugins and not installed
+                    if ('premium' == $return
+                        && !file_exists(WP_PLUGIN_DIR . '/' . $plugin['init'])) { ?>
+                        <a class="button" href="https://qubethemes.com/extensions/"
+                           target="_blank"><?php esc_html_e('Get This Addon', 'qube-tools-toolkit'); ?></a>
+                        <?php
+                    } else { ?>
+                        <button class="<?php echo $button_classes; ?>" data-init="<?php echo $api['init']; ?>"
+                                data-slug="<?php echo $api['slug']; ?>"
+                                data-name="<?php echo $api['name']; ?>"><?php echo $button_text; ?></button>
+                        <?php
+                    } ?>
+                </div>
+
+                <?php
+            }
+        }
+
+    }
+
+    /**
+     * Required plugins activate
+     *
+     * @since 1.0.0
+     */
+    public function ajax_required_plugins_activate()
+    {
+
+        if (!current_user_can('install_plugins') || !isset($_POST['init']) || !$_POST['init']) {
+            wp_send_json_error(
+                array(
+                    'success' => false,
+                    'message' => __('No plugin specified', 'qube-tools-toolkit'),
+                )
+            );
+        }
+
+        $plugin_init = (isset($_POST['init'])) ? sanitize_text_field($_POST['init']) : '';
+        $activate = activate_plugin($plugin_init, '', false, true);
+
+        if (is_wp_error($activate)) {
+            wp_send_json_error(
+                array(
+                    'success' => false,
+                    'message' => $activate->get_error_message(),
+                )
+            );
+        }
+
+        wp_send_json_success(
+            array(
+                'success' => true,
+                'message' => __('Plugin Successfully Activated', 'qube-tools-toolkit'),
+            )
+        );
+
+    }
+
+    /**
+     * Returns an array containing all the importable content
+     *
+     * @since 1.0.0
+     */
+    public function ajax_get_import_data()
     {
         if (!current_user_can('manage_options')) {
             die('This action was stopped for security purposes.');
         }
+        check_ajax_referer('qube_tools_import_data_nonce', 'security');
 
+        echo json_encode(
+            array(
+                array(
+                    'input_name' => 'qube_tools_import_xml',
+                    'action' => 'qube_tools_ajax_import_xml',
+                    'method' => 'ajax_import_xml',
+                    'loader' => esc_html__('Importing XML Data', 'qube-tools-toolkit')
+                ),
 
-        $demo_type = sanitize_text_field($demo_type);
+                array(
+                    'input_name' => 'qube_tools_theme_settings',
+                    'action' => 'qube_tools_ajax_import_theme_settings',
+                    'method' => 'ajax_import_theme_settings',
+                    'loader' => esc_html__('Importing Customizer Settings', 'qube-tools-toolkit')
+                ),
+
+                array(
+                    'input_name' => 'qube_tools_import_widgets',
+                    'action' => 'qube_tools_ajax_import_widgets',
+                    'method' => 'ajax_import_widgets',
+                    'loader' => esc_html__('Importing Widgets', 'qube-tools-toolkit')
+                ),
+            )
+        );
+
+        die();
+    }
+
+    /**
+     * Import XML file
+     *
+     * @since 1.0.0
+     */
+    public function ajax_import_xml()
+    {
+        if (!current_user_can('manage_options') || !wp_verify_nonce($_POST['qube_tools_import_demo_data_nonce'], 'qube_tools_import_demo_data_nonce')) {
+            die('This action was stopped for security purposes.');
+        }
+
+        // Get the selected demo
+        $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
 
         // Get demos data
         $all_demo = qube_tools_get_demos_data();
@@ -93,14 +374,12 @@ class Importer
         $result = $this->process_xml($xml_file);
 
         if (is_wp_error($result)) {
-
-            echo '<pre>';
-            print_r($demo);
-            exit;
-            return false;
+            echo json_encode($result->errors);
         } else {
-            return true;
+            echo 'successful import';
         }
+
+        die();
     }
 
     /**
