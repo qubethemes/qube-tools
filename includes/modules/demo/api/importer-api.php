@@ -73,11 +73,11 @@ class Importer_API
 
         register_rest_route(
             $namespace,
-            '/set_settings',
+            '/import_selected_file',
             array(
                 array(
                     'methods' => \WP_REST_Server::EDITABLE,
-                    'callback' => array($this, 'set_settings'),
+                    'callback' => array($this, 'import_selected_file'),
                     'permission_callback' => function () {
                         return current_user_can('manage_options');
                     },
@@ -137,11 +137,16 @@ class Importer_API
      * @since 1.0.0
      *
      */
-    public function set_settings(\WP_REST_Request $request)
+    public function import_selected_file(\WP_REST_Request $request)
     {
-        $params = $request->get_params();
-
-        return rest_ensure_response(array());
+        $selected_demo = sanitize_text_field($request->get_param('selected_demo'));
+        $import_file = sanitize_text_field($request->get_param('import_file'));
+        sleep(1);
+        return rest_ensure_response(array(
+                'import_file' => $import_file,
+                'selected_demo' => $selected_demo
+            )
+        );
 
     }
 

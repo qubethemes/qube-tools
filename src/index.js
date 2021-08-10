@@ -127,7 +127,6 @@ const DemoImporterPage = () => {
     useEffect(() => {
         var active_tab = activeTab === '' ? 'elementor' : activeTab;
         initAllDemoLists(active_tab);
-        console.log(activeTab);
     }, [activeTab]);
     return (
         <> <h1 className="screen-reader-text">{__('Theme Demo Import', 'qube-tools')}</h1>

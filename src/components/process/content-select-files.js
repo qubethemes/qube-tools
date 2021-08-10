@@ -11,9 +11,7 @@ const {
 } = wp.element;
 
 export const Content_Select_Files = (props) => {
-    const [isXMLDataChecked, setXMLDataChecked] = useState(true);
-    const [isCustomizerDataChecked, setCustomizerDataChecked] = useState(true);
-    const [isWidgetDataChecked, setWidgetDataChecked] = useState(true);
+
 
     return (<form method="post" id="qube-tools-demo-import-form">
 
@@ -27,22 +25,22 @@ export const Content_Select_Files = (props) => {
                     <li>
                         <CheckboxControl
                             label="Import XML Data(pages, posts, images, menus, etc...)"
-                            checked={isXMLDataChecked}
-                            onChange={setXMLDataChecked}
+                            checked={props.isXMLDataChecked}
+                            onChange={props.setXMLDataChecked}
                         />
                     </li>
                     <li>
                         <CheckboxControl
                             label="Import Customizer Settings"
-                            checked={isCustomizerDataChecked}
-                            onChange={setCustomizerDataChecked}
+                            checked={props.isCustomizerDataChecked}
+                            onChange={props.setCustomizerDataChecked}
                         />
                     </li>
                     <li>
                         <CheckboxControl
                             label="Import Widgets"
-                            checked={isWidgetDataChecked}
-                            onChange={setWidgetDataChecked}
+                            checked={props.isWidgetDataChecked}
+                            onChange={props.setWidgetDataChecked}
                         />
                     </li>
 

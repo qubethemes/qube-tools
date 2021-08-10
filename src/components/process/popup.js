@@ -16,15 +16,24 @@ const {
     __
 } = wp.i18n;
 
+
 export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
 
     const [currentContentStep, setCurrentContentStep] = useState(1);
+    const [isXMLDataChecked, setXMLDataChecked] = useState(true);
+    const [isCustomizerDataChecked, setCustomizerDataChecked] = useState(true);
+    const [isWidgetDataChecked, setWidgetDataChecked] = useState(true);
     const [importStatus, setImportStatus] = useState(false);
     const nextStep = () => {
         let currentStep = currentContentStep;
         currentStep++;
 
+
         setCurrentContentStep(currentStep);
+
+        if (currentContentStep === 2) {
+
+        }
 
     }
     let wrap_style = {};
@@ -54,9 +63,29 @@ export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
                                     case 1:
                                         return (<Content_Plugin_Install selectedDemoConfig={selectedDemoConfig}/>)
                                     case 2:
-                                        return (<Content_Select_Files selectedDemoConfig={selectedDemoConfig}/>)
+                                        return (<Content_Select_Files selectedDemoConfig={selectedDemoConfig}
+                                                                      selectedDemo={selectedDemo}
+                                                                      isXMLDataChecked={isXMLDataChecked}
+                                                                      setXMLDataChecked={() => {
+                                                                          setXMLDataChecked()
+                                                                      }}
+                                                                      isCustomizerDataChecked={isCustomizerDataChecked}
+                                                                      setCustomizerDataChecked={() => {
+                                                                          setCustomizerDataChecked()
+                                                                      }}
+                                                                      isWidgetDataChecked={isWidgetDataChecked}
+                                                                      setWidgetDataChecked={() => {
+                                                                          setWidgetDataChecked()
+                                                                      }}
+                                        />)
                                     case 3:
-                                        return (<Content_Importing selectedDemoConfig={selectedDemoConfig}/>)
+                                        return (<Content_Importing selectedDemoConfig={selectedDemoConfig}
+                                                                   isXMLDataChecked={isXMLDataChecked}
+                                                                   isCustomizerDataChecked={isCustomizerDataChecked}
+                                                                   isWidgetDataChecked={isWidgetDataChecked}
+                                                                   selectedDemo={selectedDemo}
+
+                                        />)
                                     case 4:
                                         if (importStatus) {
                                             return (<Content_Import_Success selectedDemoConfig={selectedDemoConfig}/>)
