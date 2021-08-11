@@ -18,7 +18,7 @@ function qube_tools_demo_data_config()
                 'all' => 'All'
             ),
             'xml_file' => $demo_data_root_path . 'agency/content.xml',
-            'theme_settings' => $demo_data_root_path . 'agency/customizer.dat',
+            'customizer_file' => $demo_data_root_path . 'agency/customizer.dat',
             'widgets_file' => $demo_data_root_path . 'agency/widgets.wie',
             'screenshot' => $demo_data_root_path . 'agency/screenshot.png',
             'preview_url' => 'https://demo.qubethemes.com/themes/agency',
@@ -58,7 +58,7 @@ function qube_tools_demo_data_config()
 
             ),
             'xml_file' => $demo_data_root_path . 'charity/content.xml',
-            'theme_settings' => $demo_data_root_path . 'charity/customizer.dat',
+            'customizer_file' => $demo_data_root_path . 'charity/customizer.dat',
             'widgets_file' => $demo_data_root_path . 'charity/widgets.wie',
             'screenshot' => $demo_data_root_path . 'charity/screenshot.png',
             'preview_url' => 'https://demo.qubethemes.com/themes/charity',

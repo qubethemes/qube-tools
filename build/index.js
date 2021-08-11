@@ -784,6 +784,15 @@ var Content_Importing = function Content_Importing(props) {
       importMessages = _useState8[0],
       setImportMessages = _useState8[1];
 
+  var _useState9 = useState({
+    xml: qubeToolsImporterObj.xml_import_nonce,
+    widget: qubeToolsImporterObj.widget_import_nonce,
+    customizer: qubeToolsImporterObj.customizer_import_nonce
+  }),
+      _useState10 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState9, 2),
+      importNonce = _useState10[0],
+      setImportNonce = _useState10[1];
+
   function getImportQueue() {
     var importType = [];
 
@@ -808,7 +817,9 @@ var Content_Importing = function Content_Importing(props) {
 
   function _importSelected() {
     _importSelected = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee(queue) {
-      var newImportQueue, import_file, importingStatus;
+      var _importNonce$import_f;
+
+      var newImportQueue, import_file, importingStatus, nonce, formData;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -820,24 +831,37 @@ var Content_Importing = function Content_Importing(props) {
 
               importingStatus[import_file] = 'IMPORTING';
               setImportStatus(importingStatus);
+              nonce = (_importNonce$import_f = importNonce[import_file]) !== null && _importNonce$import_f !== void 0 ? _importNonce$import_f : '';
+              formData = new FormData();
+              formData.append('action', qubeToolsImporterObj.import_action);
+              formData.append('selected_demo', props.selectedDemo);
+              formData.append('import_file', import_file);
+              formData.append('qube_tools_nonce', nonce);
               apiFetch({
-                path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/import_selected_file',
+                url: qubeToolsImporterObj.ajax_url,
                 method: 'POST',
-                data: {
-                  selected_demo: props.selectedDemo,
-                  import_file: import_file
+                credentials: 'same-origin',
+                body: formData
+              }).then(function (response) {
+                var is_success = typeof response.success !== "undefined" ? response.success : false;
+                var new_import_file = typeof response.data !== "undefined" ? response.data.import_file : import_file;
+
+                if (is_success) {
+                  importingStatus[new_import_file] = "IMPORTED";
+                  setImportQueue(newImportQueue);
+                  setImportStatus(importingStatus);
+                } else {
+                  importingStatus[new_import_file] = "FAILED";
+                  setImportQueue(newImportQueue);
+                  setImportStatus(importingStatus);
                 }
-              }).then(function (data) {
-                importingStatus[data.import_file] = "IMPORTED";
+              }).catch(function (err) {
+                importingStatus[import_file] = "FAILED";
                 setImportQueue(newImportQueue);
                 setImportStatus(importingStatus);
-              }).catch(function (err) {
-                importStatus[import_file] = "FAILED";
-                setImportQueue(newImportQueue);
-                setImportStatus(importStatus);
               });
 
-            case 7:
+            case 13:
             case "end":
               return _context.stop();
           }

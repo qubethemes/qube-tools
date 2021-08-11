@@ -55,6 +55,7 @@ class Importer
 
         // Demos popup ajax
         add_action('wp_ajax_qube_tools_ajax_get_demo_data', array($this, 'ajax_demo_data'));
+
         add_action('wp_ajax_qube_tools_ajax_required_plugins_activate', array($this, 'ajax_required_plugins_activate'));
 
         // Get data to import

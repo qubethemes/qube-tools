@@ -31,6 +31,9 @@ class Importer
         // Allows xml uploads
         add_filter('upload_mimes', array($this, 'allow_xml_uploads'));
 
+        add_action('wp_ajax_qube_tools_ajax_import', array($this, 'import_all'));
+
+
     }
 
 
@@ -59,21 +62,66 @@ class Importer
      *
      * @since 1.0.0
      */
-    public function import_xml_file($demo_type)
+    public function import_all()
     {
         if (!current_user_can('manage_options')) {
             die('This action was stopped for security purposes.');
         }
 
+        $nonce = isset($_POST['qube_tools_nonce']) ? sanitize_text_field($_POST['qube_tools_nonce']) : '';
 
-        $demo_type = sanitize_text_field($demo_type);
+        $import_file = isset($_POST['import_file']) ? trim(sanitize_text_field($_POST['import_file'])) : '';
 
-        // Get demos data
+        $action = "qube_tools_import_{$import_file}_demo_data_nonce";
+
+        if (!wp_verify_nonce($nonce, $action)) {
+
+            die('This action was stopped for security purposes.');
+
+        }
+        // Get the selected demo
+        $demo_type = isset($_POST['selected_demo']) ? sanitize_text_field($_POST['selected_demo']) : '';
+
         $all_demo = qube_tools_get_demos_data();
 
         $demo = isset($all_demo[$demo_type]) ? $all_demo[$demo_type] : array();
 
-        // Content file
+        if ($demo_type == '') {
+            die('Someting wrong please try again');
+        }
+
+        $status = false;
+
+        switch ($import_file) {
+            case "xml":
+                $status = $this->import_xml_file($demo);
+
+                break;
+            case "widget":
+                $status = $this->import_widget_file($demo);
+                break;
+            case "customizer":
+
+                $status = $this->import_customizer_file($demo);
+                break;
+        }
+
+        if ($status) {
+            wp_send_json_success([
+                "import_file" => $import_file,
+                "selected_demo" => $demo_type
+            ]);
+        }
+
+        wp_send_json_error([
+            "import_file" => $import_file,
+            "selected_demo" => $demo_type
+        ]);
+        exit;
+    }
+
+    private function import_xml_file($demo)
+    {
         $xml_file = isset($demo['xml_file']) ? $demo['xml_file'] : '';
 
         // Delete the default post and page
@@ -88,19 +136,13 @@ class Importer
         if (!is_null($hello_world_post)) {
             wp_delete_post($hello_world_post->ID, true);
         }
-
         // Import Posts, Pages, Images, Menus.
         $result = $this->process_xml($xml_file);
 
         if (is_wp_error($result)) {
-
-            echo '<pre>';
-            print_r($demo);
-            exit;
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     /**
@@ -108,33 +150,21 @@ class Importer
      *
      * @since 1.0.0
      */
-    public function ajax_import_theme_settings()
+    private function import_customizer_file($demo)
     {
-        if (!current_user_can('manage_options') || !wp_verify_nonce($_POST['qube_tools_import_demo_data_nonce'], 'qube_tools_import_demo_data_nonce')) {
-            die('This action was stopped for security purposes.');
-        }
-
-        // Get the selected demo
-        $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
-        $all_demo = qube_tools_get_demos_data();
-
-        $demo = isset($all_demo[$demo_type]) ? $all_demo[$demo_type] : array();
 
 
         // Settings file
-        $theme_settings = isset($demo['theme_settings']) ? $demo['theme_settings'] : '';
+        $theme_settings = isset($demo['customizer_file']) ? $demo['customizer_file'] : '';
 
         // Import settings.
         $customizer_importer = new Customizer();
         $result = $customizer_importer->process_import_file($theme_settings);
 
         if (is_wp_error($result)) {
-            echo json_encode($result->errors);
-        } else {
-            echo 'successful import';
+            return false;
         }
-
-        die();
+        return true;
     }
 
     /**
@@ -142,17 +172,8 @@ class Importer
      *
      * @since 1.0.0
      */
-    public function ajax_import_widgets()
+    public function import_widget_file($demo)
     {
-        if (!current_user_can('manage_options') || !wp_verify_nonce($_POST['qube_tools_import_demo_data_nonce'], 'qube_tools_import_demo_data_nonce')) {
-            die('This action was stopped for security purposes.');
-        }
-
-        // Get the selected demo
-        $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
-        $all_demo = qube_tools_get_demos_data();
-        $demo = isset($all_demo[$demo_type]) ? $all_demo[$demo_type] : array();
-
 
         // Widgets file
         $widgets_file = isset($demo['widgets_file']) ? $demo['widgets_file'] : '';
@@ -162,12 +183,9 @@ class Importer
         $result = $widgets_importer->process_import_file($widgets_file);
 
         if (is_wp_error($result)) {
-            echo json_encode($result->errors);
-        } else {
-            echo 'successful import';
+            return false;
         }
-
-        die();
+        return true;
     }
 
 

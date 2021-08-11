@@ -49,6 +49,7 @@ class Importer_API
         $all_demos = qube_tools_get_demos_data();
 
         $localize = array(
+            'ajax_url' => admin_url('admin-ajax.php'),
             'version' => QUBE_TOOLS_VERSION,
             'root_id' => 'qube-tools-importer-page',
             'rest' => array(
@@ -56,7 +57,11 @@ class Importer_API
                 'version' => $this->rest_version,
             ),
             'demo_categories' => qube_tools_get_demo_all_categories($all_demos),
-            'all_demos' => $all_demos
+            'all_demos' => $all_demos,
+            'import_action' => 'qube_tools_ajax_import',
+            'xml_import_nonce' => wp_create_nonce('qube_tools_import_xml_demo_data_nonce'),
+            'widget_import_nonce' => wp_create_nonce('qube_tools_import_widget_demo_data_nonce'),
+            'customizer_import_nonce' => wp_create_nonce('qube_tools_import_customizer_demo_data_nonce')
         );
 
         wp_localize_script('qube-tools-importer', 'qubeToolsImporterObj', $localize);
@@ -71,19 +76,6 @@ class Importer_API
     {
         $namespace = $this->namespace . $this->rest_version;
 
-        register_rest_route(
-            $namespace,
-            '/import_selected_file',
-            array(
-                array(
-                    'methods' => \WP_REST_Server::EDITABLE,
-                    'callback' => array($this, 'import_selected_file'),
-                    'permission_callback' => function () {
-                        return current_user_can('manage_options');
-                    },
-                ),
-            )
-        );
         register_rest_route(
             $namespace,
             '/get_demos',
@@ -125,44 +117,6 @@ class Importer_API
                 ),
             )
         );
-    }
-
-
-    /**
-     * Set Plugin Settings.
-     *
-     * @param \WP_REST_Request $request Full details about the request.
-     *
-     * @return array|\WP_REST_Response Plugin Settings.
-     * @since 1.0.0
-     *
-     */
-    public function import_selected_file(\WP_REST_Request $request)
-    {
-        $selected_demo = sanitize_text_field($request->get_param('selected_demo'));
-        $import_file = sanitize_text_field($request->get_param('import_file'));
-
-        $status = false;
-
-        switch ($import_file) {
-            case "xml":
-                $status = qube_tools()->importer->import_xml_file($selected_demo);
-                break;
-            case "widget":
-                break;
-            case "customizer":
-                break;
-        }
-
-
-        sleep(1);
-        return rest_ensure_response(array(
-                'import_file' => $import_file,
-                'selected_demo' => $selected_demo,
-                'status' => $status
-            )
-        );
-
     }
 
     /**

@@ -38,6 +38,12 @@ export const Content_Importing = (props) => {
         }
     });
 
+    const [importNonce, setImportNonce] = useState({
+        xml: qubeToolsImporterObj.xml_import_nonce,
+        widget: qubeToolsImporterObj.widget_import_nonce,
+        customizer: qubeToolsImporterObj.customizer_import_nonce,
+    });
+
     function getImportQueue() {
 
         let importType = [];
@@ -68,24 +74,41 @@ export const Content_Importing = (props) => {
         importingStatus[import_file] = 'IMPORTING';
 
         setImportStatus(importingStatus);
-
+        let nonce = importNonce[import_file] ?? '';
+        let formData = new FormData();
+        formData.append('action', qubeToolsImporterObj.import_action);
+        formData.append('selected_demo', props.selectedDemo);
+        formData.append('import_file', import_file);
+        formData.append('qube_tools_nonce', nonce);
         apiFetch({
-            path: qubeToolsImporterObj.rest.namespace + qubeToolsImporterObj.rest.version + '/import_selected_file',
+            url: qubeToolsImporterObj.ajax_url,
             method: 'POST',
-            data: {
-                selected_demo: props.selectedDemo,
-                import_file: import_file
-            }
-        }).then(function (data) {
+            credentials: 'same-origin',
+            body: formData
+        }).then(function (response) {
 
-            importingStatus[data.import_file] = "IMPORTED";
+            var is_success = typeof response.success !== "undefined" ? response.success : false;
+            var new_import_file = typeof response.data !== "undefined" ? response.data.import_file : import_file;
+
+
+            if (is_success) {
+
+                importingStatus[new_import_file] = "IMPORTED";
+                setImportQueue(newImportQueue);
+                setImportStatus(importingStatus);
+
+            } else {
+
+                importingStatus[new_import_file] = "FAILED";
+                setImportQueue(newImportQueue);
+                setImportStatus(importingStatus);
+
+            }
+        }).catch(function (err) {
+
+            importingStatus[import_file] = "FAILED";
             setImportQueue(newImportQueue);
             setImportStatus(importingStatus);
-
-        }).catch(function (err) {
-            importStatus[import_file] = "FAILED";
-            setImportQueue(newImportQueue);
-            setImportStatus(importStatus);
         });
 
 
