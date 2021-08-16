@@ -50,14 +50,7 @@ class Importer
         return $mimes;
     }
 
-    /**
-     * Get demos data to add them in the Demo Import and Pro Demos plugins
-     *
-     * @since 1.0.0
-     */
-
-
-    /**
+   /**
      * Import XML file
      *
      * @since 1.0.0
@@ -120,6 +113,8 @@ class Importer
         exit;
     }
 
+
+
     private function import_xml_file($demo)
     {
         $xml_file = isset($demo['xml_file']) ? $demo['xml_file'] : '';
@@ -159,6 +154,7 @@ class Importer
 
         // Import settings.
         $customizer_importer = new Customizer();
+
         $result = $customizer_importer->process_import_file($theme_settings);
 
         if (is_wp_error($result)) {
@@ -186,102 +182,6 @@ class Importer
             return false;
         }
         return true;
-    }
-
-
-    /**
-     * After import
-     *
-     * @since 1.0.0
-     */
-    public function ajax_after_import()
-    {
-        if (!current_user_can('manage_options') || !wp_verify_nonce($_POST['qube_tools_import_demo_data_nonce'], 'qube_tools_import_demo_data_nonce')) {
-            die('This action was stopped for security purposes.');
-        }
-
-        // If XML file is imported
-        if ($_POST['qube_tools_import_is_xml'] === 'true') {
-
-            // Get the selected demo
-            $demo_type = sanitize_text_field($_POST['qube_tools_import_demo']);
-
-            // Get demos data
-            $all_demo = qube_tools_get_demos_data();
-            $demo = isset($all_demo[$demo_type]) ? $all_demo[$demo_type] : array();
-
-            // Elementor width setting
-            $elementor_width = isset($demo['elementor_width']) ? $demo['elementor_width'] : '';
-
-            // Reading settings
-            $homepage_title = isset($demo['home_title']) ? $demo['home_title'] : 'Home';
-            $blog_title = isset($demo['blog_title']) ? $demo['blog_title'] : '';
-
-            // Posts to show on the blog page
-            $posts_to_show = isset($demo['posts_to_show']) ? $demo['posts_to_show'] : '';
-
-
-            // Product image size
-            $image_size = isset($demo['woo_image_size']) ? $demo['woo_image_size'] : '';
-            $thumbnail_size = isset($demo['woo_thumb_size']) ? $demo['woo_thumb_size'] : '';
-            $crop_width = isset($demo['woo_crop_width']) ? $demo['woo_crop_width'] : '';
-            $crop_height = isset($demo['woo_crop_height']) ? $demo['woo_crop_height'] : '';
-
-
-            // Set imported menus to registered theme locations
-            $locations = get_theme_mod('nav_menu_locations');
-            $menus = wp_get_nav_menus();
-
-            if ($menus) {
-
-                foreach ($menus as $menu) {
-
-                    if ($menu->name == 'Primary Menu') {
-                        $locations['primary'] = $menu->term_id;
-                    } else if ($menu->name == 'Top Header Menu') {
-                        $locations['top_header_menu'] = $menu->term_id;
-                    } else if ($menu->name == 'Footer Menu') {
-                        $locations['bottom_footer_menu'] = $menu->term_id;
-                    } else if ($menu->name == 'Offcanvas Menu') {
-                        $locations['offcanvas_menu'] = $menu->term_id;
-                    }
-
-                }
-
-            }
-
-            // Set menus to locations
-            set_theme_mod('nav_menu_locations', $locations);
-
-            // Disable Elementor default settings
-            update_option('elementor_disable_color_schemes', 'yes');
-            update_option('elementor_disable_typography_schemes', 'yes');
-            if (!empty($elementor_width)) {
-                update_option('elementor_container_width', $elementor_width);
-            }
-
-            // Assign front page and posts page (blog page).
-            $home_page = get_page_by_title($homepage_title);
-            $blog_page = get_page_by_title($blog_title);
-
-            update_option('show_on_front', 'page');
-
-            if (is_object($home_page)) {
-                update_option('page_on_front', $home_page->ID);
-            }
-
-            if (is_object($blog_page)) {
-                update_option('page_for_posts', $blog_page->ID);
-            }
-
-            // Posts to show on the blog page
-            if (!empty($posts_to_show)) {
-                update_option('posts_per_page', $posts_to_show);
-            }
-
-        }
-
-        die();
     }
 
     /**
