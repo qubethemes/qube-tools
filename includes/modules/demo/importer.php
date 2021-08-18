@@ -201,6 +201,7 @@ class Importer
 
         // Write sample data content to temp xml file
         $temp_xml = QUBE_TOOLS_ABSPATH . 'includes/modules/demo/importers/temp.xml';
+
         file_put_contents($temp_xml, $response);
 
         // Set temp xml to attachment url for use

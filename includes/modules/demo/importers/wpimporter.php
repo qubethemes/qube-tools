@@ -1,4 +1,5 @@
 <?php
+
 namespace Qube_Tools\Includes\Modules\Demo\Importers;
 
 
@@ -162,8 +163,8 @@ class WPImporter extends \WP_Importer
         wp_defer_term_counting(false);
         wp_defer_comment_counting(false);
 
-        echo '<p>' . __('All done.', 'wordpress-importer') . ' <a href="' . admin_url() . '">' . __('Have fun!', 'wordpress-importer') . '</a>' . '</p>';
-        echo '<p>' . __('Remember to update the passwords and roles of imported users.', 'wordpress-importer') . '</p>';
+        //echo '<p>' . __('All done.', 'wordpress-importer') . ' <a href="' . admin_url() . '">' . __('Have fun!', 'wordpress-importer') . '</a>' . '</p>';
+        // echo '<p>' . __('Remember to update the passwords and roles of imported users.', 'wordpress-importer') . '</p>';
 
         do_action('import_end');
     }
@@ -602,9 +603,11 @@ class WPImporter extends \WP_Importer
             $post = apply_filters('wp_import_post_data_raw', $post);
 
             if (!post_type_exists($post['post_type'])) {
-                printf(__('Failed to import &#8220;%s&#8221;: Invalid post type %s', 'wordpress-importer'),
-                    esc_html($post['post_title']), esc_html($post['post_type']));
-                echo '<br />';
+
+                /*
+                 printf(__('Failed to import &#8220;%s&#8221;: Invalid post type %s', 'wordpress-importer'),
+                     esc_html($post['post_title']), esc_html($post['post_type']));
+                 echo '<br />';*/
                 do_action('wp_import_post_exists', $post);
                 continue;
             }
@@ -639,8 +642,8 @@ class WPImporter extends \WP_Importer
             $post_exists = apply_filters('wp_import_existing_post', $post_exists, $post);
 
             if ($post_exists && get_post_type($post_exists) == $post['post_type']) {
-                printf(__('%s &#8220;%s&#8221; already exists.', 'wordpress-importer'), $post_type_object->labels->singular_name, esc_html($post['post_title']));
-                echo '<br />';
+                //printf(__('%s &#8220;%s&#8221; already exists.', 'wordpress-importer'), $post_type_object->labels->singular_name, esc_html($post['post_title']));
+                // echo '<br />';
                 $comment_post_ID = $post_id = $post_exists;
                 $this->processed_posts[intval($post['post_id'])] = intval($post_exists);
             } else {
@@ -704,9 +707,9 @@ class WPImporter extends \WP_Importer
                     printf(__('Failed to import %s &#8220;%s&#8221;', 'wordpress-importer'),
                         $post_type_object->labels->singular_name, esc_html($post['post_title']));
                     if (defined('IMPORT_DEBUG') && IMPORT_DEBUG)
-                        echo ': ' . $post_id->get_error_message();
-                    echo '<br />';
-                    continue;
+                        //echo ': ' . $post_id->get_error_message();
+                        //echo '<br />';
+                        continue;
                 }
 
                 if ($post['is_sticky'] == 1)
@@ -737,9 +740,9 @@ class WPImporter extends \WP_Importer
                         } else {
                             printf(__('Failed to import %s %s', 'wordpress-importer'), esc_html($taxonomy), esc_html($term['name']));
                             if (defined('IMPORT_DEBUG') && IMPORT_DEBUG)
-                                echo ': ' . $t->get_error_message();
-                            echo '<br />';
-                            do_action('wp_import_insert_term_failed', $t, $term, $post_id, $post);
+                                //echo ': ' . $t->get_error_message();
+                                //echo '<br />';
+                                do_action('wp_import_insert_term_failed', $t, $term, $post_id, $post);
                             continue;
                         }
                     }
@@ -867,8 +870,8 @@ class WPImporter extends \WP_Importer
 
         // no nav_menu term associated with this menu item
         if (!$menu_slug) {
-            _e('Menu item skipped due to missing menu slug', 'wordpress-importer');
-            echo '<br />';
+          ///  _e('Menu item skipped due to missing menu slug', 'wordpress-importer');
+          //  echo '<br />';
             return;
         }
 

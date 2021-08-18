@@ -9,7 +9,7 @@ export const Footer = (props) => {
         footer_text = 'Import Selected Demos'
     }
     if (props.currentStep === 3) {
-      // /  return (<></>);
+        // /  return (<></>);
     }
 
     return (<a className="qube-tools-button qube-tools-plugins-next" onClick={() => {

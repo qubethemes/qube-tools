@@ -25,17 +25,46 @@ export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
     const [isWidgetDataChecked, setWidgetDataChecked] = useState(true);
     const [importStatus, setImportStatus] = useState(false);
     const nextStep = () => {
-        let currentStep = currentContentStep;
-        currentStep++;
 
+        let currentStep = currentContentStep;
+
+        currentStep++;
 
         setCurrentContentStep(currentStep);
 
-        if (currentContentStep === 2) {
-
-        }
 
     }
+    const updateImportCount = (updatedImportStatus) => {
+
+        var len = Object.keys(updatedImportStatus).length;
+
+        var totalUpdateCount = 0;
+
+        Object.keys(updatedImportStatus).map(function (key) {
+
+            if (updatedImportStatus[key] !== '') {
+
+                if (updatedImportStatus[key] === 'IMPORTED') {
+
+                    totalUpdateCount++;
+
+                }
+
+            }
+        })
+
+
+        if (len === totalUpdateCount) {
+            setImportStatus(true);
+
+            setTimeout(function () {
+                nextStep();
+
+            }, 500);
+        }
+    }
+
+
     let wrap_style = {};
     if (selectedDemo && selectedDemo !== '' && typeof selectedDemoConfig === "object") {
         wrap_style = {
@@ -59,6 +88,7 @@ export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
                             <Header selectedDemo={selectedDemo} currentStep={currentContentStep}
                                     importStatus={importStatus}/>
                             {(() => {
+
                                 switch (currentContentStep) {
                                     case 1:
                                         return (<Content_Plugin_Install selectedDemoConfig={selectedDemoConfig}/>)
@@ -84,6 +114,9 @@ export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
                                                                    isCustomizerDataChecked={isCustomizerDataChecked}
                                                                    isWidgetDataChecked={isWidgetDataChecked}
                                                                    selectedDemo={selectedDemo}
+                                                                   updateImportCount={(updatedImportStatus) => {
+                                                                       updateImportCount(updatedImportStatus)
+                                                                   }}
 
                                         />)
                                     case 4:

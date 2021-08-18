@@ -11,6 +11,7 @@ const {
 export const Content_Importing = (props) => {
 
     const [importQueue, setImportQueue] = useState(getImportQueue());
+
     const [importStatus, setImportStatus] = useState({
         xml: '',
         customizer: '',
@@ -97,6 +98,7 @@ export const Content_Importing = (props) => {
                 setImportQueue(newImportQueue);
                 setImportStatus(importingStatus);
 
+
             } else {
 
                 importingStatus[new_import_file] = "FAILED";
@@ -121,6 +123,7 @@ export const Content_Importing = (props) => {
     }, [importQueue]);
     return (<div className="qube-tools-importing-notice">
             <div className="qube-tools-import-status qube-tools-popup-text">
+                {props.updateImportCount(importStatus)}
                 {
                     Object.keys(importStatus).map(function (key) {
 

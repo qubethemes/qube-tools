@@ -880,7 +880,7 @@ var Content_Importing = function Content_Importing(props) {
     className: "qube-tools-importing-notice"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
     className: "qube-tools-import-status qube-tools-popup-text"
-  }, Object.keys(importStatus).map(function (key) {
+  }, props.updateImportCount(importStatus), Object.keys(importStatus).map(function (key) {
     if (importStatus[key] !== '') {
       var _importMessages$key$i;
 
@@ -1288,8 +1288,25 @@ var Popup = function Popup(_ref) {
     var currentStep = currentContentStep;
     currentStep++;
     setCurrentContentStep(currentStep);
+  };
 
-    if (currentContentStep === 2) {}
+  var _updateImportCount = function updateImportCount(updatedImportStatus) {
+    var len = Object.keys(updatedImportStatus).length;
+    var totalUpdateCount = 0;
+    Object.keys(updatedImportStatus).map(function (key) {
+      if (updatedImportStatus[key] !== '') {
+        if (updatedImportStatus[key] === 'IMPORTED') {
+          totalUpdateCount++;
+        }
+      }
+    });
+
+    if (len === totalUpdateCount) {
+      setImportStatus(true);
+      setTimeout(function () {
+        nextStep();
+      }, 500);
+    }
   };
 
   var wrap_style = {};
@@ -1355,7 +1372,10 @@ var Popup = function Popup(_ref) {
           isXMLDataChecked: isXMLDataChecked,
           isCustomizerDataChecked: isCustomizerDataChecked,
           isWidgetDataChecked: isWidgetDataChecked,
-          selectedDemo: selectedDemo
+          selectedDemo: selectedDemo,
+          updateImportCount: function updateImportCount(updatedImportStatus) {
+            _updateImportCount(updatedImportStatus);
+          }
         });
 
       case 4:
