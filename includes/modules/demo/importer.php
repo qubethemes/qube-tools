@@ -50,7 +50,7 @@ class Importer
         return $mimes;
     }
 
-   /**
+    /**
      * Import XML file
      *
      * @since 1.0.0
@@ -114,7 +114,6 @@ class Importer
     }
 
 
-
     private function import_xml_file($demo)
     {
         $xml_file = isset($demo['xml_file']) ? $demo['xml_file'] : '';
@@ -147,6 +146,7 @@ class Importer
      */
     private function import_customizer_file($demo)
     {
+        return false;
 
 
         // Settings file

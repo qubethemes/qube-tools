@@ -50,6 +50,7 @@ class Importer_API
 
         $localize = array(
             'ajax_url' => admin_url('admin-ajax.php'),
+            'site_url' => get_option('siteurl'),
             'version' => QUBE_TOOLS_VERSION,
             'root_id' => 'qube-tools-importer-page',
             'rest' => array(

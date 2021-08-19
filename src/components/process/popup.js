@@ -36,13 +36,19 @@ export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
     }
     const updateImportCount = (updatedImportStatus) => {
 
-        var len = Object.keys(updatedImportStatus).length;
+        console.log(JSON.stringify(updatedImportStatus));
+
+        var totalUpdatedImportedStatusLength = Object.keys(updatedImportStatus).length;
 
         var totalUpdateCount = 0;
+
+        var totalProcessCount = 0;
 
         Object.keys(updatedImportStatus).map(function (key) {
 
             if (updatedImportStatus[key] !== '') {
+
+                totalProcessCount++;
 
                 if (updatedImportStatus[key] === 'IMPORTED') {
 
@@ -54,13 +60,24 @@ export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
         })
 
 
-        if (len === totalUpdateCount) {
-            setImportStatus(true);
+        if (totalProcessCount === totalUpdatedImportedStatusLength) {
+
+            if (totalUpdatedImportedStatusLength === totalUpdateCount) {
+
+                setImportStatus(true);
+
+            } else {
+
+                setImportStatus(false);
+
+            }
 
             setTimeout(function () {
+
                 nextStep();
 
-            }, 500);
+
+            }, 3000);
         }
     }
 

@@ -538,61 +538,135 @@ var Main = function Main(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Content_Import_Failed", function() { return Content_Import_Failed; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
 
 var __ = wp.i18n.__;
+var useState = wp.element.useState;
 var Content_Import_Failed = function Content_Import_Failed(props) {
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("form", {
-    className: "qube-tools-demo-failed-feedback-form",
-    method: "post"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, "You can submit the problem from here "), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    id: "_wpnonce",
-    name: "_wpnonce",
-    value: "e31091aa0c"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "_wp_http_referer",
-    value: "/wp-admin/admin-ajax.php?action=qube_tools_ajax_get_demo_data&demo_name=main&demo_data_nonce=1bdff2a34f&_fs_blog_admin=true"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    id: "_wpnonce",
-    name: "_wpnonce",
-    value: "e31091aa0c"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "_wp_http_referer",
-    value: "/wp-admin/admin-ajax.php?action=qube_tools_ajax_get_demo_data&demo_name=main&demo_data_nonce=1bdff2a34f&_fs_blog_admin=true"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "admin_email",
-    value: "mantrabrain@gmail.com"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "site_url",
-    value: "https://staging.mantrabrain.com"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "selected_demo",
-    value: "main"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "action",
-    value: "qube_tools_feedback_form_demo_failed_response"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "error_message",
-    className: "error_message",
-    value: ""
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("textarea", {
+  var _useState = useState(''),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState, 2),
+      importError = _useState2[0],
+      setImportError = _useState2[1];
+
+  var _useState3 = useState(''),
+      _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useState3, 2),
+      errorMessageSendingStatus = _useState4[0],
+      setErrorMessageSendingStatus = _useState4[1];
+
+  var importErrorChanged = function importErrorChanged(val) {
+    setImportError(val);
+  };
+
+  function handleSendMessageClicked() {
+    return _handleSendMessageClicked.apply(this, arguments);
+  }
+
+  function _handleSendMessageClicked() {
+    _handleSendMessageClicked = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              setErrorMessageSendingStatus('sending');
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _handleSendMessageClicked.apply(this, arguments);
+  }
+
+  function importSelected(_x) {
+    return _importSelected.apply(this, arguments);
+  }
+
+  function _importSelected() {
+    _importSelected = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.mark(function _callee2(queue) {
+      var _importNonce$import_f;
+
+      var newImportQueue, import_file, importingStatus, nonce, formData;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              newImportQueue = queue.slice(0);
+              import_file = newImportQueue[0];
+              newImportQueue.splice(0, 1);
+              importingStatus = Object.assign({}, importStatus); // creating copy of state variable
+
+              importingStatus[import_file] = 'IMPORTING';
+              setImportStatus(importingStatus);
+              nonce = (_importNonce$import_f = importNonce[import_file]) !== null && _importNonce$import_f !== void 0 ? _importNonce$import_f : '';
+              formData = new FormData();
+              formData.append('action', qubeToolsImporterObj.import_action);
+              formData.append('selected_demo', props.selectedDemo);
+              formData.append('import_file', import_file);
+              formData.append('qube_tools_nonce', nonce);
+              apiFetch({
+                url: qubeToolsImporterObj.ajax_url,
+                method: 'POST',
+                credentials: 'same-origin',
+                body: formData
+              }).then(function (response) {
+                var is_success = typeof response.success !== "undefined" ? response.success : false;
+                var new_import_file = typeof response.data !== "undefined" ? response.data.import_file : import_file;
+
+                if (is_success) {
+                  importingStatus[new_import_file] = "IMPORTED";
+                  setImportQueue(newImportQueue);
+                  setImportStatus(importingStatus);
+                } else {
+                  importingStatus[new_import_file] = "FAILED";
+                  setImportQueue(newImportQueue);
+                  setImportStatus(importingStatus);
+                }
+              }).catch(function (err) {
+                importingStatus[import_file] = "FAILED";
+                setImportQueue(newImportQueue);
+                setImportStatus(importingStatus);
+              });
+
+            case 13:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+    return _importSelected.apply(this, arguments);
+  }
+
+  var disableStatus = errorMessageSendingStatus === 'sending';
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
+    className: "qube-tools-demo-failed-feedback-form"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("h2", null, "You can submit the problem from here "), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("label", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("textarea", {
     className: "feedback",
     name: "feedback",
-    placeholder: "Leave us your message. We will help you to import demo data."
-  }, "DDDD")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Clicking on send button will send your message, admin email, website url, selected demo name, php and wordpress version"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
-    type: "submit",
+    placeholder: "Leave us your message. We will help you to import demo data.",
+    onChange: function onChange(event) {
+      importErrorChanged(event.target.value);
+    },
+    disabled: disableStatus
+  }, errorMessageSendingStatus)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("p", null, "Clicking on send button will send your message, admin email, website url, selected demo name, php and wordpress version"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("button", {
+    type: "button",
     name: "qube_tools_demo_failed_send",
-    className: "button button-secondary"
+    className: "button button-secondary",
+    onClick: function onClick() {
+      handleSendMessageClicked();
+    }
   }, "Send message"));
 };
 
@@ -617,7 +691,8 @@ var Content_Import_Success = function Content_Import_Success(props) {
     className: "qube-tools-import-success"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
     style: {
-      fontSize: '45px'
+      fontSize: '45px',
+      textAlign: 'center'
     }
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     draggable: "false",
@@ -643,74 +718,12 @@ var Content_Import_Success = function Content_Import_Success(props) {
     className: "emoji",
     alt: "\uD83C\uDF89",
     src: "https://s.w.org/images/core/emoji/13.1.0/svg/1f389.svg"
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, "Successfully Demo Imported!"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("form", {
-    className: "qube-tools-demo-success-feedback",
-    method: "post"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    id: "_wpnonce",
-    name: "_wpnonce",
-    value: "e61f151d10"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "_wp_http_referer",
-    value: "/wp-admin/admin-ajax.php?action=qube_tools_ajax_get_demo_data&demo_name=main&demo_data_nonce=1bdff2a34f&_fs_blog_admin=true"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    id: "_wpnonce",
-    name: "_wpnonce",
-    value: "e61f151d10"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "_wp_http_referer",
-    value: "/wp-admin/admin-ajax.php?action=qube_tools_ajax_get_demo_data&demo_name=main&demo_data_nonce=1bdff2a34f&_fs_blog_admin=true"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "admin_email",
-    value: "mantrabrain@gmail.com"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "site_url",
-    value: "https://staging.mantrabrain.com"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "installed_demo",
-    value: "main"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
-    type: "hidden",
-    name: "action",
-    value: "qube_tools_feedback_form_response"
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("textarea", {
-    className: "feedback",
-    name: "feedback",
-    placeholder: "Do  you have any suggestion? You can give us feedback from here."
-  }, "Feed")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Clicking on send button will send your feedback message, admin email, website url and installed demo name."), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
-    type: "submit",
-    name: "qube_tools_demo_success_send",
-    className: "button button-secondary"
-  }, "Send")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", {
     style: {
-      fontWeight: "bold",
-      fontSize: "16px"
+      textAlign: 'center',
+      marginBottom: '50px'
     }
-  }, "If you have some spare time, can you please write review from here?"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
-    style: {
-      textDecoration: 'none',
-      border: 'none',
-      display: 'block',
-      padding: '15px',
-      background: "#007cba",
-      color: '#fff',
-      fontSize: "20px",
-      margin: "20px 0",
-      borderRadius: "50px"
-    },
-    href: "https://wordpress.org/support/theme/qube/reviews/?filter=5",
-    target: "_blank"
-  }, "Yes I Would Like to Write Review"), " ", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
-    href: "https://staging.mantrabrain.com",
-    target: "_blank"
-  }, "View Your Site"));
+  }, "Successfully Demo Imported!"));
 };
 
 /***/ }),
@@ -1138,15 +1151,23 @@ var Footer = function Footer(props) {
 
   if (props.currentStep === 2) {
     footer_text = 'Import Selected Demos';
-  }
-
-  if (props.currentStep === 3) {// /  return (<></>);
+  } else if (props.currentStep === 4) {
+    footer_text = 'Visit Your Site';
   }
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
     className: "qube-tools-button qube-tools-plugins-next",
     onClick: function onClick() {
-      props.nextStep(props.currentContentStep);
+      if (props.currentStep === 4) {
+        window.open(qubeToolsImporterObj.site_url, '_blank');
+        return false;
+      }
+
+      if (props.currentStep < 3) {
+        props.nextStep(props.currentContentStep);
+      }
+
+      return false;
     }
   }, footer_text);
 };
@@ -1291,21 +1312,30 @@ var Popup = function Popup(_ref) {
   };
 
   var _updateImportCount = function updateImportCount(updatedImportStatus) {
-    var len = Object.keys(updatedImportStatus).length;
+    console.log(JSON.stringify(updatedImportStatus));
+    var totalUpdatedImportedStatusLength = Object.keys(updatedImportStatus).length;
     var totalUpdateCount = 0;
+    var totalProcessCount = 0;
     Object.keys(updatedImportStatus).map(function (key) {
       if (updatedImportStatus[key] !== '') {
+        totalProcessCount++;
+
         if (updatedImportStatus[key] === 'IMPORTED') {
           totalUpdateCount++;
         }
       }
     });
 
-    if (len === totalUpdateCount) {
-      setImportStatus(true);
+    if (totalProcessCount === totalUpdatedImportedStatusLength) {
+      if (totalUpdatedImportedStatusLength === totalUpdateCount) {
+        setImportStatus(true);
+      } else {
+        setImportStatus(false);
+      }
+
       setTimeout(function () {
         nextStep();
-      }, 500);
+      }, 3000);
     }
   };
 
