@@ -96,6 +96,9 @@ function qube_tools_wp_get_http($url, $file_path = false, $red = 1)
         }
     }
 
+    if (is_wp_error($response)) {
+        return false;
+    }
     // If all went well, then return the headers of the request.
     if (isset($response['headers'])) {
         $response['headers']['response'] = $response['response']['code'];
