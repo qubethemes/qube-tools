@@ -3,12 +3,12 @@
 namespace Qube_Tools\Includes\Modules\Demo;
 
 use Qube_Tools\Includes\Modules\Demo\API\Importer_API;
-use Qube_Tools\Includes\Modules\Demo\Hooks\Template;
 use Qube_Tools\Includes\Modules\Demo\Importers\Customizer;
 use Qube_Tools\Includes\Modules\Demo\Importers\Widget;
 use Qube_Tools\Includes\Modules\Demo\Importers\WPImporter;
+use Qube_Tools\Includes\Modules\Demo\Ajax;
 
-class Importer
+class Demo
 {
 
     /**
@@ -16,6 +16,7 @@ class Importer
      */
     public function __construct()
     {
+        new Ajax();
         new Importer_API();
 
 
@@ -23,9 +24,6 @@ class Importer
         if (!is_admin() || is_customize_preview()) {
             return;
         }
-
-
-        new Template();
 
 
         // Allows xml uploads

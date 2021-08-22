@@ -2,7 +2,7 @@
 
 namespace Qube_Tools\Includes;
 
-use Qube_Tools\Includes\Modules\Demo\Importer;
+use Qube_Tools\Includes\Modules\Demo\Demo;
 use Qube_Tools\Includes\Admin\Init;
 
 final class Main
@@ -17,9 +17,9 @@ final class Main
     /**
      * Importer Instance.
      *
-     * @var Importer
+     * @var Demo
      */
-    public $importer = null;
+    public $demo = null;
 
     public static function instance()
     {
@@ -73,9 +73,7 @@ final class Main
             include_once QUBE_TOOLS_ABSPATH . 'includes/functions/importer.php';
             include_once QUBE_TOOLS_ABSPATH . 'includes/functions/demo-data.php';
 
-            new Ajax();
-
-            $this->importer = new Importer();
+            $this->demo = new Demo();
         }
 
 
