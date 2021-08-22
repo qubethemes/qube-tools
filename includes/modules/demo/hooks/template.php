@@ -13,48 +13,11 @@ class Template
 
         // Failed Feedback response
 
-        add_action('admin_init', array($this, 'failed_feedback_response'), 10);
-        add_action('wp_ajax_qube_tools_feedback_form_demo_failed_response', array($this, 'failed_feedback_response'), 10);
+        add_action('wp_ajax_qube_tools_ajax_import_feedback', array($this, 'import_failed_feedback'), 10);
 
 
-        add_action('qube_tools_after_demo_import_success_message', array($this, 'success_feedback_form'), 11, 1);
-        add_action('qube_tools_after_demo_import_failed_message', array($this, 'failed_feedback_form'), 11, 1);
     }
 
-    public function success_feedback_form($demo)
-    {
-        $current_user = wp_get_current_user();
-
-        $email = (string)$current_user->user_email;
-
-        $form_data['form_data'] = array(
-            'admin_email' => $email,
-            'site_url' => site_url(),
-            'installed_demo' => $demo,
-            'action' => 'qube_tools_feedback_form_response',
-
-        );
-
-        qube_tools_load_module_template('demo', 'feedback-form', $form_data);
-    }
-
-    public function failed_feedback_form($demo)
-    {
-        $current_user = wp_get_current_user();
-
-        $email = (string)$current_user->user_email;
-
-        $form_data['form_data'] = array(
-            'admin_email' => $email,
-            'site_url' => site_url(),
-            'selected_demo' => $demo,
-            'action' => 'qube_tools_feedback_form_demo_failed_response',
-
-        );
-
-        qube_tools_load_module_template('demo', 'feedback-form-failed', $form_data);
-
-    }
 
     public function success_feedback_response()
     {
@@ -110,75 +73,78 @@ class Template
 
     }
 
-    public function failed_feedback_response()
+    public function import_failed_feedback()
     {
-        if (isset($_POST['qube_tools_demo_failed_send'])) {
+        if (!isset($_POST['qube_tools_nonce'])) {
 
-            $nonce = isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : '';
+            wp_send_json_error();
+        }
+        $nonce = isset($_POST['qube_tools_nonce']) ? $_POST['qube_tools_nonce'] : '';
 
-            $is_verify = wp_verify_nonce($nonce, 'qube_tools_demo_import_failed_feedback_form');
+        $is_nonce_valid = wp_verify_nonce($nonce, 'qube_tools_import_feedback_nonce');
 
-            if ($is_verify) {
+        if (!$is_nonce_valid) {
 
-                $is_ajax = isset($_POST['is_ajax']) ? $_POST['is_ajax'] : '';
+            wp_send_json_error();
+        }
+        $selected_demo = isset($_POST['selected_demo']) ? sanitize_text_field($_POST['selected_demo']) : '';
 
-                $admin_email = isset($_POST['admin_email']) ? sanitize_text_field($_POST['admin_email']) : '';
+        if ('' === $selected_demo) {
 
-                $site_url = isset($_POST['site_url']) ? sanitize_text_field($_POST['site_url']) : '';
-
-                $selected_demo = isset($_POST['selected_demo']) ? sanitize_text_field($_POST['selected_demo']) : '';
-
-                $error_message = isset($_POST['error_message']) ? sanitize_text_field($_POST['error_message']) : '';
-
-                $php_version = phpversion();
-
-                $wp_version = get_bloginfo('version');
-
-                $url_only = '';
-
-                $url = site_url();
-
-                $url_data = parse_url($url);
-
-                $url_data['host'] = explode('.', $url_data['host']);
-
-                if (isset($url_data['host'][0])) {
-                    unset($url_data['host'][0]);
-                }
-
-                $url_only = join('.', $url_data['host']);
-                if (empty($url_only)) {
-                    $url_only = $admin_email;
-                }
-                $feedback = isset($_POST['feedback']) ? sanitize_text_field($_POST['feedback']) : '';
-                $to = 'qubethemes@gmail.com';
-                $subject = 'Sample Theme Demo Installation Failed Response Message 😞 😞';
-                $body = 'Opssss!!! 😞 Someone has tried to import Sample Theme demo but unfortunately it\'s failed 😞 😞 <br/>';
-                $body .= 'They send following feedback message for you.<br/>';
-                $body .= "<strong>Admin Email:</strong> {$admin_email}<br/>";
-                $body .= "<strong>Website URL:</strong> {$site_url}<br/>";
-                $body .= "<strong>Installed Demo Name:</strong> {$selected_demo}<br/>";
-                $body .= "<strong>Feedback Message:</strong> {$feedback}<br/><br/>";
-                $body .= "<strong>Technical Details</strong><br/>";
-                $body .= "<strong>PHP Version:</strong> {$php_version}<br/>";
-                $body .= "<strong>WordPress Version:</strong> {$wp_version}<br/>";
-                $body .= "<strong>Error Message</strong><br/>";
-                $body .= "===================================<br/>";
-                $body .= "{$error_message}<br/>";
-                $body .= "===================================<br/>";
-                $headers = array(
-                    'Content-Type: text/html; charset=UTF-8',
-                    'From: qubethemes@' . $url_only
-                );
-
-                wp_mail($to, $subject, $body, $headers);
-                if ($is_ajax == 'yes') {
-                    wp_send_json_success();
-                }
-
-            }
+            wp_send_json_error();
 
         }
+        $admin_email = get_option('admin_email');
+
+        $error_message = isset($_POST['error_message']) ? sanitize_text_field($_POST['error_message']) : '';
+
+        $feedback_text = isset($_POST['feedback_text']) ? sanitize_text_field($_POST['feedback_text']) : '';
+
+        $php_version = phpversion();
+
+        $wp_version = get_bloginfo('version');
+
+        $url_only = '';
+
+        $site_url = site_url();
+
+        $url_data = parse_url($site_url);
+
+        $url_data['host'] = explode('.', $url_data['host']);
+
+        if (isset($url_data['host'][0])) {
+
+            unset($url_data['host'][0]);
+        }
+
+        $url_only = join('.', $url_data['host']);
+        if (empty($url_only)) {
+            $url_only = $admin_email;
+        }
+        $to = 'qubethemes@gmail.com';
+        $subject = 'Sample Theme Demo Installation Failed Response Message 😞 😞';
+        $body = 'Opssss!!! 😞 Someone has tried to import Sample Theme demo but unfortunately it\'s failed 😞 😞 <br/>';
+        $body .= 'They send following feedback message for you.<br/>';
+        $body .= "<strong>Admin Email:</strong> {$admin_email}<br/>";
+        $body .= "<strong>Website URL:</strong> {$site_url}<br/>";
+        $body .= "<strong>Installed Demo Name:</strong> {$selected_demo}<br/>";
+        $body .= "<strong>Feedback Message:</strong> {$feedback_text}<br/><br/>";
+        $body .= "<strong>Technical Details</strong><br/>";
+        $body .= "<strong>PHP Version:</strong> {$php_version}<br/>";
+        $body .= "<strong>WordPress Version:</strong> {$wp_version}<br/>";
+        $body .= "<strong>Error Message</strong><br/>";
+        $body .= "===================================<br/>";
+        $body .= "{$error_message}<br/>";
+        $body .= "===================================<br/>";
+        $headers = array(
+            'Content-Type: text/html; charset=UTF-8',
+            'From: qubethemes@' . $url_only
+        );
+        
+        wp_mail($to, $subject, $body, $headers);
+
+        wp_send_json_success();
+
 
     }
 

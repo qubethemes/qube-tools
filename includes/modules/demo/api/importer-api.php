@@ -62,7 +62,10 @@ class Importer_API
             'import_action' => 'qube_tools_ajax_import',
             'xml_import_nonce' => wp_create_nonce('qube_tools_import_xml_demo_data_nonce'),
             'widget_import_nonce' => wp_create_nonce('qube_tools_import_widget_demo_data_nonce'),
-            'customizer_import_nonce' => wp_create_nonce('qube_tools_import_customizer_demo_data_nonce')
+            'customizer_import_nonce' => wp_create_nonce('qube_tools_import_customizer_demo_data_nonce'),
+            'import_feedback_action' => 'qube_tools_ajax_import_feedback',
+            'import_feedback_nonce' => wp_create_nonce('qube_tools_import_feedback_nonce'),
+
         );
 
         wp_localize_script('qube-tools-importer', 'qubeToolsImporterObj', $localize);

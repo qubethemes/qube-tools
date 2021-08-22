@@ -140,7 +140,8 @@ export const Popup = ({selectedDemo, closePopup, selectedDemoConfig}) => {
                                         if (importStatus) {
                                             return (<Content_Import_Success selectedDemoConfig={selectedDemoConfig}/>)
                                         }
-                                        return (<Content_Import_Failed selectedDemoConfig={selectedDemoConfig}/>)
+                                        return (<Content_Import_Failed selectedDemoConfig={selectedDemoConfig}
+                                                                       selectedDemo={selectedDemo}/>)
                                     default:
                                         return (<Content_Plugin_Install selectedDemoConfig={selectedDemoConfig}/>)
                                 }
