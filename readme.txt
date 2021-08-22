@@ -1,17 +1,17 @@
-=== Qube Tools ===
+=== Qube Tools - Extend Theme Features & One Click Demo Importer Plugin for Qube Themes ===
 Contributors: qubethemes
-Tags: demo import, tools, elementor template library
+Tags: demo import, tools
 Requires at least: 4.7
 Tested up to: 5.8
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Extend Qubethemes's theme feature & one click demo importer
+Extend Theme Features & One Click Demo Importer Plugin for Qube Themes
 
 == Description ==
 
-Extend Qubethemes's theme feature & one click demo importer
+Extend Theme Features & One Click Demo Importer Plugin for Qube Themes
 
 
 
@@ -23,5 +23,9 @@ Extend Qubethemes's theme feature & one click demo importer
 
 == Changelog ==
 
-= 1.0.0 | 2021/08/01 =
+= 1.0.2 | 2021/08/22 =
+* Update - Change Demo Importer UI React JS Based
+* Fixes - Some minor issue
+
+= 1.0.1 | 2021/08/22 =
 * Initial release

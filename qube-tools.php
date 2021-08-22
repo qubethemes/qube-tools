@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       Qube Tools
  * Plugin URI:        https://wordpress.org/plugins/qube-tools
- * Description:       Extend Qubethemes's theme feature & one click demo importer
- * Version:           1.0.0
+ * Description:       Extend Theme Features & One Click Demo Importer Plugin for Qube Themes
+ * Version:           1.0.2
  * Author:            Qubethemes
  * Author URI:        https://qubethemes.com/
  * License:           GPL-2.0+
@@ -22,7 +22,7 @@ if (!defined('QUBE_TOOLS_FILE')) {
 }
  // Define QUBE_TOOLS_VERSION.
 if (!defined('QUBE_TOOLS_VERSION')) {
-    define('QUBE_TOOLS_VERSION', '1.0.0');
+    define('QUBE_TOOLS_VERSION', '1.0.2');
 }
 
 // Define QUBE_TOOLS_PLUGIN_URI.
