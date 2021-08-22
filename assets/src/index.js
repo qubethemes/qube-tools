@@ -1,6 +1,5 @@
 import './style.scss';
 import {Main} from "./components/main"
-
 const {
     __
 } = wp.i18n;
@@ -23,6 +22,7 @@ const {
     CardFooter,
 
 } = wp.components;
+
 
 import {Popup} from "./components/process/popup";
 

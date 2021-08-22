@@ -42,9 +42,9 @@ class Importer_API
         }
         $dependency = array('lodash', 'wp-api-fetch', 'wp-i18n', 'wp-components', 'wp-element');
 
-        wp_enqueue_script('qube-tools-importer', QUBE_TOOLS_PLUGIN_URI . 'build/index.js', $dependency, QUBE_TOOLS_VERSION, true);
+        wp_enqueue_script('qube-tools-importer', QUBE_TOOLS_PLUGIN_URI . 'assets/build/index.js', $dependency, QUBE_TOOLS_VERSION, true);
 
-        wp_enqueue_style('qube-tools-importer', QUBE_TOOLS_PLUGIN_URI . 'build/style-index.css', array('wp-components'), QUBE_TOOLS_VERSION);
+        wp_enqueue_style('qube-tools-importer', QUBE_TOOLS_PLUGIN_URI . 'assets/build/style-index.css', array('wp-components'), QUBE_TOOLS_VERSION);
 
         $all_demos = qube_tools_get_demos_data();
 

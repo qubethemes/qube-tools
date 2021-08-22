@@ -8,6 +8,7 @@ export const Content_Import_Failed = (props) => {
 
     const [importError, setImportError] = useState('');
     const [errorMessageSendingStatus, setErrorMessageSendingStatus] = useState('');
+    const [sendButtonText, setSendButtonText] = useState('Send Message');
     const importErrorChanged = (val) => {
         setImportError(val);
     }

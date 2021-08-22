@@ -1,0 +1,440 @@
+# Copyright (C) 2021 Qubethemes
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Qube Tools 1.0.0\n"
+"Report-Msgid-Bugs-To: qubethemes@gmail.com\n"
+"POT-Creation-Date: 2021-08-22 07:09:32+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: QubeThemes <qubethemes@gmail.com>\n"
+"Language-Team: QubeThemes <qubethemes@gmail.com>\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: includes/admin/init.php:22
+msgid "Install Demos"
+msgstr ""
+
+#: includes/main.php:126 includes/main.php:136
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:107
+msgid ""
+"There was a problem during the importing process resulting in the following "
+"error from your server:"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:108
+msgid "Activating"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:109
+msgid "Active"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:110
+#: includes/modules/demo/importer-old.php:231
+msgid "Activated"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:220
+msgid "Activate"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:226
+msgid "Install Now"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:245
+msgid "Get This Addon"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:273
+msgid "No plugin specified"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:293
+msgid "Plugin Successfully Activated"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:317
+msgid "Importing XML Data"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:324
+msgid "Importing Customizer Settings"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:331
+msgid "Importing Widgets"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:561
+#: includes/modules/demo/importer.php:199
+msgid ""
+"Can not retrieve sample data xml file. The server may be down at the moment "
+"please try again later. If you still have issues contact the theme "
+"developer for assistance."
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:576
+#: includes/modules/demo/importer.php:215
+msgid ""
+"The xml import file could not be accessed. Please try again or contact the "
+"theme developer."
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:614
+#: includes/modules/demo/importer.php:253
+msgid "Can not retrieve class-wp-importer.php"
+msgstr ""
+
+#: includes/modules/demo/importer-old.php:626
+#: includes/modules/demo/importer.php:265
+msgid "Sample data file appears corrupt or can not be accessed."
+msgstr ""
+
+#: includes/modules/demo/importers/widget.php:81
+msgid "Sidebar does not exist in theme (moving widget to Inactive)"
+msgstr ""
+
+#: includes/modules/demo/importers/widget.php:103
+msgid "Site does not support widget"
+msgstr ""
+
+#: includes/modules/demo/importers/widget.php:124
+msgid "Widget already exists"
+msgstr ""
+
+#: includes/modules/demo/importers/widget.php:182
+msgid "Imported"
+msgstr ""
+
+#: includes/modules/demo/importers/widget.php:185
+msgid "Imported to Inactive"
+msgstr ""
+
+#: includes/modules/demo/importers/widget.php:191
+msgid "No Title"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:121
+#: includes/modules/demo/importers/wpimporter.php:130
+#: includes/modules/demo/importers/wpimporter.php:183
+#: includes/modules/demo/importers/wpimporter.php:187
+#: includes/modules/demo/importers/wpimporter.php:196
+msgid "Sorry, there has been an error."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:122
+msgid "The file does not exist, please try again."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:188
+msgid ""
+"The export file could not be found at <code>%s</code>. It is likely that "
+"this was caused by a permissions problem."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:204
+msgid ""
+"This WXR file (version %s) may not be supported by this version of the "
+"importer. Please consider updating."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:230
+msgid ""
+"Failed to import author %s. Their posts will be attributed to the current "
+"user."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:257
+msgid "Assign Authors"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:258
+msgid ""
+"To make it easier for you to edit and save the imported content, you may "
+"want to reassign the author of the imported item to an existing user of "
+"this site. For example, you may want to import all the entries as "
+"<code>admin</code>s entries."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:260
+msgid ""
+"If a new user is created by WordPress, a new password will be randomly "
+"generated and the new user&#8217;s role will be set as %s. Manually "
+"changing the new user&#8217;s details will be necessary."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:270
+msgid "Import Attachments"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:273
+msgid "Download and import file attachments"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:278
+msgid "Submit"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:292
+msgid "Import author:"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:303
+msgid "or create new user with login name:"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:306
+msgid "as a new user:"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:314
+msgid "assign posts to an existing user:"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:316
+msgid "or assign posts to an existing user:"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:317
+msgid "- Select -"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:368
+msgid ""
+"Failed to create new user for %s. Their posts will be attributed to the "
+"current user."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:421
+msgid "Failed to import category %s"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:465
+msgid "Failed to import post tag %s"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:515
+#: includes/modules/demo/importers/wpimporter.php:741
+msgid "Failed to import %s %s"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:707
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:880
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:959
+msgid "Fetching attachments is not enabled"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:972
+msgid "Invalid file type"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1017
+msgid "Remote server did not respond"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1023
+msgid "Remote server returned error response %1$d %2$s"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1030
+msgid "Remote file is incorrect size"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1035
+msgid "Zero size file downloaded"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1041
+msgid "Remote file is too large, limit is %s"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1145
+msgid "Import WordPress"
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1152
+msgid ""
+"A new version of this importer is available. Please update to version %s to "
+"ensure compatibility with newer export files."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1169
+msgid ""
+"Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import "
+"the posts, pages, comments, custom fields, categories, and tags into this "
+"site."
+msgstr ""
+
+#: includes/modules/demo/importers/wpimporter.php:1170
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr ""
+
+#: includes/modules/demo/parsers/wxr-parser-regex.php:75
+#: includes/modules/demo/parsers/wxr-parser-simplexml.php:33
+#: includes/modules/demo/parsers/wxr-parser-simplexml.php:38
+#: includes/modules/demo/parsers/wxr-parser-xml.php:40
+msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr ""
+
+#: includes/modules/demo/parsers/wxr-parser-simplexml.php:21
+#: includes/modules/demo/parsers/wxr-parser-simplexml.php:29
+#: includes/modules/demo/parsers/wxr-parser.php:37
+msgid "There was an error when reading this WXR file"
+msgstr ""
+
+#: includes/modules/demo/parsers/wxr-parser.php:38
+msgid ""
+"Details are shown above. The importer will now try again with a different "
+"parser..."
+msgstr ""
+
+#: includes/modules/demo/templates/feedback-form-failed.php:3
+msgid "Problem during demo import?"
+msgstr ""
+
+#: includes/modules/demo/templates/feedback-form-failed.php:15
+msgid "Leave us your message. We will help you to import demo data."
+msgstr ""
+
+#: includes/modules/demo/templates/feedback-form-failed.php:18
+msgid ""
+"Clicking on send button will send your message, admin email, website url, "
+"selected demo name, php and wordpress version"
+msgstr ""
+
+#: includes/modules/demo/templates/feedback-form-failed.php:20
+msgid "Send message"
+msgstr ""
+
+#: includes/modules/demo/templates/feedback-form.php:10
+msgid "Do  you have any suggestion? You can give us feedback from here."
+msgstr ""
+
+#: includes/modules/demo/templates/feedback-form.php:13
+msgid ""
+"Clicking on send button will send your feedback message, admin email, "
+"website url and installed demo name."
+msgstr ""
+
+#: includes/modules/demo/templates/feedback-form.php:15
+msgid "Send"
+msgstr ""
+
+#: includes/modules/demo/templates/feedback-form.php:21
+msgid "Yes I Would Like to Write Review"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-page.php:24
+msgid "All"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-page.php:34
+msgid "Search demos..."
+msgstr ""
+
+#: includes/modules/demo/templates/importer-page.php:60
+msgid "Select Demo"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-page.php:80
+msgid "Live Preview"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:3
+msgid "Import the %1$s %2$s %3$s demo"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:9
+msgid ""
+"Qube tools help you browse and import ready made websites with few clicks. "
+"We recommend you to upload sample data on a fresh WordPress install to "
+"prevent conflicts with your current content. You can use this plugin to "
+"reset your site if needed: %1$sWordpress Database Reset%2$s."
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:15
+msgid "Recommended Plugins"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:16
+msgid ""
+"For your site to look exactly like this demo, the plugins below need to be "
+"activated."
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:27
+msgid "Next"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:38
+msgid "Select what you want to import:"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:45
+msgid "Import XML Data"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:46
+msgid "pages, posts, images, menus, etc..."
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:54
+msgid "Import Customizer Settings"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:62
+msgid "Import Widgets"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:72
+msgid "Install"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:77
+msgid "The import process could take some time, please be patient"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:85
+msgid "Congratulations"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:87
+msgid "Successfully Demo Imported!"
+msgstr ""
+
+#: includes/modules/demo/templates/importer-steps.php:92
+msgid "View Your Site"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Qube Tools"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/qube-tools"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Extend Qubethemes's theme feature & one click demo importer"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Qubethemes"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://qubethemes.com/"
+msgstr ""

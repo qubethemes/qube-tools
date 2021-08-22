@@ -196,7 +196,7 @@ class Importer
 
         // No sample data found
         if ($response === false) {
-            return new \WP_Error('xml_import_error', __('Can not retrieve sample data xml file. The server may be down at the moment please try again later. If you still have issues contact the theme developer for assistance.', 'qube-tools-toolkit'));
+            return new \WP_Error('xml_import_error', __('Can not retrieve sample data xml file. The server may be down at the moment please try again later. If you still have issues contact the theme developer for assistance.', 'qube-tools'));
         }
 
         // Write sample data content to temp xml file
@@ -212,7 +212,7 @@ class Importer
             $this->import_xml($attachment_url);
         } else {
             // Import file can't be imported - we should die here since this is core for most people.
-            return new \WP_Error('xml_import_error', __('The xml import file could not be accessed. Please try again or contact the theme developer.', 'qube-tools-toolkit'));
+            return new \WP_Error('xml_import_error', __('The xml import file could not be accessed. Please try again or contact the theme developer.', 'qube-tools'));
         }
 
     }
@@ -250,7 +250,7 @@ class Importer
             if (file_exists($class_wp_importer)) {
                 require_once $class_wp_importer;
             } else {
-                $importer_error = __('Can not retrieve class-wp-importer.php', 'qube-tools-toolkit');
+                $importer_error = __('Can not retrieve class-wp-importer.php', 'qube-tools');
             }
         }
 
@@ -262,7 +262,7 @@ class Importer
 
             // No error, lets import things...
             if (!is_file($file)) {
-                $importer_error = __('Sample data file appears corrupt or can not be accessed.', 'qube-tools-toolkit');
+                $importer_error = __('Sample data file appears corrupt or can not be accessed.', 'qube-tools');
                 return new \WP_Error('xml_import_error', $importer_error);
             } else {
                 $importer = new WPImporter();

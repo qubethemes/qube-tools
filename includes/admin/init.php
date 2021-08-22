@@ -22,6 +22,9 @@ class Init
         $title = esc_html__('Install Demos', 'qube-tools');
 
 
+        if (!isset($this->config['slug'])) {
+            return;
+        }
         if (!$this->config['slug']) {
             return;
         }
@@ -41,6 +44,10 @@ class Init
     {
 
         $this->config = qube_tools()->theme_config;
+
+        if (!isset($this->config['subpage'])) {
+            return;
+        }
 
         if (!$this->config['subpage']) {
             return;
@@ -63,7 +70,6 @@ class Init
      */
     public function create_admin_page()
     {
-
 
 
         echo '<div class="qube-tools-demo-wrap wrap" id="qube-tools-importer-page">Wrapper Page</div>';

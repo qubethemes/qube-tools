@@ -104,10 +104,10 @@ class Importer
             'ajaxurl' => admin_url('admin-ajax.php'),
             'demo_data_nonce' => wp_create_nonce('get-demo-data'),
             'qube_tools_import_data_nonce' => wp_create_nonce('qube_tools_import_data_nonce'),
-            'content_importing_error' => esc_html__('There was a problem during the importing process resulting in the following error from your server:', 'qube-tools-toolkit'),
-            'button_activating' => esc_html__('Activating', 'qube-tools-toolkit') . '&hellip;',
-            'button_active' => esc_html__('Active', 'qube-tools-toolkit'),
-            'button_activated' => esc_html__('Activated', 'qube-tools-toolkit'),
+            'content_importing_error' => esc_html__('There was a problem during the importing process resulting in the following error from your server:', 'qube-tools'),
+            'button_activating' => esc_html__('Activating', 'qube-tools') . '&hellip;',
+            'button_active' => esc_html__('Active', 'qube-tools'),
+            'button_activated' => esc_html__('Activated', 'qube-tools'),
         ));
 
     }
@@ -217,18 +217,18 @@ class Importer
                 if (file_exists(WP_PLUGIN_DIR . '/' . $plugin['init']) && is_plugin_inactive($plugin['init'])) {
 
                     $button_classes = 'button activate-now button-primary';
-                    $button_text = esc_html__('Activate', 'qube-tools-toolkit');
+                    $button_text = esc_html__('Activate', 'qube-tools');
 
                     // Not Installed.
                 } elseif (!file_exists(WP_PLUGIN_DIR . '/' . $plugin['init'])) {
 
                     $button_classes = 'button install-now';
-                    $button_text = esc_html__('Install Now', 'qube-tools-toolkit');
+                    $button_text = esc_html__('Install Now', 'qube-tools');
 
                     // Active.
                 } else {
                     $button_classes = 'button disabled';
-                    $button_text = esc_html__('Activated', 'qube-tools-toolkit');
+                    $button_text = esc_html__('Activated', 'qube-tools');
                     $activated_icon = '<span class="plugin-activated-icon dashicons dashicons-yes-alt"></span>';
                 } ?>
 
@@ -242,7 +242,7 @@ class Importer
                     if ('premium' == $return
                         && !file_exists(WP_PLUGIN_DIR . '/' . $plugin['init'])) { ?>
                         <a class="button" href="https://qubethemes.com/extensions/"
-                           target="_blank"><?php esc_html_e('Get This Addon', 'qube-tools-toolkit'); ?></a>
+                           target="_blank"><?php esc_html_e('Get This Addon', 'qube-tools'); ?></a>
                         <?php
                     } else { ?>
                         <button class="<?php echo $button_classes; ?>" data-init="<?php echo $api['init']; ?>"
@@ -270,7 +270,7 @@ class Importer
             wp_send_json_error(
                 array(
                     'success' => false,
-                    'message' => __('No plugin specified', 'qube-tools-toolkit'),
+                    'message' => __('No plugin specified', 'qube-tools'),
                 )
             );
         }
@@ -290,7 +290,7 @@ class Importer
         wp_send_json_success(
             array(
                 'success' => true,
-                'message' => __('Plugin Successfully Activated', 'qube-tools-toolkit'),
+                'message' => __('Plugin Successfully Activated', 'qube-tools'),
             )
         );
 
@@ -314,21 +314,21 @@ class Importer
                     'input_name' => 'qube_tools_import_xml',
                     'action' => 'qube_tools_ajax_import_xml',
                     'method' => 'ajax_import_xml',
-                    'loader' => esc_html__('Importing XML Data', 'qube-tools-toolkit')
+                    'loader' => esc_html__('Importing XML Data', 'qube-tools')
                 ),
 
                 array(
                     'input_name' => 'qube_tools_theme_settings',
                     'action' => 'qube_tools_ajax_import_theme_settings',
                     'method' => 'ajax_import_theme_settings',
-                    'loader' => esc_html__('Importing Customizer Settings', 'qube-tools-toolkit')
+                    'loader' => esc_html__('Importing Customizer Settings', 'qube-tools')
                 ),
 
                 array(
                     'input_name' => 'qube_tools_import_widgets',
                     'action' => 'qube_tools_ajax_import_widgets',
                     'method' => 'ajax_import_widgets',
-                    'loader' => esc_html__('Importing Widgets', 'qube-tools-toolkit')
+                    'loader' => esc_html__('Importing Widgets', 'qube-tools')
                 ),
             )
         );
@@ -558,7 +558,7 @@ class Importer
 
         // No sample data found
         if ($response === false) {
-            return new \WP_Error('xml_import_error', __('Can not retrieve sample data xml file. The server may be down at the moment please try again later. If you still have issues contact the theme developer for assistance.', 'qube-tools-toolkit'));
+            return new \WP_Error('xml_import_error', __('Can not retrieve sample data xml file. The server may be down at the moment please try again later. If you still have issues contact the theme developer for assistance.', 'qube-tools'));
         }
 
         // Write sample data content to temp xml file
@@ -573,7 +573,7 @@ class Importer
             $this->import_xml($attachment_url);
         } else {
             // Import file can't be imported - we should die here since this is core for most people.
-            return new \WP_Error('xml_import_error', __('The xml import file could not be accessed. Please try again or contact the theme developer.', 'qube-tools-toolkit'));
+            return new \WP_Error('xml_import_error', __('The xml import file could not be accessed. Please try again or contact the theme developer.', 'qube-tools'));
         }
 
     }
@@ -611,7 +611,7 @@ class Importer
             if (file_exists($class_wp_importer)) {
                 require_once $class_wp_importer;
             } else {
-                $importer_error = __('Can not retrieve class-wp-importer.php', 'qube-tools-toolkit');
+                $importer_error = __('Can not retrieve class-wp-importer.php', 'qube-tools');
             }
         }
 
@@ -623,7 +623,7 @@ class Importer
 
             // No error, lets import things...
             if (!is_file($file)) {
-                $importer_error = __('Sample data file appears corrupt or can not be accessed.', 'qube-tools-toolkit');
+                $importer_error = __('Sample data file appears corrupt or can not be accessed.', 'qube-tools');
                 return new \WP_Error('xml_import_error', $importer_error);
             } else {
                 $importer = new WPImporter();
