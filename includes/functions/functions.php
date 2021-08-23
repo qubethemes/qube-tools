@@ -55,7 +55,6 @@ if (!function_exists('qube_tools_get_module_template')) {
     }
 }
 
-
 if (!function_exists('qube_tools_load_admin_template')) {
 
     function qube_tools_load_admin_template($template = null, $variables = array(), $include_once = false)
