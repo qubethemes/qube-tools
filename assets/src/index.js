@@ -118,7 +118,6 @@ const DemoImporterPage = () => {
 
 
     }
-
     const closePopup = () => {
         setSelectedDemo('');
         setSelectedDemoPluginDetails(false);

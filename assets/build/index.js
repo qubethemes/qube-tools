@@ -362,7 +362,7 @@ const Content_Import_Failed = props => {
 
   switch (errorMessageSendingStatus) {
     case "sending":
-      sendButtonText = "Sending.....";
+      sendButtonText = __("Sending.....", 'qube-tools');
       break;
   }
 
@@ -375,23 +375,23 @@ const Content_Import_Failed = props => {
           margin: "100px 0",
           textTransform: "uppercase"
         }
-      }, "Thank you for the message. We will get back to you soon");
+      }, __('Thank you for the message. We will get back to you soon', 'qube-tools'));
     } else if (errorMessageSendingStatus === "error") {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
         style: {
           margin: "100px 0"
         }
-      }, "Something goes wrong. Please email your problem at qubethemes@gmail.com");
+      }, __('Something goes wrong. Please email your problem at qubethemes@gmail.com', 'qube-tools'));
     } else {
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, "You can submit the problem from here"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("textarea", {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, __('You can submit the problem from here', 'qube-tools')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("textarea", {
         className: "feedback",
         name: "feedback",
-        placeholder: "Leave us your message. We will help you to import demo data.",
+        placeholder: __('Leave us your message. We will help you to import demo data', 'qube-tools'),
         onChange: event => {
           importFeedbackTextChanged(event.target.value);
         },
         disabled: disableStatus
-      }, errorMessageSendingStatus)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Clicking on send button will send your message, admin email, website url, selected demo name, php and wordpress version"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
+      }, errorMessageSendingStatus)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, __('Clicking on send button will send your message, admin email, website url, selected demo name, php and wordpress version', 'qube-tools')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
         type: "button",
         name: "qube_tools_demo_failed_send",
         className: "button button-secondary",
@@ -446,7 +446,7 @@ const Content_Import_Success = props => {
     className: "emoji",
     alt: "\uD83C\uDF89",
     src: "https://s.w.org/images/core/emoji/13.1.0/svg/1f389.svg"
-  }), " Congratulations", Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+  }), __('Congratulations', 'qube-tools'), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
     draggable: "false",
     role: "img",
     className: "emoji",
@@ -463,7 +463,7 @@ const Content_Import_Success = props => {
       textAlign: 'center',
       marginBottom: '50px'
     }
-  }, "Successfully Demo Imported!"));
+  }, __('Successfully Demo Imported!', 'qube-tools')));
 };
 
 /***/ }),
@@ -501,19 +501,19 @@ const Content_Importing = props => {
   const [ajaxImportStatus, setAjaxImportStatus] = useState();
   const [importMessages, setImportMessages] = useState({
     xml: {
-      importing: 'Importing XML Data',
-      imported: 'XML Data Successfully imported',
-      failed: 'Failed to import xml data'
+      importing: __('Importing XML Data', 'qube-tools'),
+      imported: __('XML Data Successfully imported', 'qube-tools'),
+      failed: __('Failed to import xml data', 'qube-tools')
     },
     widget: {
-      importing: 'Importing Widget Data',
-      imported: 'Widget Data Successfully imported',
-      failed: 'Failed to import widget data'
+      importing: __('Importing Widget Data', 'qube-tools'),
+      imported: __('Widget Data Successfully imported', 'qube-tools'),
+      failed: __('Failed to import widget data', 'qube-tools')
     },
     customizer: {
-      importing: 'Importing Customizer Data',
-      imported: 'Customizer Data Successfully imported',
-      failed: 'Failed to import customizer data'
+      importing: __('Importing Customizer Data', 'qube-tools'),
+      imported: __('Customizer Data Successfully imported', 'qube-tools'),
+      failed: __('Failed to import customizer data', 'qube-tools')
     }
   });
   const [importNonce, setImportNonce] = useState({
@@ -600,7 +600,7 @@ const Content_Importing = props => {
       var _importMessages$key$i;
 
       var importStatusValue = importStatus[key].toLowerCase();
-      var importMessage = (_importMessages$key$i = importMessages[key][importStatusValue]) !== null && _importMessages$key$i !== void 0 ? _importMessages$key$i : 'Something Wrong, please try again';
+      var importMessage = (_importMessages$key$i = importMessages[key][importStatusValue]) !== null && _importMessages$key$i !== void 0 ? _importMessages$key$i : __('Something Wrong, please try again', 'qube-tools');
       var className = '';
 
       if (importStatus[key] === 'IMPORTING') {
@@ -1187,7 +1187,7 @@ const Tab_Content = props => {
   const demosKeys = Object.keys(props.demos);
 
   if (demosKeys.length < 1) {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "Demo not found....");
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, __('Demo not found....', 'qube-tools'));
   }
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
