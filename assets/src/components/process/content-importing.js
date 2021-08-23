@@ -23,19 +23,19 @@ export const Content_Importing = (props) => {
 
     const [importMessages, setImportMessages] = useState({
         xml: {
-            importing: 'Importing XML Data',
-            imported: 'XML Data Successfully imported',
-            failed: 'Failed to import xml data',
+            importing: __('Importing XML Data', 'qube-tools'),
+            imported: __('XML Data Successfully imported', 'qube-tools'),
+            failed: __('Failed to import xml data', 'qube-tools'),
         },
         widget: {
-            importing: 'Importing Widget Data',
-            imported: 'Widget Data Successfully imported',
-            failed: 'Failed to import widget data',
+            importing: __('Importing Widget Data', 'qube-tools'),
+            imported: __('Widget Data Successfully imported', 'qube-tools'),
+            failed: __('Failed to import widget data', 'qube-tools'),
         },
         customizer: {
-            importing: 'Importing Customizer Data',
-            imported: 'Customizer Data Successfully imported',
-            failed: 'Failed to import customizer data',
+            importing: __('Importing Customizer Data', 'qube-tools'),
+            imported: __('Customizer Data Successfully imported', 'qube-tools'),
+            failed: __('Failed to import customizer data', 'qube-tools'),
         }
     });
 
@@ -138,7 +138,7 @@ export const Content_Importing = (props) => {
 
                             var importStatusValue = importStatus[key].toLowerCase();
 
-                            var importMessage = importMessages[key][importStatusValue] ?? 'Something Wrong, please try again';
+                            var importMessage = importMessages[key][importStatusValue] ?? __('Something Wrong, please try again', 'qube-tools');
 
                             var className = '';
 

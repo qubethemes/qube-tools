@@ -56,7 +56,7 @@ export const Content_Import_Failed = (props) => {
 
     switch (errorMessageSendingStatus) {
         case "sending":
-            sendButtonText = "Sending.....";
+            sendButtonText = __("Sending.....", 'qube-tools');
             break;
     }
 
@@ -71,29 +71,28 @@ export const Content_Import_Failed = (props) => {
                                 margin: "100px 0",
                                 textTransform: "uppercase"
                             }
-                        }>Thank you for the message. We will get back to you soon</h2>);
+                        }>{__('Thank you for the message. We will get back to you soon', 'qube-tools')}</h2>);
                 } else if (errorMessageSendingStatus === "error") {
                     return <h2
                         style={
                             {
                                 margin: "100px 0",
                             }
-                        }>Something goes wrong. Please email your problem at qubethemes@gmail.com</h2>
+                        }>{__('Something goes wrong. Please email your problem at qubethemes@gmail.com', 'qube-tools')}</h2>
                 } else {
                     return (
                         <>
-                            <h2>You can submit the problem from here</h2>
+                            <h2>{__('You can submit the problem from here', 'qube-tools')}</h2>
                             <label>
             <textarea className="feedback" name="feedback"
-                      placeholder="Leave us your message. We will help you to import demo data." onChange={(event) => {
-                importFeedbackTextChanged(event.target.value)
-            }} disabled={disableStatus}>{
+                      placeholder={__('Leave us your message. We will help you to import demo data', 'qube-tools')}
+                      onChange={(event) => {
+                          importFeedbackTextChanged(event.target.value)
+                      }} disabled={disableStatus}>{
                 errorMessageSendingStatus
             }</textarea>
                             </label>
-                            <p>Clicking on send button will send your message, admin
-                                email, website url, selected demo name, php and
-                                wordpress version</p>
+                            <p>{__('Clicking on send button will send your message, admin email, website url, selected demo name, php and wordpress version', 'qube-tools')}</p>
                             <button type="button" name="qube_tools_demo_failed_send"
                                     className="button button-secondary" onClick={() => {
 

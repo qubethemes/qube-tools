@@ -15,7 +15,7 @@ export const Content_Import_Success = (props) => {
                 <img draggable="false" role="img" className="emoji" alt="🎉"
                      src="https://s.w.org/images/core/emoji/13.1.0/svg/1f389.svg"/>
                 <img draggable="false" role="img" className="emoji" alt="🎉"
-                     src="https://s.w.org/images/core/emoji/13.1.0/svg/1f389.svg"/> Congratulations
+                     src="https://s.w.org/images/core/emoji/13.1.0/svg/1f389.svg"/>{__('Congratulations', 'qube-tools')}
                 <img
                     draggable="false" role="img" className="emoji" alt="🎉"
                     src="https://s.w.org/images/core/emoji/13.1.0/svg/1f389.svg"/>
@@ -27,7 +27,7 @@ export const Content_Import_Success = (props) => {
                     textAlign: 'center',
                     marginBottom: '50px'
                 }
-            }>Successfully Demo Imported!</h3>
+            }>{__('Successfully Demo Imported!', 'qube-tools')}</h3>
 
         </div>
     )
