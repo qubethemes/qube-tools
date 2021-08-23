@@ -10,3 +10,9 @@
 /.github export-ignore
 /.wordpress-org export-ignore
 /package-lock.json  export-ignore
+/package.json  export-ignore
+/Gruntfile.js  export-ignore
+/.jshintrc  export-ignore
+/assets/.package.json  export-ignore
+/assets/.package-lock.json  export-ignore
+/assets/src  export-ignore
