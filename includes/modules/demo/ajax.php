@@ -129,7 +129,7 @@ class Ajax
                 $status = $import->import_xml_file($demo);
                 break;
             case "widget":
-                $status = false;// $import->import_widget_file($demo);
+                $status = $import->import_widget_file($demo);
                 break;
             case "customizer":
                 $status = $import->import_customizer_file($demo);
@@ -139,6 +139,7 @@ class Ajax
         // Check for after imported method
 
         $total_imported_files = 0;
+
         foreach ($import_status_arr as $import_status_key => $import_status_value) {
             if ($import_status_value != '') {
                 $total_imported_files++;
@@ -146,8 +147,10 @@ class Ajax
                 $total_imported_files++;
             }
         }
+        $after_import_status = false;
         if ($total_imported_files == count($import_status_arr)) {
             // Call for after import method
+            $after_import_status = $import->ajax_after_import($demo);
         }
 
         if ($status) {
@@ -155,7 +158,8 @@ class Ajax
                 "import_file" => $import_file,
                 "selected_demo" => $demo_type,
                 'imported_count' => $total_imported_files,
-                'status' => $import_status_arr
+                'status' => $import_status_arr,
+                'after_import_status' => $after_import_status
 
             ]);
         }
@@ -164,7 +168,9 @@ class Ajax
             "import_file" => $import_file,
             "selected_demo" => $demo_type,
             'imported_count' => $total_imported_files,
-            'status' => $import_status_arr
+            'status' => $import_status_arr,
+            'after_import_status' => $after_import_status
+
 
         ]);
         exit;
