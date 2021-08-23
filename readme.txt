@@ -3,7 +3,7 @@ Contributors: qubethemes
 Tags: demo import, tools
 Requires at least: 4.7
 Tested up to: 5.8
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,7 +23,7 @@ Extend Theme Features & One Click Demo Importer Plugin for Qube Themes
 
 == Changelog ==
 
-= 1.0.2 | 2021/08/23 =
+= 1.0.3 | 2021/08/23 =
 * Update - Change Demo Importer UI React JS Based
 * Fixes - Some minor issue
 
