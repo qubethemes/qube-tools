@@ -3,7 +3,7 @@
  * Plugin Name:       Qube Tools
  * Plugin URI:        https://wordpress.org/plugins/qube-tools
  * Description:       Extend Theme Features & One Click Demo Importer Plugin for Qube Themes
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Qubethemes
  * Author URI:        https://qubethemes.com/
  * License:           GPL-2.0+
@@ -20,20 +20,19 @@ if (!defined('ABSPATH')) {
 if (!defined('QUBE_TOOLS_FILE')) {
     define('QUBE_TOOLS_FILE', dirname(__FILE__));
 }
-
 // Define QUBE_TOOLS_VERSION.
 if (!defined('QUBE_TOOLS_VERSION')) {
-    define('QUBE_TOOLS_VERSION', '1.0.1');
+    define('QUBE_TOOLS_VERSION', '1.0.2');
 }
 
 // Define QUBE_TOOLS_PLUGIN_URI.
 if (!defined('QUBE_TOOLS_PLUGIN_URI')) {
-    define('QUBE_TOOLS_PLUGIN_URI', plugins_url('', QUBE_TOOLS_FILE) . '/');
+    define('QUBE_TOOLS_PLUGIN_URI', plugins_url('', __FILE__) . '/');
 }
 
 // Define QUBE_TOOLS_PLUGIN_DIR.
 if (!defined('QUBE_TOOLS_PLUGIN_DIR')) {
-    define('QUBE_TOOLS_PLUGIN_DIR', plugin_dir_path(QUBE_TOOLS_FILE));
+    define('QUBE_TOOLS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 }
 
 require_once wp_normalize_path(QUBE_TOOLS_FILE . '/includes/autoloader.php');

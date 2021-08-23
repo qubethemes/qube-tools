@@ -96,6 +96,9 @@ function qube_tools_wp_get_http($url, $file_path = false, $red = 1)
         }
     }
 
+    if (is_wp_error($response)) {
+        return false;
+    }
     // If all went well, then return the headers of the request.
     if (isset($response['headers'])) {
         $response['headers']['response'] = $response['response']['code'];
@@ -125,17 +128,13 @@ function qube_tools_get_demo_item_categories($item)
 {
     $sanitized_categories = array();
 
-    if (isset($item['categories'])) {
-        foreach ($item['categories'] as $category) {
-            $sanitized_categories[] = sanitize_key($category);
-        }
-    }
+    $categories = isset($item['categories']) ? $item['categories'] : array();
 
-    if (!empty($sanitized_categories)) {
-        return implode(',', $sanitized_categories);
-    }
+    foreach ($categories as $category_key => $category_value) {
 
-    return false;
+        $sanitized_categories[$category_key] = sanitize_text_field($category_value);
+    }
+    return $sanitized_categories;
 }
 
 function qube_tools_get_demo_all_categories($demo_imports)
@@ -144,17 +143,10 @@ function qube_tools_get_demo_all_categories($demo_imports)
 
     foreach ($demo_imports as $item) {
 
-        if (!empty($item['categories']) && is_array($item['categories'])) {
+        $sanitized_categories = qube_tools_get_demo_item_categories($item);
 
-            foreach ($item['categories'] as $category) {
+        $categories = array_merge($categories, $sanitized_categories);
 
-                $categories[sanitize_key($category)] = $category;
-            }
-        }
-    }
-
-    if (empty($categories)) {
-        return false;
     }
 
     return $categories;
