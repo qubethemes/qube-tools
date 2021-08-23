@@ -75,12 +75,19 @@ export const Content_Importing = (props) => {
         importingStatus[import_file] = 'IMPORTING';
 
         setImportStatus(importingStatus);
+
         let nonce = importNonce[import_file] ?? '';
+
         let formData = new FormData();
+
         formData.append('action', qubeToolsImporterObj.import_action);
         formData.append('selected_demo', props.selectedDemo);
         formData.append('import_file', import_file);
         formData.append('qube_tools_nonce', nonce);
+        for (var importStatusKey in importStatus) {
+            formData.append('import_status[' + importStatusKey + ']', importStatus[importStatusKey]);
+        }
+
         apiFetch({
             url: qubeToolsImporterObj.ajax_url,
             method: 'POST',

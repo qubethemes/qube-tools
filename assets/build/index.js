@@ -556,6 +556,11 @@ const Content_Importing = props => {
     formData.append('selected_demo', props.selectedDemo);
     formData.append('import_file', import_file);
     formData.append('qube_tools_nonce', nonce);
+
+    for (var importStatusKey in importStatus) {
+      formData.append('import_status[' + importStatusKey + ']', importStatus[importStatusKey]);
+    }
+
     apiFetch({
       url: qubeToolsImporterObj.ajax_url,
       method: 'POST',
