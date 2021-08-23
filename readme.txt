@@ -23,7 +23,7 @@ Extend Theme Features & One Click Demo Importer Plugin for Qube Themes
 
 == Changelog ==
 
-= 1.0.2 | 2021/08/22 =
+= 1.0.2 | 2021/08/23 =
 * Update - Change Demo Importer UI React JS Based
 * Fixes - Some minor issue
 
