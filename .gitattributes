@@ -9,3 +9,4 @@
 /.gitignore export-ignore
 /.github export-ignore
 /.wordpress-org export-ignore
+/package-lock.json  export-ignore
