@@ -131,7 +131,7 @@ const DemoImporterPage = () => {
         <> <h1 className="screen-reader-text">{__('Theme Demo Import', 'qube-tools')}</h1>
             <Card>
                 <CardHeader style={{overflow: 'hidden', height: '70px'}}>
-                    <h2>{__('Theme Demo Import', 'qube-tools')}</h2>
+                    <h2>{__('Theme Demo Import' , 'qube-tools')}</h2>
                 </CardHeader>
                 <CardBody>
                     <div className="theme-browser rendered">
